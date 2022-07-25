@@ -5,7 +5,7 @@ import './App.css';
 const App = () => (
   <React.Fragment>
     <Reset />
-    <div>Hi, I'm an app!</div>
+    <div>Hi, I'm an dog!</div>
   </React.Fragment>
 );
 
