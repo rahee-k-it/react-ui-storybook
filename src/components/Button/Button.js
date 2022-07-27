@@ -63,7 +63,7 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`button ${size} ${variant}`}
+        className={`button ${size} ${variant} ${color}`}
         underline={underline}
         fontSize={fontSize}
         fontWeight={fontWeight}
