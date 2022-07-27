@@ -129,7 +129,6 @@ Button.propTypes = {
 Button.defaultProps = {
   size: 'medium',
   children: 'Button',
-  fontSize: '12px',
   opacity: 1,
 };
 

@@ -29,7 +29,7 @@ Default.args = {
   bgColor: '#9b59b6',
   color: 'black',
   children: 'Button',
-  opacity: 1,
+  opacity: '1',
   fontSize: '13px',
   fontWeight: '400',
   bordeRadius: '4px',
@@ -75,7 +75,7 @@ Underline.args = {
 
 Icon.args = {
   children: '',
-  // icon: faAppleWhole,
+  fIcon: faAppleWhole,
   bgColor: 'inherit',
   border: 'none',
   color: 'tomato',
