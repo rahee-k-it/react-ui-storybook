@@ -117,7 +117,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   border: false,
-  borderRadiusSize: 'l',
+  borderRadiusSize: 's',
   shadow: false,
   shadowDirection: 'down-right',
   subtitle: 'subtitle',
