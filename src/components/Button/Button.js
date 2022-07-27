@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 const ButtonStyle = styled.button`
   display: flex;
   justify-content: center;
-  flex-direction: ${(props) => props.flexDirection};
   align-items: center;
   font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
@@ -58,7 +57,6 @@ function Button(props) {
     borderColor,
     hoverColor,
     hoverBgColor,
-    flexDirection,
     ...rest
   } = props;
 
@@ -84,7 +82,6 @@ function Button(props) {
         shadow={shadow}
         hoverColor={hoverColor}
         hoverBgColor={hoverBgColor}
-        flexDirection={flexDirection}
         {...rest}
       >
         <FontAwesomeIcon icon={fIcon} />
@@ -119,7 +116,6 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   hoverColor: PropTypes.string,
   hoverBgColor: PropTypes.string,
-  flexDirection: PropTypes.string,
 };
 
 Button.defaultProps = {
