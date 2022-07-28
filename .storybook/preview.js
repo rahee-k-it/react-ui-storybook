@@ -1,5 +1,6 @@
 import GlobalStyles from '../src/GlobalStyles';
 import { addDecorator } from '@storybook/react';
+import '../src/assets/styles/tailwind.css';
 
 addDecorator((story) => (
   <>
