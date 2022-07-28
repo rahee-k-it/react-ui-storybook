@@ -27,7 +27,6 @@ Default.args = {
   width: '50px',
   height: '20px',
   bgColor: '#9b59b6',
-  color: 'black',
   children: 'Button',
   opacity: '1',
   fontSize: '13px',
@@ -39,6 +38,7 @@ Default.args = {
   border: 'none',
   hoverColor: '',
   hoverBgColor: '',
+  color: 'text-black',
 };
 
 Disabled.args = {
@@ -56,7 +56,6 @@ Outline.args = {
   children: 'Outline',
   bgColor: 'white',
   border: '1px solid #2ecc71',
-  color: '#2ecc71',
   bordeRadius: '3px',
   padding: '5px',
 };
@@ -68,17 +67,16 @@ Contained.args = {
 Underline.args = {
   children: 'Underline',
   bgColor: 'inherit',
-  color: 'rgba(235, 77, 75,1.0)',
   underline: 'underline',
   border: 'none',
 };
 
 Icon.args = {
   children: '',
-  fIcon: faAppleWhole,
+  icon: faAppleWhole,
+  iconPosition: 'front',
   bgColor: 'inherit',
   border: 'none',
-  color: 'tomato',
   fontSize: '20px',
 };
 

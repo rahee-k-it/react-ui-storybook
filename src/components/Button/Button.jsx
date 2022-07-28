@@ -3,8 +3,25 @@ import styled from 'styled-components';
 import './Button.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import { TextColor } from '../common';
 
+// export const TextColor = {
+//   'text-black': 'rgb(0 0 0)',
+//   'text-white': 'rgb(255 255 255)',
+//   'text-gray-100': 'rgb(243,244,246)',
+//   'text-gray-300': 'rgb(209,213,219)',
+//   'text-gray-500': 'rgb(107,114,128)',
+//   'text-gray-700': 'rgb(55,65,81)',
+//   'text-gray-900': 'rgb(17,24,39)',
+//   'text-red-100': 'rgb(254,226,226)',
+//   'text-red-300': 'rgb(252,165 165)',
+//   'text-red-500': 'rgb(239,68,68)',
+//   'text-red-700': 'rgb(185,28,28)',
+//   'text-red-900': 'rgb(127,29,29)',
+// };
 const ButtonStyle = styled.button`
+  ${({ color }) => (color ? `color: ${TextColor[color]};` : '')};
+
   display: flex;
   justify-content: center;
   flex-direction: ${(props) => props.flexDirection};
@@ -14,7 +31,6 @@ const ButtonStyle = styled.button`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: ${(props) => props.bgColor};
-  color: ${(props) => props.color};
   opacity: ${(props) => props.opacity};
   box-shadow: ${(props) => props.shadow};
   margin: ${(props) => props.margin};
@@ -25,14 +41,16 @@ const ButtonStyle = styled.button`
   border-style: ${(props) => props.borderStyle};
   border-width: ${(props) => props.borderWidth};
   border-color: ${(props) => props.borderColor};
+
   :hover {
-    color: ${(props) => props.hoverColor};
+    /* color: ${(props) => props.hoverColor}; */
     background-color: ${(props) => props.hoverBgColor};
   }
   span {
     margin: 0px 5px;
   }
 `;
+
 function Button(props) {
   const {
     variant,
@@ -49,8 +67,8 @@ function Button(props) {
     bgColor,
     children,
     color,
-    fIcon,
-    eIcon,
+    icon,
+    iconPosition,
     fontSize,
     fontWeight,
     borderStyle,
@@ -83,20 +101,31 @@ function Button(props) {
         color={color}
         shadow={shadow}
         hoverColor={hoverColor}
+        icon={icon}
+        iconPosition={iconPosition}
         hoverBgColor={hoverBgColor}
         flexDirection={flexDirection}
         {...rest}
       >
-        <FontAwesomeIcon icon={fIcon} />
-        <span>{children}</span>
-        <FontAwesomeIcon icon={eIcon} />
+        {iconPosition === 'front' ? (
+          <>
+            <FontAwesomeIcon icon={icon} />
+            <span>{children}</span>
+          </>
+        ) : (
+          <>
+            <span>{children}</span>
+            <FontAwesomeIcon icon={icon} />
+          </>
+        )}
       </ButtonStyle>
     </>
   );
 }
 
 Button.propTypes = {
-  size: PropTypes.string,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  variant: PropTypes.oneOf(['outline', 'contained', 'none']),
   underline: PropTypes.string,
   opacity: PropTypes.number,
   margin: PropTypes.string,
@@ -108,9 +137,9 @@ Button.propTypes = {
   height: PropTypes.string,
   bgColor: PropTypes.string,
   children: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  fIcon: PropTypes.object,
-  eIcon: PropTypes.object,
+  color: PropTypes.oneOf(Object.keys(TextColor)),
+  icon: PropTypes.object,
+  iconPosition: PropTypes.oneOf(['front', 'end']),
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
   borderStyle: PropTypes.string,
@@ -119,7 +148,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   hoverColor: PropTypes.string,
   hoverBgColor: PropTypes.string,
-  flexDirection: PropTypes.string,
+  flexDirection: PropTypes.oneOf(['row', 'column']),
 };
 
 Button.defaultProps = {
