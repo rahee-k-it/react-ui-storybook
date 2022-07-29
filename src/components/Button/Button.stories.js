@@ -1,9 +1,13 @@
 import Button from './Button';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { Color, FontSize } from '../common';
 >>>>>>> 4412360 (fontSize 수정)
+=======
+import { Color, FontSize, FontWeight } from '../common';
+>>>>>>> 5ed13cb (fontWeight 수정)
 
 export default {
   title: 'Button',
@@ -11,10 +15,16 @@ export default {
   argTypes: {
     onClick: { action: 'clicked' },
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     fontSize: { control: 'select', options: FontSize },
     color: { control: 'select', options: Color },
 >>>>>>> 4412360 (fontSize 수정)
+=======
+    color: { control: 'select', options: Color },
+    fontSize: { control: 'select', options: FontSize },
+    fontWeight: { control: 'select', options: FontWeight },
+>>>>>>> 5ed13cb (fontWeight 수정)
   },
 };
 

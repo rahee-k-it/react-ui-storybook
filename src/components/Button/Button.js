@@ -3,13 +3,12 @@ import styled from 'styled-components';
 import './Button.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
-import { FontSize, Color } from '../common';
+import { FontSize, Color, FontWeight } from '../common';
 
 const ButtonStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: ${(props) => props.fontWeight};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: ${(props) => props.bgColor};
@@ -63,9 +62,8 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`button ${size} ${variant} ${fontSize} ${color} `}
+        className={`button ${size} ${variant} ${fontSize} ${color} ${fontWeight}`}
         underline={underline}
-        fontWeight={fontWeight}
         bordeRadius={bordeRadius}
         border={border}
         borderStyle={borderStyle}
@@ -116,7 +114,7 @@ Button.propTypes = {
   children: PropTypes.string.isRequired,
   iconPosition: PropTypes.oneOf(['front', 'end']),
   fontSize: PropTypes.oneOf(FontSize),
-  fontWeight: PropTypes.string,
+  fontWeight: PropTypes.oneOf(FontWeight),
   borderStyle: PropTypes.string,
   borderWidth: PropTypes.string,
   borderColor: PropTypes.string,
