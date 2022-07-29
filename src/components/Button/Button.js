@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import './Button.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
+import { FontSize, Color } from '../common';
 
 const ButtonStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${(props) => props.fontSize};
   font-weight: ${(props) => props.fontWeight};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
@@ -63,9 +63,8 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`button ${size} ${variant} ${color}`}
+        className={`button ${size} ${variant} ${fontSize} ${color} `}
         underline={underline}
-        fontSize={fontSize}
         fontWeight={fontWeight}
         bordeRadius={bordeRadius}
         border={border}
@@ -113,10 +112,10 @@ Button.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   bgColor: PropTypes.string,
+  color: PropTypes.oneOf(Color),
   children: PropTypes.string.isRequired,
-  color: PropTypes.string,
-  fontSize: PropTypes.string,
   iconPosition: PropTypes.oneOf(['front', 'end']),
+  fontSize: PropTypes.oneOf(FontSize),
   fontWeight: PropTypes.string,
   borderStyle: PropTypes.string,
   borderWidth: PropTypes.string,
@@ -124,12 +123,6 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   hoverColor: PropTypes.string,
   hoverBgColor: PropTypes.string,
-};
-
-Button.defaultProps = {
-  size: 'medium',
-  children: 'Button',
-  opacity: 1,
 };
 
 export default Button;

@@ -1,11 +1,20 @@
 import Button from './Button';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
+<<<<<<< HEAD
+=======
+import { Color, FontSize } from '../common';
+>>>>>>> 4412360 (fontSize 수정)
 
 export default {
   title: 'Button',
   component: Button,
   argTypes: {
     onClick: { action: 'clicked' },
+<<<<<<< HEAD
+=======
+    fontSize: { control: 'select', options: FontSize },
+    color: { control: 'select', options: Color },
+>>>>>>> 4412360 (fontSize 수정)
   },
 };
 
@@ -29,8 +38,12 @@ Default.args = {
   bgColor: '#9b59b6',
   color: 'black',
   children: 'Button',
+<<<<<<< HEAD
   opacity: '1',
   fontSize: '13px',
+=======
+  opacity: 1,
+>>>>>>> 4412360 (fontSize 수정)
   fontWeight: '400',
   bordeRadius: '4px',
   borderStyle: 'solid',
@@ -56,7 +69,6 @@ Outline.args = {
   children: 'Outline',
   bgColor: 'white',
   border: '1px solid #2ecc71',
-  color: '#2ecc71',
   bordeRadius: '3px',
   padding: '5px',
 };
@@ -68,7 +80,6 @@ Contained.args = {
 Underline.args = {
   children: 'Underline',
   bgColor: 'inherit',
-  color: 'rgba(235, 77, 75,1.0)',
   underline: 'underline',
   border: 'none',
 };
@@ -78,8 +89,8 @@ Icon.args = {
   fIcon: faAppleWhole,
   bgColor: 'inherit',
   border: 'none',
-  color: 'tomato',
-  fontSize: '20px',
+  color: 'text-blue-900',
+  fontSize: 'text-2xl',
 };
 
 HoverLetter.args = {
