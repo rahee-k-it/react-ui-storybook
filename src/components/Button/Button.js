@@ -48,8 +48,8 @@ function Button(props) {
     bgColor,
     children,
     color,
-    fIcon,
-    eIcon,
+    iconPosition,
+    icon,
     fontSize,
     fontWeight,
     borderStyle,
@@ -78,15 +78,24 @@ function Button(props) {
         padding={padding}
         opacity={opacity}
         bgColor={bgColor}
-        color={color}
         shadow={shadow}
         hoverColor={hoverColor}
         hoverBgColor={hoverBgColor}
         {...rest}
       >
-        <FontAwesomeIcon icon={fIcon} />
-        <span>{children}</span>
-        <FontAwesomeIcon icon={eIcon} />
+        {!icon ? (
+          <span>{children}</span>
+        ) : iconPosition === 'front' ? (
+          <>
+            <FontAwesomeIcon icon={icon} />
+            <span>{children}</span>
+          </>
+        ) : (
+          <>
+            <span>{children}</span>
+            <FontAwesomeIcon icon={icon ?? ''} />
+          </>
+        )}
       </ButtonStyle>
     </>
   );
@@ -106,9 +115,8 @@ Button.propTypes = {
   bgColor: PropTypes.string,
   children: PropTypes.string.isRequired,
   color: PropTypes.string,
-  fIcon: PropTypes.object,
-  eIcon: PropTypes.object,
   fontSize: PropTypes.string,
+  iconPosition: PropTypes.oneOf(['front', 'end']),
   fontWeight: PropTypes.string,
   borderStyle: PropTypes.string,
   borderWidth: PropTypes.string,
@@ -122,7 +130,7 @@ Button.defaultProps = {
   size: 'medium',
   children: 'Button',
   fontSize: '12px',
-  opacity: '1',
+  opacity: 1,
 };
 
 export default Button;
