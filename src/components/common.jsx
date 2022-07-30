@@ -1,4 +1,4 @@
-export const colors = [
+export const fontColors = [
   'text-black',
 
   'text-white',
