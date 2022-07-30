@@ -1,4 +1,4 @@
-export const Color = [
+export const colors = [
   'text-black',
 
   'text-white',
@@ -28,7 +28,7 @@ export const Color = [
   'text-blue-900',
 ];
 
-export const FontSize = [
+export const fontSizes = [
   'text-xs', // font-size: 0.75rem;  12px  line-height: 1rem;  16px
   'text-sm', // font-size: 0.875rem;  14px  line-height: 1.25rem;  20px
   'text-base', // font-size: 1rem;  16px  line-height: 1.5rem;  24px
@@ -37,7 +37,7 @@ export const FontSize = [
   'text-2xl', // font-size: 1.5rem;  24px  line-height: 2rem;  32px
 ];
 
-export const FontWeight = [
+export const fontWeights = [
   'font-thin', //100
   'font-light', //300
   'font-normal', //500
