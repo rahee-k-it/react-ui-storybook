@@ -1,8 +1,12 @@
 import { Card } from './Card';
+import { Color, FontSize, FontWeight } from '../common';
 
 export default {
   title: 'Example/Card',
   component: Card,
+  argTypes: {
+    titleColor: { control: 'select', options: Color },
+  },
 };
 
 const Template = (args) => <Card {...args} />;

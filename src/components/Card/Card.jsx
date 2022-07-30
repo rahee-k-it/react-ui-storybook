@@ -50,7 +50,6 @@ const Title = styled.h1`
   padding-left: 10px;
   padding-bottom: 10px;
   border-bottom: thin solid;
-  ${({ titleColor }) => `color: ${titleColor ?? 'black'};`}
   ${({ headerColor }) => `background-color: ${headerColor ?? '#c2c1c1'};`}
 `;
 
@@ -92,7 +91,7 @@ export const Card = ({
       >
         {subtitle}
       </SubTitle>
-      <Title headerColor={headerColor} titleColor={titleColor}>
+      <Title headerColor={headerColor} className={`${titleColor ?? ''}`}>
         {title}
       </Title>
       <Content contentColor={contentColor}>{content}</Content>
