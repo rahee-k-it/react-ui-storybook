@@ -1,11 +1,31 @@
 import { Card } from './Card';
-import { Color, FontSize, FontWeight } from '../common';
+import { fontColors, backgroundColors, fontSizes, fontWeights } from '../common';
 
 export default {
   title: 'Example/Card',
   component: Card,
   argTypes: {
-    titleColor: { control: 'select', options: Color },
+    headerBgColor: { control: 'select', options: backgroundColors },
+    contentBgColor: { control: 'select', options: backgroundColors },
+    border: { control: 'boolean' },
+    borderRadiusSize: { control: 'select', options: ['none', 's', 'm', 'l', 'xl'] },
+    shadow: { control: 'boolean' },
+    shadowDirection: {
+      control: 'select',
+      options: ['up', 'up-right', 'right', 'down-right', 'down', 'down-left', 'left', 'up-left'],
+    },
+    subtitle: { control: 'text' },
+    subtitleColor: { control: 'select', options: fontColors },
+    subtitleFontSize: { control: 'select', options: fontSizes },
+    subtitleFontWeight: { control: 'select', options: fontWeights },
+    title: { control: 'text' },
+    titleColor: { control: 'select', options: fontColors },
+    titleFontSize: { control: 'select', options: fontSizes },
+    titleFontWeight: { control: 'select', options: fontWeights },
+    content: { control: 'text' },
+    contentColor: { control: 'select', options: fontColors },
+    contentFontSize: { control: 'select', options: fontSizes },
+    contentFontWeight: { control: 'select', options: fontWeights },
   },
 };
 
@@ -17,13 +37,16 @@ export const BorderCard = Template.bind({});
 export const ShadowCard = Template.bind({});
 
 ColorCard.args = {
-  headerColor: '#ff9f43',
-  bodyColor: '#F8EFBA',
+  headerBgColor: 'bg-red-300',
+  contentBgColor: 'bg-red-100',
+  subtitleColor: 'text-red-500',
+  titleColor: 'text-red-900',
+  contentColor: 'text-red-700',
 };
 
 BorderCard.args = {
-  borderRadiusSize: 'xl',
   border: true,
+  borderRadiusSize: 'xl',
 };
 
 ShadowCard.args = {
