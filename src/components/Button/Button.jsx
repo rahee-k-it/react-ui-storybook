@@ -37,11 +37,11 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`${borderColor} ${bordeRadius} ${borderStyle} ${borderWidth} ${bgColor} ${color} ${fontSize} ${fontWeight} ${flexDirection}  ${height}  ${margin} ${padding} ${opacity} ${shadow} ${width}`}
+        className={`${borderColor} ${bordeRadius} ${borderStyle} ${borderWidth} ${bgColor} ${fontSize} ${fontWeight} ${flexDirection}  ${height}  ${margin} ${padding} ${opacity} ${shadow} ${width}`}
         {...rest}
       >
         {!icon ? (
-          <p className={`${textDecoration}`}>{children}</p>
+          <p className={`${color} ${textDecoration}`}>{children}</p>
         ) : iconPosition === 'front' ? (
           <>
             <FontAwesomeIcon icon={icon} />
