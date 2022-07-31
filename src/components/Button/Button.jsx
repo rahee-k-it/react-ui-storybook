@@ -22,17 +22,15 @@ function Button(props) {
     children = 'Button',
     fontSize = 'text-base',
     fontWeight = 'font-normal',
-    flexDirection = 'flex-row',
+    flexDirection = 'flex-col',
     height,
-    hoverColor = 'text-blue-900',
-    hoverBgColor,
     icon,
     iconPosition = 'front',
     margin,
     padding = 'p-1.5',
     opacity = 'opacity-100',
     shadow,
-    textDecoration,
+    textDecoration = 'underline',
     width,
     ...rest
   } = props;
@@ -40,11 +38,11 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`${borderColor} ${bordeRadius} ${borderStyle} ${borderWidth} ${bgColor} ${color} hover:${hoverColor} ${fontSize} ${fontWeight} ${flexDirection}  ${height} ${hoverBgColor}  ${margin} ${padding} ${opacity} ${shadow} ${textDecoration} ${width}`}
+        className={`${borderColor} ${bordeRadius} ${borderStyle} ${borderWidth} ${bgColor} ${color} ${fontSize} ${fontWeight} ${flexDirection}  ${height}  ${margin} ${padding} ${opacity} ${shadow} ${width}`}
         {...rest}
       >
         {!icon ? (
-          <span>{children}</span>
+          <p className={`${textDecoration}`}>{children}</p>
         ) : iconPosition === 'front' ? (
           <>
             <FontAwesomeIcon icon={icon} />

@@ -11,7 +11,15 @@ export default {
     color: { control: 'select', options: fontColors },
     fontSize: { control: 'select', options: fontSizes },
     fontWeight: { control: 'select', options: fontWeights },
+    flexDirection: {
+      control: 'select',
+      options: ['flex-row', 'flex-col'],
+    },
     iconPosition: { control: 'select', options: ['front', 'end'] },
+    textDecoration: {
+      control: 'select',
+      options: ['underline', 'no-underline'],
+    },
   },
 };
 
@@ -19,11 +27,8 @@ const Template = (args) => <Button {...args}></Button>;
 
 export const Default = Template.bind({});
 export const Disabled = Template.bind({});
-export const Outline = Template.bind({});
-export const Contained = Template.bind({});
-export const Underline = Template.bind({});
 export const Icon = Template.bind({});
-export const HoverLetter = Template.bind({});
+export const Text = Template.bind({});
 
 Default.args = {};
 
@@ -31,42 +36,19 @@ Disabled.args = {
   children: 'Disable',
   disabled: true,
   color: 'text-black',
-  hoverColor: 'text-red-900',
+  textDecoration: 'no-underline',
 };
-
-// Outline.args = {
-//   variant: 'outline',
-//   children: 'Outline',
-//   bgColor: 'white',
-//   border: '1px solid #2ecc71',
-//   bordeRadius: '3px',
-//   padding: '5px',
-// };
-
-// Contained.args = {
-//   variant: 'contained',
-// };
-
-// Underline.args = {
-//   children: 'Underline',
-//   bgColor: 'inherit',
-//   underline: 'underline',
-//   border: 'none',
-// };
 
 Icon.args = {
   children: 'Icon',
   icon: faAppleWhole,
-  border: 'none',
   color: 'text-blue-900',
-  fontSize: 'text-2xl',
-  hoverColor: 'text-red-900',
   bgColor: 'bg-inherit',
+  textDecoration: 'no-underline',
 };
 
-// HoverLetter.args = {
-//   children: 'Hover Letters',
-//   border: 'none',
-//   bgColor: 'inherit',
-//   hoverColor: '#1abc9c',
-// };
+Text.args = {
+  children: 'Text',
+  bgColor: 'bg-inherit',
+  textDecoration: 'underline',
+};
