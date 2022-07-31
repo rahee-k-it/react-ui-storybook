@@ -1,30 +1,17 @@
 import Button from './Button';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import { Color, FontSize } from '../common';
->>>>>>> 4412360 (fontSize 수정)
-=======
-import { Color, FontSize, FontWeight } from '../common';
->>>>>>> 5ed13cb (fontWeight 수정)
+import { fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
   title: 'Button',
   component: Button,
   argTypes: {
     onClick: { action: 'clicked' },
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    fontSize: { control: 'select', options: FontSize },
-    color: { control: 'select', options: Color },
->>>>>>> 4412360 (fontSize 수정)
-=======
-    color: { control: 'select', options: Color },
-    fontSize: { control: 'select', options: FontSize },
-    fontWeight: { control: 'select', options: FontWeight },
->>>>>>> 5ed13cb (fontWeight 수정)
+    children: { control: 'text' },
+    color: { control: 'select', options: fontColors },
+    fontSize: { control: 'select', options: fontSizes },
+    fontWeight: { control: 'select', options: fontWeights },
+    iconPosition: { control: 'select', options: ['front', 'end'] },
   },
 };
 
@@ -38,74 +25,48 @@ export const Underline = Template.bind({});
 export const Icon = Template.bind({});
 export const HoverLetter = Template.bind({});
 
-Default.args = {
-  size: 'small',
-  padding: '10px',
-  margin: '0px',
-  shadow: '0px 0px 0px 0px black',
-  width: '50px',
-  height: '20px',
-  bgColor: '#9b59b6',
-  color: 'black',
-  children: 'Button',
-<<<<<<< HEAD
-  opacity: '1',
-  fontSize: '13px',
-=======
-  opacity: 1,
->>>>>>> 4412360 (fontSize 수정)
-  fontWeight: '400',
-  bordeRadius: '4px',
-  borderStyle: 'solid',
-  borderWidth: '1px 1px 1px 1px',
-  borderColor: 'black',
-  border: 'none',
-  hoverColor: '',
-  hoverBgColor: '',
-};
+Default.args = {};
 
 Disabled.args = {
   children: 'Disable',
   disabled: true,
-  bgColor: '#bdc3c7',
-  padding: '5px',
-  bordeRadius: '4px',
-  opacity: 0.5,
-  border: 'none',
+  color: 'text-black',
+  hoverColor: 'text-red-900',
 };
 
-Outline.args = {
-  variant: 'outline',
-  children: 'Outline',
-  bgColor: 'white',
-  border: '1px solid #2ecc71',
-  bordeRadius: '3px',
-  padding: '5px',
-};
+// Outline.args = {
+//   variant: 'outline',
+//   children: 'Outline',
+//   bgColor: 'white',
+//   border: '1px solid #2ecc71',
+//   bordeRadius: '3px',
+//   padding: '5px',
+// };
 
-Contained.args = {
-  variant: 'contained',
-};
+// Contained.args = {
+//   variant: 'contained',
+// };
 
-Underline.args = {
-  children: 'Underline',
-  bgColor: 'inherit',
-  underline: 'underline',
-  border: 'none',
-};
+// Underline.args = {
+//   children: 'Underline',
+//   bgColor: 'inherit',
+//   underline: 'underline',
+//   border: 'none',
+// };
 
 Icon.args = {
-  children: '',
-  fIcon: faAppleWhole,
-  bgColor: 'inherit',
+  children: 'Icon',
+  icon: faAppleWhole,
   border: 'none',
   color: 'text-blue-900',
   fontSize: 'text-2xl',
+  hoverColor: 'text-red-900',
+  bgColor: 'bg-inherit',
 };
 
-HoverLetter.args = {
-  children: 'Hover Letters',
-  border: 'none',
-  bgColor: 'inherit',
-  hoverColor: '#1abc9c',
-};
+// HoverLetter.args = {
+//   children: 'Hover Letters',
+//   border: 'none',
+//   bgColor: 'inherit',
+//   hoverColor: '#1abc9c',
+// };
