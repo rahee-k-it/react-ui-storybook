@@ -1,58 +1,48 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ButtonStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  span {
-    margin: 3px;
+  svg {
+    margin: ${(props) => props.svgMargin};
+  }
+  :hover {
+    color: ${(props) => props.hoverColor};
   }
 `;
+
 function Button(props) {
   const {
-    borderColor,
-    bordeRadius = 'rounded-md',
-    borderStyle = 'border-solid',
-    borderWidth,
-    bgColor = 'bg-slate-300',
-    color = 'text-white-900',
+    bgColor = '',
+    borderRadius = 'rounded-md',
+    color = '',
     children = 'Button',
-    fontSize = 'text-base',
-    fontWeight = 'font-normal',
-    flexDirection = 'flex-col',
-    height,
-    icon,
-    iconPosition = 'front',
-    margin,
-    padding = 'p-1.5',
-    opacity = 'opacity-100',
-    shadow,
-    textDecoration = 'underline',
-    width,
+    className = '',
+    hoverColor = '',
+    icon = '',
+    svgMargin = '0px 5px 0px 0px',
+    fontSize = '',
+    fontWeight = '',
+    flexDirection = 'flex-row-reverse',
+    textDecoration = 'no-underline',
+    padding = 'p-2',
     ...rest
   } = props;
 
   return (
     <>
       <ButtonStyle
-        className={`${borderColor} ${bordeRadius} ${borderStyle} ${borderWidth} ${bgColor} ${fontSize} ${fontWeight} ${flexDirection}  ${height}  ${margin} ${padding} ${opacity} ${shadow} ${width}`}
+        className={`...   ${bgColor} ${borderRadius} ${color} ${className} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
+        svgMargin={svgMargin}
+        hoverColor={hoverColor}
         {...rest}
       >
-        {!icon ? (
-          <p className={`${color} ${textDecoration}`}>{children}</p>
-        ) : iconPosition === 'front' ? (
-          <>
-            <FontAwesomeIcon icon={icon} />
-            <span>{children}</span>
-          </>
-        ) : (
-          <>
-            <span>{children}</span>
-            <FontAwesomeIcon icon={icon} />
-          </>
-        )}
+        <span>{children}</span>
+        <FontAwesomeIcon icon={icon} />
       </ButtonStyle>
     </>
   );
