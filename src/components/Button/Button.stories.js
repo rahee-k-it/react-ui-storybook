@@ -1,12 +1,13 @@
 import Button from './Button';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
-import { fontColors, fontSizes, fontWeights } from '../common';
+import { backgroundColors, fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
   title: 'Button',
   component: Button,
   argTypes: {
     onClick: { action: 'clicked' },
+    bgColor: { control: 'select', options: backgroundColors },
     children: { control: 'text' },
     color: { control: 'select', options: fontColors },
     fontSize: { control: 'select', options: fontSizes },
@@ -35,7 +36,7 @@ Default.args = {};
 Disabled.args = {
   children: 'Disable',
   disabled: true,
-  color: 'text-black',
+  color: 'text-gray-100',
   textDecoration: 'no-underline',
 };
 

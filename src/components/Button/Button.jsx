@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import './Button.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ButtonStyle = styled.button`
