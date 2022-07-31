@@ -7,6 +7,10 @@ export default {
   component: Button,
   argTypes: {
     onClick: { action: 'clicked' },
+    borderRadius: {
+      control: 'select',
+      options: ['rounded-none', 'rounded', 'rounded-lg', 'rounded-2xl'],
+    },
     bgColor: { control: 'select', options: backgroundColors },
     children: { control: 'text' },
     color: { control: 'select', options: fontColors },
@@ -14,12 +18,14 @@ export default {
     fontWeight: { control: 'select', options: fontWeights },
     flexDirection: {
       control: 'select',
-      options: ['flex-row', 'flex-col'],
+      options: ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse'],
     },
-    iconPosition: { control: 'select', options: ['front', 'end'] },
+    hoverColor: { control: 'text' },
+    padding: { control: 'select', options: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'] },
+    svgMargin: { control: 'text' },
     textDecoration: {
       control: 'select',
-      options: ['underline', 'no-underline'],
+      options: ['no-underline', 'underline', 'overline', 'line-through'],
     },
   },
 };
@@ -31,13 +37,22 @@ export const Disabled = Template.bind({});
 export const Icon = Template.bind({});
 export const Text = Template.bind({});
 
-Default.args = {};
+Default.args = {
+  borderRadius: 'rounded-2xl',
+  bgColor: 'bg-gray-100',
+  children: 'Default',
+  color: 'text-white',
+  fontSize: 'text-base',
+  hoverColor: 'tomato',
+  padding: 'p-5',
+  textDecoration: 'line-through',
+};
 
 Disabled.args = {
   children: 'Disable',
   disabled: true,
   color: 'text-gray-100',
-  textDecoration: 'no-underline',
+  bgColor: 'text-gray-300',
 };
 
 Icon.args = {
@@ -45,11 +60,11 @@ Icon.args = {
   icon: faAppleWhole,
   color: 'text-blue-900',
   bgColor: 'bg-inherit',
-  textDecoration: 'no-underline',
 };
 
 Text.args = {
   children: 'Text',
   bgColor: 'bg-inherit',
   textDecoration: 'underline',
+  hoverColor: 'tomato',
 };
