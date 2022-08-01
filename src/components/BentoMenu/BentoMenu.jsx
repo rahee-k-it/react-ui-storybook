@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const Menu = styled.div`
-  background-color: inherit;
+  background-color: none;
   margin-bottom: 15px;
   font-weight: 600;
 `;
@@ -62,8 +62,7 @@ function BentoMenu({
       {bento ? (
         <>
           <Wrapper
-            className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding}`}
-            WrapperBorderRadius={wrapperBorderRadius}
+            className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding} ${wrapperBorderRadius}`}
           >
             <Menu className={`${titleColor}`}>{title}</Menu>
             <Container
@@ -79,7 +78,7 @@ function BentoMenu({
               </Box>
               <Box>
                 <Icon>3</Icon>
-                <Title>T</Title>
+                <Title>Two</Title>
               </Box>
               <Box>
                 <Icon>1</Icon>

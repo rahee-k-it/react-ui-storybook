@@ -1,4 +1,4 @@
-import { backgroundColors, fontColors } from '../common';
+import { backgroundColors, borderRadiuses, fontColors } from '../common';
 import BentoMenu from './BentoMenu';
 
 export default {
@@ -8,6 +8,10 @@ export default {
     titleColor: {
       control: 'select',
       options: fontColors,
+    },
+    wrapperBorderRadius: {
+      control: 'select',
+      options: borderRadiuses,
     },
     wrapperBgColor: {
       control: 'select',
