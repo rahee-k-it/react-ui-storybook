@@ -1,17 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+const svgMargins = {
+  none: '',
+  left: '0px 0px 0px 5px',
+  right: '0px 5px 0px 0px',
+  up: '5px 0px 0px 0px',
+  down: '0px 0px 5px 0px',
+};
+
+const hoverColors = {
+  none: '',
+  black: 'black',
+  gray: 'gray',
+  red: 'red',
+  blue: 'blue',
+  green: 'green',
+};
 
 const ButtonStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
   svg {
-    margin: ${(props) => props.svgMargin};
+    ${({ svgMargin }) => (svgMargin ? `margin:${svgMargins[svgMargin]}` : 'none')};
   }
   :hover {
-    color: ${(props) => props.hoverColor};
+    ${({ hoverColor }) => (hoverColor ? `color:${hoverColors[hoverColor]}` : 'none')};
   }
 `;
 
@@ -36,13 +52,19 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`...   ${bgColor} ${borderRadius} ${color} ${className} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
+        className={`...${className} ${bgColor} ${borderRadius} ${color} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
         svgMargin={svgMargin}
         hoverColor={hoverColor}
         {...rest}
       >
-        <span>{children}</span>
-        <FontAwesomeIcon icon={icon} />
+        {icon ? (
+          <>
+            <span>{children}</span>
+            <FontAwesomeIcon icon={icon} />
+          </>
+        ) : (
+          <span>{children}</span>
+        )}
       </ButtonStyle>
     </>
   );

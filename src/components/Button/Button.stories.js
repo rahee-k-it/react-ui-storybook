@@ -14,19 +14,20 @@ export default {
     bgColor: { control: 'select', options: backgroundColors },
     children: { control: 'text' },
     color: { control: 'select', options: fontColors },
+    hoverColor: { control: 'select', options: ['none', 'black', 'gray', 'red', 'blue', 'green'] },
     fontSize: { control: 'select', options: fontSizes },
     fontWeight: { control: 'select', options: fontWeights },
     flexDirection: {
       control: 'select',
       options: ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse'],
     },
-    hoverColor: { control: 'text' },
     padding: { control: 'select', options: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'] },
     svgMargin: { control: 'text' },
     textDecoration: {
       control: 'select',
       options: ['no-underline', 'underline', 'overline', 'line-through'],
     },
+    svgMargin: { control: 'select', options: ['up', 'left', 'right', 'down'] },
   },
 };
 
@@ -41,18 +42,18 @@ Default.args = {
   borderRadius: 'rounded-2xl',
   bgColor: 'bg-gray-100',
   children: 'Default',
-  color: 'text-white',
+  color: 'text-black',
   fontSize: 'text-base',
   hoverColor: 'tomato',
-  padding: 'p-5',
-  textDecoration: 'line-through',
+  padding: 'p-2',
+  textDecoration: 'underline',
 };
 
 Disabled.args = {
   children: 'Disable',
   disabled: true,
-  color: 'text-gray-100',
-  bgColor: 'text-gray-300',
+  color: 'text-gray-300',
+  bgColor: 'text-gray-100',
 };
 
 Icon.args = {
@@ -60,11 +61,13 @@ Icon.args = {
   icon: faAppleWhole,
   color: 'text-blue-900',
   bgColor: 'bg-inherit',
+  flexDirection: 'flex-row-reverse',
+  svgMargin: 'right',
 };
 
 Text.args = {
   children: 'Text',
   bgColor: 'bg-inherit',
   textDecoration: 'underline',
-  hoverColor: 'tomato',
+  hoverColor: 'red',
 };
