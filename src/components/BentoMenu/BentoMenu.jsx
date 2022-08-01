@@ -35,7 +35,20 @@ const Box = styled.div`
 const Icon = styled.div``;
 const Title = styled.div``;
 
-function BentoMenu({ title, clickTitle }) {
+function BentoMenu({
+  clickTitle = 'Bento',
+
+  wrapperBgColor = 'bg-gray-100',
+  wrapperWidth = 'w-96',
+  wrapperBorderRadius = '',
+  wrapperPadding = 'p-5',
+  title = '메뉴',
+  titleColor = 'text-black',
+  containerBgColor = 'bg-inherit',
+  gridTemplateColumns = 'grid-cols-3',
+  gridTemplateRows = 'grid-rows-3',
+  gridAutoRows = 'auto-rows-fr',
+}) {
   const [bento, setBento] = useState(false);
 
   const onClick = () => {
@@ -48,9 +61,14 @@ function BentoMenu({ title, clickTitle }) {
       </ClickBox>
       {bento ? (
         <>
-          <Wrapper>
-            <Menu>{title}</Menu>
-            <Container>
+          <Wrapper
+            className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding}`}
+            WrapperBorderRadius={wrapperBorderRadius}
+          >
+            <Menu className={`${titleColor}`}>{title}</Menu>
+            <Container
+              className={` ${containerBgColor} ${gridTemplateColumns} ${gridTemplateRows} ${gridAutoRows}`}
+            >
               <Box>
                 <Icon>1</Icon>
                 <Title>one</Title>
