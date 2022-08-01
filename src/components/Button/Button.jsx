@@ -52,7 +52,7 @@ function Button(props) {
   return (
     <>
       <ButtonStyle
-        className={`...${className} ${bgColor} ${borderRadius} ${color} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
+        className={` ${bgColor} ${borderRadius} ${className} ${color} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
         svgMargin={svgMargin}
         hoverColor={hoverColor}
         {...rest}

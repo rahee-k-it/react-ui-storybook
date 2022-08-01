@@ -1,6 +1,6 @@
 import Button from './Button';
 import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
-import { backgroundColors, fontColors, fontSizes, fontWeights } from '../common';
+import { backgroundColors, borderRadiuses, fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
   title: 'Button',
@@ -9,7 +9,7 @@ export default {
     onClick: { action: 'clicked' },
     borderRadius: {
       control: 'select',
-      options: ['rounded-none', 'rounded', 'rounded-lg', 'rounded-2xl'],
+      options: borderRadiuses,
     },
     bgColor: { control: 'select', options: backgroundColors },
     children: { control: 'text' },
@@ -22,7 +22,6 @@ export default {
       options: ['flex-row', 'flex-row-reverse', 'flex-col', 'flex-col-reverse'],
     },
     padding: { control: 'select', options: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'] },
-    svgMargin: { control: 'text' },
     textDecoration: {
       control: 'select',
       options: ['no-underline', 'underline', 'overline', 'line-through'],
@@ -53,7 +52,7 @@ Disabled.args = {
   children: 'Disable',
   disabled: true,
   color: 'text-gray-300',
-  bgColor: 'text-gray-100',
+  bgColor: 'bg-gray-100',
 };
 
 Icon.args = {
