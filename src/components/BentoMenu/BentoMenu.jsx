@@ -1,15 +1,36 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const ClickBox = styled.span``;
+const ClickBox = styled.span`
+  cursor: pointer;
+`;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  margin-top: 20px;
+`;
 
-const Container = styled.div``;
+const Container = styled.div`
+  display: grid;
+  overflow: auto;
+`;
 
-const Menu = styled.div``;
+const Menu = styled.div`
+  background-color: inherit;
+  margin-bottom: 15px;
+  font-weight: 600;
+`;
 
-const Box = styled.div``;
+const Box = styled.div`
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 15px;
+  align-items: center;
+  :hover {
+    background-color: #f5f5f7;
+  }
+`;
 
 const Icon = styled.div``;
 const Title = styled.div``;
