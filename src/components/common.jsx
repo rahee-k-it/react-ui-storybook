@@ -60,6 +60,18 @@ export const backgroundColors = [
   'bg-blue-900',
 ];
 
+export const borderRadiuses = [
+  'rounded-none',
+  'rounded-sm',
+  'rounded',
+  'rounded-md',
+  'rounded-lg',
+  'rounded-xl',
+  'rounded-2xl',
+  'rounded-3xl',
+  'rounded-full',
+];
+
 export const fontSizes = [
   'text-xs', // font-size: 0.75rem;  12px  line-height: 1rem;  16px
   'text-sm', // font-size: 0.875rem;  14px  line-height: 1.25rem;  20px
