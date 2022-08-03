@@ -1,14 +1,14 @@
 import { Card } from './Card';
-import { fontColors, backgroundColors, fontSizes, fontWeights } from '../common';
+import { fontColors, backgroundColors, fontSizes, fontWeights, borderRadiuses } from '../common';
 
 export default {
-  title: 'Example/Card',
+  title: 'Card',
   component: Card,
   argTypes: {
     headerBgColor: { control: 'select', options: backgroundColors },
     contentBgColor: { control: 'select', options: backgroundColors },
     border: { control: 'boolean' },
-    borderRadiusSize: { control: 'select', options: ['none', 's', 'm', 'l', 'xl'] },
+    borderRadiusSize: { control: 'select', options: borderRadiuses },
     shadow: { control: 'boolean' },
     shadowDirection: {
       control: 'select',
@@ -46,7 +46,7 @@ ColorCard.args = {
 
 BorderCard.args = {
   border: true,
-  borderRadiusSize: 'xl',
+  borderRadiusSize: 'rounded-3xl',
 };
 
 ShadowCard.args = {

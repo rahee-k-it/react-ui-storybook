@@ -12,13 +12,13 @@ const boxShadowDirections = {
   'up-left': '-5px -5px',
 };
 
-const borderRadius = {
-  none: '0px',
-  s: '5px',
-  m: '10px',
-  l: '15px',
-  xl: '20px',
-};
+// const borderRadius = {
+//   none: '0px',
+//   s: '5px',
+//   m: '10px',
+//   l: '15px',
+//   xl: '20px',
+// };
 
 const Container = styled.div`
   box-sizing: content-box;
@@ -32,8 +32,6 @@ const Container = styled.div`
     shadow && shadowDirection
       ? `box-shadow: ${boxShadowDirections[shadowDirection]} 5px gray;`
       : ''}
-  ${({ borderRadiusSize }) =>
-    borderRadiusSize ? `border-radius: ${borderRadius[borderRadiusSize]};` : ''}
 `;
 
 const Header = styled.div`
@@ -75,14 +73,16 @@ export const Card = ({
   return (
     <Container
       border={border}
-      borderRadiusSize={borderRadiusSize}
       shadow={shadow}
       shadowDirection={shadowDirection}
+      className={`${borderRadiusSize ?? ''}`}
     >
       <Header className={`${headerBgColor ?? ''}`}>
         <SubTitle
-          borderRadiusSize={borderRadiusSize}
-          className={`${subtitleColor ?? ''} ${subtitleFontSize ?? ''} ${subtitleFontWeight ?? ''}`}
+          // borderRadiusSize={borderRadiusSize}
+          className={`${subtitleColor ?? ''} ${subtitleFontSize ?? ''} ${
+            subtitleFontWeight ?? ''
+          } `}
         >
           {subtitle}
         </SubTitle>
@@ -105,7 +105,7 @@ Card.defaultProps = {
   headerBgColor: 'bg-gray-300',
   contentBgColor: 'bg-gray-100',
   border: false,
-  borderRadiusSize: 'none',
+  borderRadiusSize: 'rounded-none',
   shadow: false,
   shadowDirection: 'down-right',
   subtitle: 'subtitle',
