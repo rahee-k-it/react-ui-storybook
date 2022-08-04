@@ -9,13 +9,13 @@ export default {
   argTypes: {
     children: { control: 'object' },
 
+    clickTitle: { control: 'text' },
     title: { control: 'text' },
     titleColor: {
       control: 'select',
       options: fontColors,
     },
-
-    clickTitle: { control: 'text' },
+    buttonColor: { control: 'select', options: fontColors },
     wrapperPadding: {
       control: 'select',
       options: ['p-5', 'p-10', 'p-12', 'p-14', 'p-24', 'p-28', 'p-36'],
@@ -103,6 +103,8 @@ Secondary.args = {
 
 ColorBento.args = {
   title: 'Color',
+  titleColor: 'text-green-900',
+  buttonColor: 'text-red-900',
   iconTitle: faEllipsis,
   wrapperWidth: 'w-96',
   wrapperBgColor: 'bg-red-100',

@@ -48,6 +48,7 @@ function BentoMenu({
   wrapperPadding = 'p-5',
   title = '',
   titleColor = 'text-black',
+  buttonColor = '',
   containerBgColor = 'bg-white',
   gridTemplateColumns = 'grid-cols-3',
   gridAutoRows = 'auto-rows-fr',
@@ -73,7 +74,7 @@ function BentoMenu({
             <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
               {children.map((child, i) => (
                 <Box key={i}>
-                  <Button icon={iconBox[i]} className="flex-col-reverse">
+                  <Button icon={iconBox[i]} className={`${buttonColor} flex-col-reverse`}>
                     {child}
                   </Button>
                 </Box>
