@@ -31,6 +31,7 @@ export default {
       control: 'select',
       options: ['grid-rows-1', 'grid-rows-2', 'grid-rows-3', 'grid-rows-4', 'grid-rows-5'],
     },
+    childrenColor: { conntrol: 'select', options: fontColors },
   },
 };
 
