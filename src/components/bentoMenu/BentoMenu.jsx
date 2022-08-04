@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../button/Button';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+
 const ClickBox = styled.span`
   cursor: pointer;
 `;
@@ -28,6 +28,9 @@ const Box = styled.div`
   flex-direction: column;
   margin: 5px;
   padding: 15px;
+  span {
+    padding-top: 10px;
+  }
   cursor: pointer;
   :hover {
     background-color: #f5f5f7;
@@ -36,15 +39,16 @@ const Box = styled.div`
 
 function BentoMenu({
   children = [''],
+  iconTitle = '',
+  iconBox = [''],
   clickTitle = '',
   wrapperBgColor = 'bg-gray-100',
-  wrapperWidth = 'w-96',
+  wrapperWidth = 'w-fit',
   wrapperBorderRadius = '',
   wrapperPadding = 'p-5',
   title = '',
   titleColor = 'text-black',
-  childrenColor = '',
-  containerBgColor = 'bg-inherit',
+  containerBgColor = 'bg-white',
   gridTemplateColumns = 'grid-cols-3',
   gridAutoRows = 'auto-rows-fr',
 }) {
@@ -56,7 +60,7 @@ function BentoMenu({
   return (
     <>
       <ClickBox onClick={onClick}>
-        <Button icon={faBars} svgMargin="right">
+        <Button icon={iconTitle} svgMargin="right">
           {clickTitle}
         </Button>
       </ClickBox>
@@ -69,7 +73,9 @@ function BentoMenu({
             <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
               {children.map((child, i) => (
                 <Box key={i}>
-                  <Button className={`${childrenColor}`}>{child}</Button>
+                  <Button icon={iconBox[i]} className="flex-col-reverse">
+                    {child}
+                  </Button>
                 </Box>
               ))}
             </Container>
