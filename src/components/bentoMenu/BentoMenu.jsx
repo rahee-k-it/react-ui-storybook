@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
+import Button from '../button/Button';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 const ClickBox = styled.span`
   cursor: pointer;
 `;
@@ -19,45 +20,44 @@ const Menu = styled.div`
   margin-bottom: 15px;
   font-weight: 600;
 `;
-
 const Box = styled.div`
   border-radius: 5px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
   margin: 5px;
   padding: 15px;
-  align-items: center;
+  cursor: pointer;
   :hover {
     background-color: #f5f5f7;
   }
 `;
 
-const Icon = styled.div``;
-const Title = styled.div``;
-
 function BentoMenu({
-  clickTitle = 'Bento',
-
+  children = [''],
+  clickTitle = '',
   wrapperBgColor = 'bg-gray-100',
   wrapperWidth = 'w-96',
   wrapperBorderRadius = '',
   wrapperPadding = 'p-5',
-  title = '메뉴',
+  title = '',
   titleColor = 'text-black',
   containerBgColor = 'bg-inherit',
   gridTemplateColumns = 'grid-cols-3',
-  gridTemplateRows = 'grid-rows-3',
   gridAutoRows = 'auto-rows-fr',
 }) {
   const [bento, setBento] = useState(false);
-
   const onClick = () => {
     setBento((bento) => !bento);
   };
+
   return (
     <>
       <ClickBox onClick={onClick}>
-        <span>{clickTitle}</span>
+        <Button icon={faBars} svgMargin="right">
+          {clickTitle}
+        </Button>
       </ClickBox>
       {bento ? (
         <>
@@ -65,45 +65,12 @@ function BentoMenu({
             className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding} ${wrapperBorderRadius}`}
           >
             <Menu className={`${titleColor}`}>{title}</Menu>
-            <Container
-              className={` ${containerBgColor} ${gridTemplateColumns} ${gridTemplateRows} ${gridAutoRows}`}
-            >
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>2</Icon>
-                <Title>two</Title>
-              </Box>
-              <Box>
-                <Icon>3</Icon>
-                <Title>Two</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
-              <Box>
-                <Icon>1</Icon>
-                <Title>one</Title>
-              </Box>
+            <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
+              {children.map((child, i) => (
+                <Box key={i}>
+                  <Button>{child}</Button>
+                </Box>
+              ))}
             </Container>
           </Wrapper>
         </>

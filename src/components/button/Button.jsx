@@ -50,23 +50,21 @@ function Button(props) {
   } = props;
 
   return (
-    <>
-      <ButtonStyle
-        className={` ${bgColor} ${borderRadius} ${className} ${color} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
-        svgMargin={svgMargin}
-        hoverColor={hoverColor}
-        {...rest}
-      >
-        {icon ? (
-          <>
-            <span>{children}</span>
-            <FontAwesomeIcon icon={icon} />
-          </>
-        ) : (
+    <ButtonStyle
+      className={` ${bgColor} ${borderRadius} ${className} ${color} ${fontWeight} ${flexDirection} ${fontSize} ${padding} ${textDecoration} `}
+      svgMargin={svgMargin}
+      hoverColor={hoverColor}
+      {...rest}
+    >
+      {icon ? (
+        <>
           <span>{children}</span>
-        )}
-      </ButtonStyle>
-    </>
+          <FontAwesomeIcon icon={icon} />
+        </>
+      ) : (
+        <span>{children}</span>
+      )}
+    </ButtonStyle>
   );
 }
 

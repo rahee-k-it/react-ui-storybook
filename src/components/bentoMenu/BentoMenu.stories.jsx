@@ -4,7 +4,9 @@ import BentoMenu from './BentoMenu';
 export default {
   title: 'BentoMenu',
   component: BentoMenu,
+
   argTypes: {
+    children: { control: 'object' },
     titleColor: {
       control: 'select',
       options: fontColors,
@@ -37,14 +39,13 @@ const Template = (args) => <BentoMenu {...args}></BentoMenu>;
 export const Default = Template.bind({});
 
 Default.args = {
-  clickTitle: 'Bentos',
   title: 'Menu',
+  children: ['메일', '스토리', '페이지', '그룹', '이벤트', '광고', '게시물', '친구', '동영상'],
   wrapperWidth: 'w-96',
   wrapperBgColor: 'bg-gray-100',
   wrapperPadding: 'p-5',
   containerBgColor: 'bg-white',
   gridTemplateColumns: 'grid-cols-3',
-  gridTemplateRows: 'grid-rows-3',
   gridAutoRows: 'auto-rows-fr',
   titleColor: 'text-red-blue',
 };
