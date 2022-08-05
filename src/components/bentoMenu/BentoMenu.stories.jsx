@@ -68,7 +68,18 @@ Primary.args = {
   title: 'Menu',
   clickTitle: '',
   iconTitle: faBars,
-  children: ['메일', '스토리', '페이지', '그룹', '이벤트', '광고', '게시물', '친구', '동영상'],
+  children: [
+    '메일',
+    '스토리',
+    '페이지',
+    '그룹',
+    '이벤트',
+    '광고',
+    '게시물',
+    '친구',
+    '동영상',
+    '즐겨찾기',
+  ],
   wrapperWidth: 'w-96',
   wrapperBgColor: 'bg-gray-100',
   containerBgColor: 'bg-white',
@@ -78,6 +89,7 @@ Primary.args = {
   iconBox: [
     faBars,
     faList,
+    faAppleWhole,
     faAppleWhole,
     faAppleWhole,
     faAppleWhole,
@@ -98,6 +110,7 @@ Secondary.args = {
   gridTemplateColumns: 'grid-cols-3',
   gridAutoRows: 'auto-rows-fr',
   titleColor: 'text-red-blue',
+  wrapperBorderRadius: 'rounded-3xl',
   iconBox: [faBars, faList, faAppleWhole],
 };
 
