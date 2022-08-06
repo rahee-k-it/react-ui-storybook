@@ -27,7 +27,6 @@ const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   margin: 5px;
-  padding: 15px;
   span {
     padding-top: 10px;
   }
@@ -52,6 +51,7 @@ function BentoMenu({
   containerBgColor = 'bg-white',
   gridTemplateColumns = 'grid-cols-3',
   gridAutoRows = 'auto-rows-fr',
+  boxPadding = 'p-0',
 }) {
   const [bento, setBento] = useState(false);
   const onClick = () => {
@@ -73,7 +73,7 @@ function BentoMenu({
             <Menu className={`${titleColor}`}>{title}</Menu>
             <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
               {children.map((child, i) => (
-                <Box key={i}>
+                <Box key={i} className={boxPadding}>
                   <Button icon={iconBox[i]} className={`${buttonColor} flex-col-reverse`}>
                     {child}
                   </Button>

@@ -55,6 +55,10 @@ export default {
       control: 'select',
       options: ['auto-rows-auto', 'auto-rows-min', 'auto-rows-max', 'auto-rows-fr'],
     },
+    boxPadding: {
+      control: 'select',
+      options: ['p-0', 'p-0.5', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5'],
+    },
   },
 };
 
