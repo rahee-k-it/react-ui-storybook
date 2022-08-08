@@ -34,6 +34,13 @@ const Button = styled.div`
 
 const DetailContent = styled.span`
   ${({ detailsClickable }) => (detailsClickable ? 'cursor: pointer;' : '')}
+  display: inline-block;
+  transform: scale(1);
+  transition: transform 0.5s;
+  &:hover {
+    /* transform: scale(1.1); */
+    ${({ scalable }) => (scalable ? 'transform: scale(1.1);' : '')}
+  }
 `;
 
 const AccordionDetail = styled.div`
@@ -55,6 +62,7 @@ export const Accordion = ({
   detailsFontSize,
   detailsFontWeights,
   detailsClickable,
+  scalable,
 }) => {
   const [accordionDetailsOpened, setAccordionDetailsOpened] = useState(false);
   return (
@@ -80,7 +88,9 @@ export const Accordion = ({
                 detailsFontWeights ?? ''
               }`}
             >
-              <DetailContent detailsClickable={detailsClickable}>{detail}</DetailContent>
+              <DetailContent scalable={scalable} detailsClickable={detailsClickable}>
+                {detail}
+              </DetailContent>
             </AccordionDetail>
           ))
         : ''}
@@ -104,4 +114,5 @@ Accordion.defaultProps = {
   detailsFontSize: 'text-base',
   detailsFontWeights: 'font-normal',
   detailsClickable: false,
+  scalable: false,
 };

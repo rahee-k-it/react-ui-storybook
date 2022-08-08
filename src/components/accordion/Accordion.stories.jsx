@@ -20,6 +20,7 @@ export default {
     detailsFontSize: { control: 'select', options: fontSizes },
     detailsFontWeights: { control: 'select', options: fontWeights },
     detailsClickable: { control: 'boolean' },
+    scalable: { control: 'boolean' },
   },
 };
 
@@ -27,16 +28,14 @@ const Template = (args) => <Accordion {...args} />;
 
 export const Default = Template.bind({});
 export const MultipleDetails = Template.bind({});
-export const MultipleAccordions = Template.bind({});
+export const WithHoverEffect = Template.bind({});
 
 MultipleDetails.args = {
   details: ['detail 1', 'detail 2', 'detail 3', 'detail 4', 'detail 5'],
 };
 
-// export const Dummy = (args) => (
-//   <>
-//     {Array.from({ length: 3 }, (_, i) => (
-//       <Accordion {...args} title1={`${args.title1}${i}`} />
-//     ))}
-//   </>
-// );
+WithHoverEffect.args = {
+  details: ['detail 1', 'detail 2', 'detail 3', 'detail 4', 'detail 5'],
+  detailsClickable: true,
+  scalable: true,
+};
