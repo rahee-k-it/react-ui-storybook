@@ -1,10 +1,7 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../button/Button';
-
-const ClickBox = styled.span`
-  cursor: pointer;
-`;
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -27,6 +24,9 @@ const Box = styled.div`
   justify-content: center;
   flex-direction: column;
   margin: 5px;
+  svg {
+    margin-bottom: 10px;
+  }
   span {
     padding-top: 10px;
   }
@@ -53,19 +53,18 @@ function BentoMenu({
   gridAutoRows = 'auto-rows-fr',
   boxPadding = 'p-0',
 }) {
-  const [bento, setBento] = useState(false);
+  const [bentoMenuOpened, setBentoMenuOpened] = useState(false);
   const onClick = () => {
-    setBento((bento) => !bento);
+    setBentoMenuOpened((bento) => !bento);
   };
 
   return (
     <>
-      <ClickBox onClick={onClick}>
-        <Button icon={iconTitle} svgMargin="right">
-          {clickTitle}
-        </Button>
-      </ClickBox>
-      {bento ? (
+      <Button onClick={onClick}>
+        {clickTitle}
+        <FontAwesomeIcon icon={iconTitle} />
+      </Button>
+      {bentoMenuOpened ? (
         <>
           <Wrapper
             className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding} ${wrapperBorderRadius}`}
@@ -74,7 +73,8 @@ function BentoMenu({
             <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
               {children.map((child, i) => (
                 <Box key={i} className={boxPadding}>
-                  <Button icon={iconBox[i]} className={`${buttonColor} flex-col-reverse`}>
+                  <Button className={`${buttonColor} flex-col`}>
+                    <FontAwesomeIcon icon={iconBox[i]} />
                     {child}
                   </Button>
                 </Box>
