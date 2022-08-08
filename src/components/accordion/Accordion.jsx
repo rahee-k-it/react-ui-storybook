@@ -73,8 +73,9 @@ export const Accordion = ({
         </Button>
       </AccordionSummary>
       {accordionDetailsOpened
-        ? details.map((detail) => (
+        ? details.map((detail, index) => (
             <AccordionDetail
+              key={index}
               className={`${detailsColor ?? ''} ${detailsBgColor ?? ''} ${detailsFontSize ?? ''} ${
                 detailsFontWeights ?? ''
               }`}
