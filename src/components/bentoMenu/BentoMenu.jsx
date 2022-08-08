@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Button from '../button/Button';
 
-const Wrapper = styled.div`
+const BentoContainer = styled.div`
   margin-top: 20px;
 `;
 
-const Container = styled.div`
+const BentoItemContainer = styled.div`
   display: grid;
   overflow: auto;
 `;
@@ -17,7 +17,7 @@ const Menu = styled.div`
   margin-bottom: 15px;
   font-weight: 600;
 `;
-const Box = styled.div`
+const Item = styled.div`
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -41,10 +41,10 @@ function BentoMenu({
   iconTitle = '',
   iconBox = [''],
   clickTitle = '',
-  wrapperBgColor = 'bg-gray-100',
-  wrapperWidth = 'w-fit',
-  wrapperBorderRadius = '',
-  wrapperPadding = 'p-5',
+  bentoContainerBgColor = 'bg-gray-100',
+  bentoContainerWidth = 'w-fit',
+  bentoContainerBorderRadius = '',
+  bentoContainerPadding = 'p-5',
   title = '',
   titleColor = 'text-black',
   buttonColor = '',
@@ -65,23 +65,23 @@ function BentoMenu({
         <FontAwesomeIcon icon={iconTitle} />
       </Button>
       {bentoMenuOpened ? (
-        <>
-          <Wrapper
-            className={`${wrapperBgColor} ${wrapperWidth} ${wrapperPadding} ${wrapperBorderRadius}`}
+        <BentoContainer
+          className={`${bentoContainerBgColor} ${bentoContainerWidth} ${bentoContainerPadding} ${bentoContainerBorderRadius}`}
+        >
+          <Menu className={`${titleColor}`}>{title}</Menu>
+          <BentoItemContainer
+            className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}
           >
-            <Menu className={`${titleColor}`}>{title}</Menu>
-            <Container className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}>
-              {children.map((child, i) => (
-                <Box key={i} className={boxPadding}>
-                  <Button className={`${buttonColor} flex-col`}>
-                    <FontAwesomeIcon icon={iconBox[i]} />
-                    {child}
-                  </Button>
-                </Box>
-              ))}
-            </Container>
-          </Wrapper>
-        </>
+            {children.map((child, i) => (
+              <Item key={i} className={boxPadding}>
+                <Button className={`${buttonColor} flex-col`}>
+                  <FontAwesomeIcon icon={iconBox[i]} />
+                  {child}
+                </Button>
+              </Item>
+            ))}
+          </BentoItemContainer>
+        </BentoContainer>
       ) : (
         ''
       )}
