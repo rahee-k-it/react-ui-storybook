@@ -4,12 +4,16 @@ import styled from 'styled-components';
 import Button from '../button/Button';
 
 const BentoContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 5px;
+  position: absolute;
+  z-index: 10;
+  ${({ bentoContainerHeight }) =>
+    bentoContainerHeight ? `height:${bentoContainerHeight}` : '350px'};
+  overflow: scroll;
 `;
 
 const BentoItemContainer = styled.div`
   display: grid;
-  overflow: auto;
 `;
 
 const Menu = styled.div`
@@ -17,6 +21,7 @@ const Menu = styled.div`
   margin-bottom: 15px;
   font-weight: 600;
 `;
+
 const Item = styled.div`
   border-radius: 5px;
   display: flex;
@@ -38,6 +43,7 @@ const Item = styled.div`
 
 function BentoMenu({
   children = [''],
+  bentoContainerHeight = '350px',
   iconTitle = '',
   iconBox = [''],
   clickTitle = '',
@@ -47,11 +53,11 @@ function BentoMenu({
   bentoContainerPadding = 'p-5',
   title = '',
   titleColor = 'text-black',
-  buttonColor = '',
-  containerBgColor = 'bg-white',
+  itemColor = '',
+  bentoItemContainerBgColor = 'bg-white',
   gridTemplateColumns = 'grid-cols-3',
   gridAutoRows = 'auto-rows-fr',
-  boxPadding = 'p-0',
+  itemPadding = 'p-0',
 }) {
   const [bentoMenuOpened, setBentoMenuOpened] = useState(false);
   const onClick = () => {
@@ -64,17 +70,19 @@ function BentoMenu({
         {clickTitle}
         <FontAwesomeIcon icon={iconTitle} />
       </Button>
+
       {bentoMenuOpened ? (
         <BentoContainer
           className={`${bentoContainerBgColor} ${bentoContainerWidth} ${bentoContainerPadding} ${bentoContainerBorderRadius}`}
+          bentoContainerHeight={bentoContainerHeight}
         >
           <Menu className={`${titleColor}`}>{title}</Menu>
           <BentoItemContainer
-            className={` ${containerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}
+            className={` ${bentoItemContainerBgColor} ${gridTemplateColumns} ${gridAutoRows}`}
           >
             {children.map((child, i) => (
-              <Item key={i} className={boxPadding}>
-                <Button className={`${buttonColor} flex-col`}>
+              <Item key={i} className={itemPadding}>
+                <Button className={`${itemColor} flex-col`}>
                   <FontAwesomeIcon icon={iconBox[i]} />
                   {child}
                 </Button>
