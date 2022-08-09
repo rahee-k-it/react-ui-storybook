@@ -21,7 +21,7 @@ const AccordionTitle = styled.div`
   margin: 10px;
 `;
 
-const IconShowingDtailOpened = styled.div`
+const IconShowingDetailsOpened = styled.div`
   min-height: 30px;
   width: 30px;
   margin: 10px;
@@ -73,9 +73,9 @@ export const Accordion = ({
         className={`${summaryColor} ${summaryBgColor} ${summaryFontSize} ${summaryFontWeights}`}
       >
         <AccordionTitle>{summary}</AccordionTitle>
-        <IconShowingDtailOpened opened={accordionDetailsOpened}>
+        <IconShowingDetailsOpened opened={accordionDetailsOpened}>
           <FontAwesomeIcon icon={faAngleDown} />
-        </IconShowingDtailOpened>
+        </IconShowingDetailsOpened>
       </AccordionSummary>
       {accordionDetailsOpened
         ? details.map((detail, index) => (
