@@ -21,7 +21,7 @@ const AccordionTitle = styled.div`
   margin: 10px;
 `;
 
-const Button = styled.div`
+const IconShowingDtailOpened = styled.div`
   min-height: 30px;
   width: 30px;
   margin: 10px;
@@ -38,7 +38,6 @@ const DetailContent = styled.span`
   transform: scale(1);
   transition: transform 0.5s;
   &:hover {
-    /* transform: scale(1.1); */
     ${({ scalable }) => (scalable ? 'transform: scale(1.1);' : '')}
   }
 `;
@@ -66,27 +65,23 @@ export const Accordion = ({
 }) => {
   const [accordionDetailsOpened, setAccordionDetailsOpened] = useState(false);
   return (
-    <AccordionContainer border={border} className={`${borderRadiusSize ?? ''}`}>
+    <AccordionContainer border={border} className={`${borderRadiusSize}`}>
       <AccordionSummary
         onClick={() => {
           setAccordionDetailsOpened(!accordionDetailsOpened);
         }}
-        className={`${summaryColor ?? ''} ${summaryBgColor ?? ''} ${summaryFontSize ?? ''} ${
-          summaryFontWeights ?? ''
-        }`}
+        className={`${summaryColor} ${summaryBgColor} ${summaryFontSize} ${summaryFontWeights}`}
       >
         <AccordionTitle>{summary}</AccordionTitle>
-        <Button opened={accordionDetailsOpened}>
+        <IconShowingDtailOpened opened={accordionDetailsOpened}>
           <FontAwesomeIcon icon={faAngleDown} />
-        </Button>
+        </IconShowingDtailOpened>
       </AccordionSummary>
       {accordionDetailsOpened
         ? details.map((detail, index) => (
             <AccordionDetail
               key={index}
-              className={`${detailsColor ?? ''} ${detailsBgColor ?? ''} ${detailsFontSize ?? ''} ${
-                detailsFontWeights ?? ''
-              }`}
+              className={`${detailsColor} ${detailsBgColor} ${detailsFontSize} ${detailsFontWeights}`}
             >
               <DetailContent scalable={scalable} detailsClickable={detailsClickable}>
                 {detail}
