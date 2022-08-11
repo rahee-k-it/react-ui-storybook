@@ -1,5 +1,4 @@
 import Button from './Button';
-import { faAppleWhole } from '@fortawesome/free-solid-svg-icons';
 import { backgroundColors, borderRadiuses, fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
@@ -26,7 +25,6 @@ export default {
       control: 'select',
       options: ['no-underline', 'underline', 'overline', 'line-through'],
     },
-    svgMargin: { control: 'select', options: ['up', 'left', 'right', 'down'] },
   },
 };
 
@@ -34,7 +32,6 @@ const Template = (args) => <Button {...args}></Button>;
 
 export const Default = Template.bind({});
 export const Disabled = Template.bind({});
-export const Icon = Template.bind({});
 export const Text = Template.bind({});
 
 Default.args = {
@@ -53,15 +50,6 @@ Disabled.args = {
   disabled: true,
   color: 'text-gray-300',
   bgColor: 'bg-gray-100',
-};
-
-Icon.args = {
-  children: 'Icon',
-  icon: faAppleWhole,
-  color: 'text-blue-900',
-  bgColor: 'bg-inherit',
-  flexDirection: 'flex-row-reverse',
-  svgMargin: 'right',
 };
 
 Text.args = {
