@@ -38,6 +38,38 @@ const AutoBox = styled.div`
   opacity: 0;
 `;
 
+const CarouselItemContainer = styled.div`
+  height: 100%;
+  width: 200vw;
+  transform: translateX(${(props) => props.transForm + 'px'});
+  transition: transform 0.7s ease-in-out;
+  position: relative;
+`;
+
+const CarouselItemStyle = styled.div`
+  float: left;
+  height: 100%;
+`;
+
+const Span = styled.span`
+  position: absolute;
+  display: inline-block;
+  top: 0px;
+  text-align: center;
+  padding-top: 25vh;
+  height: 100%;
+  ${({ itemWidth }) => (itemWidth ? `width: ${itemWidth}px` : '200px')};
+  z-index: 4;
+`;
+
+const ItemImg = styled.img`
+  background-position: center;
+  background-size: cover;
+  background-image: url(${(props) => props.img});
+  ${({ itemWidth }) => (itemWidth ? `width: ${itemWidth}px` : '200px')};
+  height: 100%;
+`;
+
 function Carousel({
   className,
   carouselContainerWidth = 200,
@@ -75,6 +107,16 @@ function Carousel({
       <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
         <FontAwesomeIcon icon={faArrowRight} />
       </RightBtn>
+
+      <CarouselItemContainer transForm={transForm}>
+        {childrens.map((item, i) => (
+          <CarouselItemStyle key={i}>
+            <ItemImg img={item.imgAddress} itemWidth={itemWidth} />
+            <Span itemWidth={itemWidth}>{item.children}</Span>
+          </CarouselItemStyle>
+        ))}
+      </CarouselItemContainer>
+
       <AutoBox>{autoPlay ? setTimeout(onAutoPlay, 2000) : ''}</AutoBox>
     </>
   );
