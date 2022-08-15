@@ -72,9 +72,9 @@ const ItemImg = styled.img`
 
 function Carousel({
   className,
-  carouselContainerWidth = 200,
+  carouselContainerWidth,
   childrens,
-  itemWidth = 200,
+  itemWidth,
   autoPlay,
   ...others
 }) {
@@ -121,5 +121,12 @@ function Carousel({
     </>
   );
 }
+
+Carousel.defaultProps = {
+  childrens: [],
+  carouselContainerWidth: 200,
+  itemWidth: 200,
+  autoPlay: true,
+};
 
 export default Carousel;
