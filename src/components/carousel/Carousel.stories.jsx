@@ -56,7 +56,7 @@ Content.args = {
             carousel UI란 여러 개의 이미지(혹은 영상)을 슬라이드 형태로 순환하며 보여주는 방식의
             UI를 뜻합니다.
           </p>
-          <div>출처 : 한국민족문화대백과</div>
+          <div>출처 : Google</div>
         </div>
       ),
     },
