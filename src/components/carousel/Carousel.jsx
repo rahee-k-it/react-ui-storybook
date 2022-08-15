@@ -17,7 +17,7 @@ const LeftBtn = styled.button`
   opacity: ${(props) => props.opacity};
   svg {
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     top: 50%;
     left: 10px;
   }
@@ -28,7 +28,7 @@ const RightBtn = styled.button`
   opacity: ${(props) => props.opacity};
   svg {
     position: absolute;
-    z-index: 2;
+    z-index: 10;
     top: 50%;
     right: 10px;
   }
@@ -51,12 +51,10 @@ const CarouselItemStyle = styled.div`
   height: 100%;
 `;
 
-const Span = styled.span`
+const Content = styled.div`
   position: absolute;
-  display: inline-block;
   top: 0px;
   text-align: center;
-  padding-top: 25vh;
   height: 100%;
   ${({ itemWidth }) => (itemWidth ? `width: ${itemWidth}px` : '200px')};
   z-index: 4;
@@ -72,9 +70,9 @@ const ItemImg = styled.img`
 
 function Carousel({
   className,
-  carouselContainerWidth,
+  carouselContainerWidth = 200,
   childrens,
-  itemWidth,
+  itemWidth = 200,
   autoPlay,
   ...others
 }) {
@@ -99,24 +97,23 @@ function Carousel({
 
   return (
     <>
-      <CarouselContainer width={widthRatio} className={className} {...others}></CarouselContainer>
+      <CarouselContainer width={widthRatio} className={className} {...others}>
+        <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </LeftBtn>
+        <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
+          <FontAwesomeIcon icon={faArrowRight} />
+        </RightBtn>
 
-      <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </LeftBtn>
-      <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
-        <FontAwesomeIcon icon={faArrowRight} />
-      </RightBtn>
-
-      <CarouselItemContainer transForm={transForm}>
-        {childrens.map((item, i) => (
-          <CarouselItemStyle key={i}>
-            <ItemImg img={item.imgAddress} itemWidth={itemWidth} />
-            <Span itemWidth={itemWidth}>{item.children}</Span>
-          </CarouselItemStyle>
-        ))}
-      </CarouselItemContainer>
-
+        <CarouselItemContainer transForm={transForm}>
+          {childrens.map((item, i) => (
+            <CarouselItemStyle key={i}>
+              <ItemImg img={item.imgAddress} itemWidth={itemWidth} />
+              <Content itemWidth={itemWidth}>{item.children}</Content>
+            </CarouselItemStyle>
+          ))}
+        </CarouselItemContainer>
+      </CarouselContainer>
       <AutoBox>{autoPlay ? setTimeout(onAutoPlay, 2000) : ''}</AutoBox>
     </>
   );
