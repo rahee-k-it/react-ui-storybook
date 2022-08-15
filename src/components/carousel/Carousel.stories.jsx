@@ -41,7 +41,15 @@ Content.args = {
     {
       children: (
         <div
-          style={{ backgroundColor: 'ivory', height: '100%', padding: '20px', fontSize: '12px' }}
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            fontSize: '12px',
+            backgroundColor: 'ivory',
+            padding: '0px 15px',
+          }}
         >
           <h1>Carousel</h1>
           <p style={{ margin: '40px 20px' }}>
@@ -81,13 +89,23 @@ Combined.args = {
     {
       imgAddress: 'images/고래.png',
       children: (
-        <div style={{ color: 'white', fontSize: '12px', padding: '20px 30px' }}>
-          <h1>고래</h1>
-          <p style={{ margin: '25px 0px' }}>
+        <div
+          style={{
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-evenly',
+            fontSize: '12px',
+            color: 'white',
+            padding: '0px 30px',
+          }}
+        >
+          <div>고래</div>
+          <div>
             수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여
             지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리
             부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.
-          </p>
+          </div>
           <div>출처 : 한국민족문화대백과</div>
         </div>
       ),

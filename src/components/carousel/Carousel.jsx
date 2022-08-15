@@ -102,7 +102,12 @@ function Carousel({
   }, [autoPlay ? transForm : '']);
 
   return (
-    <CarouselContainer width={widthRatio} className={className ?? 'h-48'} {...others}>
+    <CarouselContainer
+      width={widthRatio}
+      className={className ?? 'h-48'}
+      autoPlay={autoPlay}
+      {...others}
+    >
       <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
         <FontAwesomeIcon icon={faArrowLeft} />
       </LeftBtn>
@@ -127,7 +132,7 @@ Carousel.defaultProps = {
   carouselContainerWidth: 200,
   itemWidth: 200,
   autoPlay: true,
-  className: 'h-32',
+  className: 'h-48',
 };
 
 export default Carousel;
