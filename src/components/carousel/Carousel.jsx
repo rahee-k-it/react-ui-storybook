@@ -6,7 +6,6 @@ import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 200px;
   position: relative;
   overflow: hidden;
   ${({ width }) => (width ? `width: ${width}px` : '200px')};
@@ -65,11 +64,11 @@ const ItemImg = styled.img`
 `;
 
 function Carousel({
-  className,
   carouselContainerWidth = 200,
   childrens,
   itemWidth = 200,
   autoPlay,
+  className,
   ...others
 }) {
   let widthRatio = carouselContainerWidth;
@@ -78,7 +77,7 @@ function Carousel({
 
   const length = childrens.length;
   const endLength = -(length * itemWidth) + carouselContainerWidth;
-  console.log('랜더링');
+
   const onClickLeft = () => {
     setTransForm((trans) => (trans >= 0 ? endLength : (trans += 200)));
   };
@@ -103,25 +102,23 @@ function Carousel({
   }, [autoPlay ? transForm : '']);
 
   return (
-    <>
-      <CarouselContainer width={widthRatio} className={className} {...others}>
-        <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </LeftBtn>
-        <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
-          <FontAwesomeIcon icon={faArrowRight} />
-        </RightBtn>
+    <CarouselContainer width={widthRatio} className={className ?? 'h-48'} {...others}>
+      <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </LeftBtn>
+      <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
+        <FontAwesomeIcon icon={faArrowRight} />
+      </RightBtn>
 
-        <CarouselItemContainer transForm={transForm}>
-          {childrens.map((item, i) => (
-            <CarouselItemStyle key={i}>
-              <ItemImg img={item.imgAddress} itemWidth={itemWidth} />
-              <Content itemWidth={itemWidth}>{item.children}</Content>
-            </CarouselItemStyle>
-          ))}
-        </CarouselItemContainer>
-      </CarouselContainer>
-    </>
+      <CarouselItemContainer transForm={transForm}>
+        {childrens.map((item, i) => (
+          <CarouselItemStyle key={i}>
+            <ItemImg img={item.imgAddress} itemWidth={itemWidth} />
+            <Content itemWidth={itemWidth}>{item.children}</Content>
+          </CarouselItemStyle>
+        ))}
+      </CarouselItemContainer>
+    </CarouselContainer>
   );
 }
 
@@ -130,6 +127,7 @@ Carousel.defaultProps = {
   carouselContainerWidth: 200,
   itemWidth: 200,
   autoPlay: true,
+  className: 'h-32',
 };
 
 export default Carousel;

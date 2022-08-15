@@ -9,6 +9,10 @@ export default {
     carouselContainerWidth: { control: 'select', options: [100, 200, 400, 600, 800] },
     itemWidth: { control: 'select', options: [100, 200, 300] },
     autoPlay: { control: 'boolean' },
+    className: {
+      control: 'select',
+      options: ['h-24', 'h-28', 'h-32', 'h-40', 'h-48', 'h-52', 'h-64', 'h-80', 'h-96'],
+    },
   },
 };
 
@@ -29,6 +33,7 @@ BgImg.args = {
     { imgAddress: 'images/펠리칸.png' },
     { imgAddress: 'images/호랑이.png' },
   ],
+  carouselContainerWidth: 400,
 };
 
 Content.args = {
