@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
@@ -32,10 +32,6 @@ const RightBtn = styled.button`
     top: 50%;
     right: 10px;
   }
-`;
-
-const AutoBox = styled.div`
-  opacity: 0;
 `;
 
 const CarouselItemContainer = styled.div`
@@ -82,7 +78,7 @@ function Carousel({
 
   const length = childrens.length;
   const endLength = -(length * itemWidth) + carouselContainerWidth;
-
+  console.log('랜더링');
   const onClickLeft = () => {
     setTransForm((trans) => (trans >= 0 ? endLength : (trans += 200)));
   };
@@ -94,6 +90,17 @@ function Carousel({
   const onAutoPlay = () => {
     setTransForm((trans) => (trans < endLength ? (trans = 0) : (trans -= 200)));
   };
+
+  useEffect(() => {
+    let timer = setTimeout(onAutoPlay, 2000);
+    if (!autoPlay) {
+      clearTimeout(timer);
+    } else {
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [autoPlay ? transForm : '']);
 
   return (
     <>
@@ -114,7 +121,6 @@ function Carousel({
           ))}
         </CarouselItemContainer>
       </CarouselContainer>
-      <AutoBox>{autoPlay ? setTimeout(onAutoPlay, 2000) : ''}</AutoBox>
     </>
   );
 }
