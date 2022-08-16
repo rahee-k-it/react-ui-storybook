@@ -31,7 +31,7 @@ function Button(props) {
     fontWeight = '',
     flexDirection = 'flex-row-reverse',
     textDecoration = 'no-underline',
-    padding = 'p-2',
+    padding = 'p-[8px]',
     ...rest
   } = props;
 

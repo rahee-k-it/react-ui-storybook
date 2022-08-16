@@ -8,7 +8,7 @@ const CarouselItemContainer = styled.div`
 `;
 
 function CarouselItem({ children: child }) {
-  const { itemWidth = 200 } = useContext(CarouselContext);
+  const { itemWidth = 400 } = useContext(CarouselContext);
   return <CarouselItemContainer itemWidth={itemWidth}>{child}</CarouselItemContainer>;
 }
 
