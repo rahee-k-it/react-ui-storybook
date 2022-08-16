@@ -10,7 +10,7 @@ const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
 `;
-const CarouselItemWrapper = styled.div`
+const CarouselItemsWrapper = styled.div`
   width: ${({ translateXAmountLimit }) => `${translateXAmountLimit}px`};
   height: 100%;
   display: flex;
@@ -29,6 +29,7 @@ const NavigationWrapper = styled.div`
   height: fit-content;
   z-index: 5;
 `;
+
 function Carousel({
   itemWidth = 400,
   autoPlay = true,
@@ -59,13 +60,13 @@ function Carousel({
   }, [translateXAmount, onClickRight, autoPlay, autoPlayDuration]);
 
   const contextValue = useMemo(() => ({ itemWidth }), [itemWidth]);
+
   return (
     <CarouselContainer itemWidth={itemWidth} className={className} {...others}>
       <NavigationWrapper itemWidth={itemWidth}>
         <Button
           onClick={onClickLeft}
           className="opacity-20 hover:opacity-75 transition-opacity rounded-full bg-violet-200 p-[14px]  ml-[6px]"
-          style
         >
           <FontAwesomeIcon icon={faArrowLeft} />
         </Button>
@@ -76,12 +77,12 @@ function Carousel({
           <FontAwesomeIcon icon={faArrowRight} />
         </Button>
       </NavigationWrapper>
-      <CarouselItemWrapper
+      <CarouselItemsWrapper
         translateXAmountLimit={translateXAmountLimit}
         translateXAmount={translateXAmount}
       >
         <CarouselContext.Provider value={contextValue}>{children}</CarouselContext.Provider>
-      </CarouselItemWrapper>
+      </CarouselItemsWrapper>
     </CarouselContainer>
   );
 }
