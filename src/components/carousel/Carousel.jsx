@@ -1,100 +1,57 @@
-import React, { useEffect, useState } from 'react';
+import { Children, useEffect, useState, useMemo } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import CarouselItemContainer from './CarouselItemContainer';
+import CarouselContext from './CarouselContext';
+import Button from '../button/Button';
 
 const CarouselContainer = styled.div`
-  display: flex;
-  flex-direction: column;
   position: relative;
   overflow: hidden;
-  ${({ width }) => (width ? `width: ${width}px` : '200px')};
 `;
-
-const LeftBtn = styled.button`
-  cursor: pointer;
-  opacity: ${(props) => props.opacity};
-  svg {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 10px;
-  }
+const CarouselItemWrapper = styled.div`
+  height: 100%;
+  transform: translateX(${({ translateXAmount }) => `${translateXAmount}px`});
+  transition: transform 0.7s ease-in-out;
 `;
-
-const RightBtn = styled.button`
-  cursor: pointer;
-  opacity: ${(props) => props.opacity};
-  svg {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    right: 10px;
-  }
-`;
-
-function Carousel({
-  carouselContainerWidth,
-  childrens,
-  itemWidth,
-  autoPlay,
-  className,
-  ...others
-}) {
-  const [transForm, setTransForm] = useState(0);
-
-  const length = childrens.length;
-  const endLength = -(length * itemWidth) + carouselContainerWidth;
+function Carousel({ itemWidth = 200, autoPlay = true, children, className, ...others }) {
+  const [translateXAmount, setTranslateXAmount] = useState(0);
+  const itemCount = Children.toArray(children).length;
+  const translateXAmountLimit = itemCount * itemWidth;
 
   const onClickLeft = () => {
-    setTransForm((trans) => (trans >= 0 ? endLength : (trans += 200)));
+    setTranslateXAmount((translateXAmount + itemWidth) % translateXAmountLimit);
   };
 
   const onClickRight = () => {
-    setTransForm((trans) => (trans <= endLength ? (trans = 0) : (trans -= 200)));
+    setTranslateXAmount((translateXAmount - itemWidth) % translateXAmountLimit);
   };
-
-  const onAutoPlay = () => {
-    setTransForm((trans) => (trans < endLength ? (trans = 0) : (trans -= 200)));
-  };
-
-  useEffect(() => {
-    let timer = setTimeout(onAutoPlay, 2000);
-    if (!autoPlay) {
-      clearTimeout(timer);
-    } else {
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [autoPlay ? transForm : '']);
-
+  // useEffect(() => {
+  //   let timer = setTimeout(onClickRight, 2000);
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [translateXAmount]);
+  const contextValue = useMemo(() => ({ itemWidth }), [itemWidth]);
   return (
-    <CarouselContainer
-      width={carouselContainerWidth}
-      className={className ?? 'h-48'}
-      autoPlay={autoPlay}
-      {...others}
-    >
-      <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
+    <CarouselContainer className={className} {...others}>
+      <Button
+        onClick={onClickLeft}
+        className="opacity-50 hover:opacity-100 fixed top-1/2 bottom-1/2 left-[10px]"
+      >
         <FontAwesomeIcon icon={faArrowLeft} />
-      </LeftBtn>
-      <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
+      </Button>
+      <Button
+        onClick={onClickRight}
+        className="opacity-50 hover:opacity-100 fixed top-1/2 bottom-1/2 right-[10px]"
+      >
         <FontAwesomeIcon icon={faArrowRight} />
-      </RightBtn>
-
-      <CarouselItemContainer transForm={transForm} childrens={childrens} itemWidth={itemWidth} />
+      </Button>
+      <CarouselItemWrapper translateXAmount={translateXAmount}>
+        <CarouselContext.Provider value={contextValue}>{children}</CarouselContext.Provider>
+      </CarouselItemWrapper>
     </CarouselContainer>
   );
 }
-
-Carousel.defaultProps = {
-  childrens: [],
-  carouselContainerWidth: 200,
-  itemWidth: 200,
-  autoPlay: true,
-  className: 'h-48',
-};
 
 export default Carousel;
