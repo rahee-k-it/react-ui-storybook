@@ -43,7 +43,10 @@ function Carousel({
   const translateXAmountLimit = itemCount * itemWidth;
 
   const onClickLeft = () => {
-    setTranslateXAmount((translateXAmount + itemWidth) % translateXAmountLimit);
+    const newTranslateXAmount = (translateXAmount + itemWidth) % translateXAmountLimit;
+    setTranslateXAmount(
+      (newTranslateXAmount > 0 ? -translateXAmountLimit : 0) + newTranslateXAmount,
+    );
   };
   const onClickRight = useCallback(() => {
     setTranslateXAmount((translateXAmount - itemWidth) % translateXAmountLimit);
