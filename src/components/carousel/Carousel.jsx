@@ -1,100 +1,98 @@
-import React, { useEffect, useState } from 'react';
+import React, { Children, useCallback, useEffect, useMemo, useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import CarouselItemContainer from './CarouselItemContainer';
+import Button from '../button/Button';
+import CarouselContext from './CarouselContext';
 
 const CarouselContainer = styled.div`
-  display: flex;
-  flex-direction: column;
+  width: ${({ itemWidth }) => `${itemWidth}px`};
   position: relative;
   overflow: hidden;
-  ${({ width }) => (width ? `width: ${width}px` : '200px')};
 `;
 
-const LeftBtn = styled.button`
-  cursor: pointer;
-  opacity: ${(props) => props.opacity};
-  svg {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    left: 10px;
-  }
+const NavigationWrapper = styled.div`
+  width: ${({ itemWidth }) => `${itemWidth}px`};
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  background-color: transparent;
+  height: fit-content;
+  z-index: 5;
 `;
 
-const RightBtn = styled.button`
-  cursor: pointer;
-  opacity: ${(props) => props.opacity};
-  svg {
-    position: absolute;
-    z-index: 10;
-    top: 50%;
-    right: 10px;
-  }
+const CarouselItemsWrapper = styled.div`
+  width: ${({ translateXAmountLimit }) => `${translateXAmountLimit}px`};
+  height: 100%;
+  display: flex;
+  transform: translateX(${({ translateXAmount }) => `${translateXAmount}px`});
+  transition: transform 0.7s ease-in-out;
 `;
 
 function Carousel({
-  carouselContainerWidth,
-  childrens,
-  itemWidth,
-  autoPlay,
+  autoPlay = true,
+  autoPlayDuration = 2000,
+  children,
   className,
+  itemWidth = 400,
   ...others
 }) {
-  const [transForm, setTransForm] = useState(0);
-
-  const length = childrens.length;
-  const endLength = -(length * itemWidth) + carouselContainerWidth;
+  const [translateXAmount, setTranslateXAmount] = useState(0);
+  const itemCount = Children.toArray(children).length;
+  const translateXAmountLimit = itemCount * itemWidth;
 
   const onClickLeft = () => {
-    setTransForm((trans) => (trans >= 0 ? endLength : (trans += 200)));
+    const newTranslateXAmount = (translateXAmount + itemWidth) % translateXAmountLimit;
+    setTranslateXAmount(
+      (newTranslateXAmount > 0 ? -translateXAmountLimit : 0) + newTranslateXAmount,
+    );
   };
-
-  const onClickRight = () => {
-    setTransForm((trans) => (trans <= endLength ? (trans = 0) : (trans -= 200)));
-  };
-
-  const onAutoPlay = () => {
-    setTransForm((trans) => (trans < endLength ? (trans = 0) : (trans -= 200)));
-  };
+  const onClickRight = useCallback(() => {
+    setTranslateXAmount((translateXAmount - itemWidth) % translateXAmountLimit);
+  }, [translateXAmount, itemWidth, translateXAmountLimit]);
 
   useEffect(() => {
-    let timer = setTimeout(onAutoPlay, 2000);
-    if (!autoPlay) {
-      clearTimeout(timer);
-    } else {
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [autoPlay ? transForm : '']);
+    setTranslateXAmount(0);
+  }, [itemWidth]);
+
+  useEffect(() => {
+    let timer = autoPlay ? setTimeout(onClickRight, autoPlayDuration) : 0;
+    return () => {
+      if (timer !== 0) clearTimeout(timer);
+    };
+  }, [translateXAmount, onClickRight, autoPlay, autoPlayDuration]);
+
+  const contextValue = useMemo(() => ({ itemWidth }), [itemWidth]);
 
   return (
-    <CarouselContainer
-      width={carouselContainerWidth}
-      className={className ?? 'h-48'}
-      autoPlay={autoPlay}
-      {...others}
-    >
-      <LeftBtn onClick={onClickLeft} opacity={autoPlay ? 0 : 1}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-      </LeftBtn>
-      <RightBtn onClick={onClickRight} opacity={autoPlay ? 0 : 1}>
-        <FontAwesomeIcon icon={faArrowRight} />
-      </RightBtn>
+    <CarouselContainer itemWidth={itemWidth} className={className} {...others}>
+      <NavigationWrapper itemWidth={itemWidth}>
+        <Button
+          onClick={onClickLeft}
+          className="opacity-20 hover:opacity-75 transition-opacity rounded-full bg-slate-100 p-[14px]  ml-[6px]"
+        >
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </Button>
 
-      <CarouselItemContainer transForm={transForm} childrens={childrens} itemWidth={itemWidth} />
+        <Button
+          onClick={onClickRight}
+          className="opacity-20 hover:opacity-75 transition-opacity rounded-full bg-slate-100 p-[14px] mr-[6px]"
+        >
+          <FontAwesomeIcon icon={faArrowRight} />
+        </Button>
+      </NavigationWrapper>
+
+      <CarouselItemsWrapper
+        translateXAmountLimit={translateXAmountLimit}
+        translateXAmount={translateXAmount}
+      >
+        <CarouselContext.Provider value={contextValue}>{children}</CarouselContext.Provider>
+      </CarouselItemsWrapper>
     </CarouselContainer>
   );
 }
-
-Carousel.defaultProps = {
-  childrens: [],
-  carouselContainerWidth: 200,
-  itemWidth: 200,
-  autoPlay: true,
-  className: 'h-48',
-};
 
 export default Carousel;
