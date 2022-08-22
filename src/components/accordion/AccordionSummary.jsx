@@ -9,11 +9,13 @@ const AccordionSummaryContainer = styled.div`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   ${({ disabled }) => (disabled ? 'background-color: rgba(0, 0, 0, 0.12);' : '')}
 `;
+
 const AccordionSummaryContent = styled.div`
   margin: 12px 0;
   display: flex;
   flex-grow: 1;
 `;
+
 const ExpandedIconWrapper = styled.div`
   min-height: 30px;
   width: 30px;
@@ -39,10 +41,12 @@ const AccordionSummary = ({ children, className, expandIcon, onClick, ...other }
     }
   };
   return (
-    <AccordionSummaryContainer disabled={disabled} onClick={handleChange} className="px-4">
-      <AccordionSummaryContent className={className} {...other}>
-        {children}
-      </AccordionSummaryContent>
+    <AccordionSummaryContainer
+      disabled={disabled}
+      onClick={handleChange}
+      className={`px-4 ${className}`}
+    >
+      <AccordionSummaryContent {...other}>{children}</AccordionSummaryContent>
       <ExpandedIconWrapper expanded={expanded}>{expandIcon}</ExpandedIconWrapper>
     </AccordionSummaryContainer>
   );
