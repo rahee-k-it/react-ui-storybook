@@ -5,6 +5,7 @@ import CarouselContext from './CarouselContext';
 const CarouselItemContainer = styled.div`
   height: 100%;
   width: ${({ itemWidth }) => `${itemWidth}px`};
+  position: relative;
 `;
 
 function CarouselItem({ children }) {

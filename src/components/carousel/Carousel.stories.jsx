@@ -1,122 +1,167 @@
 import Carousel from './Carousel';
+import CarouselItem from './CarouselItem';
+import styled from 'styled-components';
 
 export default {
   title: 'Carousel',
   component: Carousel,
-
   argTypes: {
-    childrens: { control: { type: 'null' } },
-    carouselContainerWidth: { control: 'select', options: [100, 200, 400, 600, 800] },
-    itemWidth: { control: 'select', options: [100, 200, 300] },
+    itemWidth: { control: 'select', options: [200, 300, 400, 500, 600] },
     autoPlay: { control: 'boolean' },
-    className: {
-      control: 'select',
-      options: ['h-24', 'h-28', 'h-32', 'h-40', 'h-48', 'h-52', 'h-64', 'h-80', 'h-96'],
-    },
+    autoPlayDuration: { control: 'select', options: [1000, 2000, 3000] },
   },
 };
+const ItemImg = styled.div`
+  background-position: center;
+  background-size: cover;
+  background-image: url(${({ imgSrc }) => imgSrc});
+  width: 100%;
+  height: 400px;
+`;
 
-const Template = (args) => <Carousel {...args}></Carousel>;
+const TextContainer = styled.div`
+  width: 100%;
+  height: 400px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 40px;
+  line-height: 20px;
+  border: 0.2px solid rgba(0, 0, 0, 0.2);
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  div {
+    height: 80%;
+  }
+  footer {
+    text-align: center;
+  }
+`;
 
-export const BgImg = Template.bind({});
-export const Content = Template.bind({});
-export const Combined = Template.bind({});
+const CombinedImg = styled.div`
+  position: absolute;
+  background-position: center;
+  background-size: cover;
+  background-image: url(${({ imgSrc }) => imgSrc});
+  width: 100%;
+  height: 100%;
+`;
 
-BgImg.args = {
-  childrens: [
-    { imgAddress: 'images/고래.png' },
-    { imgAddress: 'images/다람쥐.png' },
-    { imgAddress: 'images/독수리.png' },
-    { imgAddress: 'images/새.png' },
-    { imgAddress: 'images/여우.png' },
-    { imgAddress: 'images/코끼리.png' },
-    { imgAddress: 'images/펠리칸.png' },
-    { imgAddress: 'images/호랑이.png' },
-  ],
-  carouselContainerWidth: 400,
-};
+export const BgImg = (args) => (
+  <Carousel {...args}>
+    {['images/고래.png', 'images/다람쥐.png', 'images/독수리.png', 'images/새.png'].map(
+      (imgSrc, i) => {
+        return (
+          <CarouselItem key={i}>
+            <ItemImg imgSrc={imgSrc} />
+          </CarouselItem>
+        );
+      },
+    )}
+  </Carousel>
+);
 
-Content.args = {
-  childrens: [
-    {
-      children: (
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            fontSize: '12px',
-            backgroundColor: 'ivory',
-            padding: '0px 15px',
-          }}
-        >
-          <h1>Carousel</h1>
-          <p style={{ margin: '40px 20px' }}>
-            carousel UI란 여러 개의 이미지(혹은 영상)을 슬라이드 형태로 순환하며 보여주는 방식의
-            UI를 뜻합니다.
-          </p>
-          <div>출처 : Google</div>
-        </div>
-      ),
-    },
-    {
-      children: '2',
-    },
-    {
-      children: '3',
-    },
-    {
-      children: '4',
-    },
-    {
-      children: '5',
-    },
-    {
-      children: '6',
-    },
-    {
-      children: '7',
-    },
-    {
-      children: '8',
-    },
-  ],
-};
+export const Text = (args) => (
+  <Carousel {...args}>
+    {[
+      {
+        children: {
+          title: '고래',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+      },
+      {
+        children: {
+          title: '다람쥐',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+      },
+      {
+        children: {
+          title: '독수리',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+      },
+      {
+        children: {
+          title: '새',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+      },
+    ].map((item, i) => {
+      return (
+        <CarouselItem key={i}>
+          <TextContainer>
+            <header>{item.children.title}</header>
+            <div>{item.children.content}</div>
+            <footer>{item.children.footer}</footer>
+          </TextContainer>
+        </CarouselItem>
+      );
+    })}
+  </Carousel>
+);
 
-Combined.args = {
-  childrens: [
-    {
-      imgAddress: 'images/고래.png',
-      children: (
-        <div
-          style={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-            fontSize: '12px',
-            color: 'white',
-            padding: '0px 30px',
-          }}
-        >
-          <div>고래</div>
-          <div>
-            수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여
-            지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리
-            부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.
-          </div>
-          <div>출처 : 한국민족문화대백과</div>
-        </div>
-      ),
-    },
-    { children: '2', imgAddress: 'images/다람쥐.png' },
-    { children: '3', imgAddress: 'images/독수리.png' },
-    { children: '4', imgAddress: 'images/새.png' },
-    { children: '5', imgAddress: 'images/여우.png' },
-    { children: '6', imgAddress: 'images/코끼리.png' },
-    { children: '7', imgAddress: 'images/펠리칸.png' },
-    { children: '8', imgAddress: 'images/호랑이.png' },
-  ],
-  autoPlay: false,
-};
+export const Combined = (args) => (
+  <Carousel {...args}>
+    {[
+      {
+        children: {
+          title: '고래',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+        bgImg: 'images/고래.png',
+      },
+      {
+        children: {
+          title: '다람쥐',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+        bgImg: 'images/다람쥐.png',
+      },
+      {
+        children: {
+          title: '독수리',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+        bgImg: 'images/독수리.png',
+      },
+      {
+        children: {
+          title: '새',
+          content:
+            '수중생활을 하므로 포유류이면서도 물고기와 비슷한 모양을 하고 있다. 앞발은 진화하여 지느러미 모양을 하고 있으며, 몸을 물속에서 뜨게 하기 위한 가슴지느러미가 있다. 또, 꼬리부분은 꼬리지느러미로 변형되어 몸의 진행을 맡아본다.',
+          footer: '출처 : Google',
+        },
+        bgImg: 'images/새.png',
+      },
+    ].map((item, i) => {
+      return (
+        <CarouselItem key={i}>
+          <CombinedImg imgSrc={item.bgImg} />
+          <TextContainer>
+            <header>{item.children.title}</header>
+            <div>{item.children.content}</div>
+            <footer>{item.children.footer}</footer>
+          </TextContainer>
+        </CarouselItem>
+      );
+    })}
+  </Carousel>
+);
