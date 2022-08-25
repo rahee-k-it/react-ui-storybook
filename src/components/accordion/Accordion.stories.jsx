@@ -26,14 +26,14 @@ export default {
 };
 
 export const Default = ({
-  summaryColor,
-  summaryBgColor,
-  summaryFontSize,
-  summaryFontWeights,
-  detailsColor,
-  detailsBgColor,
-  detailsFontSize,
-  detailsFontWeights,
+  summaryColor = 'text-black',
+  summaryBgColor = 'bg-white',
+  summaryFontSize = 'text-xl',
+  summaryFontWeights = 'font-bold',
+  detailsColor = 'text-black',
+  detailsBgColor = 'bg-white',
+  detailsFontSize = 'text-base',
+  detailsFontWeights = 'font-light',
   ...args
 }) => {
   const DefaultRoot = styled.div`
@@ -67,14 +67,14 @@ export const Default = ({
 };
 
 export const Multiple = ({
-  summaryColor,
-  summaryBgColor,
-  summaryFontSize,
-  summaryFontWeights,
-  detailsColor,
-  detailsBgColor,
-  detailsFontSize,
-  detailsFontWeights,
+  summaryColor = 'text-black',
+  summaryBgColor = 'bg-white',
+  summaryFontSize = 'text-xl',
+  summaryFontWeights = 'font-bold',
+  detailsColor = 'text-black',
+  detailsBgColor = 'bg-white',
+  detailsFontSize = 'text-base',
+  detailsFontWeights = 'font-light',
   ...args
 }) => {
   const MultipleRoot = styled.div`
@@ -111,14 +111,14 @@ export const Multiple = ({
 };
 
 export const Disabled = ({
-  summaryColor,
-  summaryBgColor,
-  summaryFontSize,
-  summaryFontWeights,
-  detailsColor,
-  detailsBgColor,
-  detailsFontSize,
-  detailsFontWeights,
+  summaryColor = 'text-black',
+  summaryBgColor = 'bg-white',
+  summaryFontSize = 'text-xl',
+  summaryFontWeights = 'font-bold',
+  detailsColor = 'text-black',
+  detailsBgColor = 'bg-white',
+  detailsFontSize = 'text-base',
+  detailsFontWeights = 'font-light',
   disabled = true,
   ...args
 }) => {
@@ -153,14 +153,14 @@ export const Disabled = ({
 };
 
 export const CollapsibleGroup = ({
-  summaryColor,
-  summaryBgColor,
-  summaryFontSize,
-  summaryFontWeights,
-  detailsColor,
-  detailsBgColor,
-  detailsFontSize,
-  detailsFontWeights,
+  summaryColor = 'text-black',
+  summaryBgColor = 'bg-white',
+  summaryFontSize = 'text-xl',
+  summaryFontWeights = 'font-bold',
+  detailsColor = 'text-black',
+  detailsBgColor = 'bg-white',
+  detailsFontSize = 'text-base',
+  detailsFontWeights = 'font-light',
   ...args
 }) => {
   const CollapsibleGroupRoot = styled.div`

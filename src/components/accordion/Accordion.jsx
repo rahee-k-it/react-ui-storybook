@@ -38,7 +38,7 @@ const Accordion = ({
     }
   }, [expandedProp]);
   useEffect(() => {
-    setChildrenHeightState(childrenRef.current.offsetHeight);
+    setChildrenHeightState(childrenRef.current.clientHeight);
   }, [childrenRef]);
   const [summary, ...children] = Children.toArray(childrenProp);
   const contextValue = useMemo(
