@@ -12,14 +12,6 @@ const boxShadowDirections = {
   'up-left': '-5px -5px',
 };
 
-// const borderRadius = {
-//   none: '0px',
-//   s: '5px',
-//   m: '10px',
-//   l: '15px',
-//   xl: '20px',
-// };
-
 const Container = styled.div`
   box-sizing: content-box;
   margin: 50px;
@@ -75,25 +67,16 @@ export const Card = ({
       border={border}
       shadow={shadow}
       shadowDirection={shadowDirection}
-      className={`${borderRadiusSize ?? ''}`}
+      className={`${borderRadiusSize}`}
     >
-      <Header className={`${headerBgColor ?? ''}`}>
-        <SubTitle
-          // borderRadiusSize={borderRadiusSize}
-          className={`${subtitleColor ?? ''} ${subtitleFontSize ?? ''} ${
-            subtitleFontWeight ?? ''
-          } `}
-        >
+      <Header className={`${headerBgColor}`}>
+        <SubTitle className={`${subtitleColor} ${subtitleFontSize} ${subtitleFontWeight} `}>
           {subtitle}
         </SubTitle>
-        <Title className={`${titleColor ?? ''} ${titleFontSize ?? ''} ${titleFontWeight ?? ''}`}>
-          {title}
-        </Title>
+        <Title className={`${titleColor} ${titleFontSize} ${titleFontWeight}`}>{title}</Title>
       </Header>
       <Content
-        className={`${contentColor ?? ''} ${contentBgColor ?? ''} ${contentFontSize ?? ''} ${
-          contentFontWeight ?? ''
-        }`}
+        className={`${contentColor} ${contentBgColor} ${contentFontSize} ${contentFontWeight}`}
       >
         {content}
       </Content>
