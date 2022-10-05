@@ -62,13 +62,13 @@ const ButtonInModalBox = styled.button`
 
 export const Default = ({
   border = true,
-  borderRadiusSize,
+  borderRadiusSize = 'rounded-none',
   titleColor = 'text-black',
   titleFontSize = 'text-2xl',
   titleFontWeight = 'font-bold',
-  contentColor,
-  contentFontSize,
-  contentFontWeight,
+  contentColor = 'text-black',
+  contentFontSize = 'text-base',
+  contentFontWeight = 'font-normal',
 }) => {
   let [isModalOpened, setIsModalOpened] = useState(false);
   const offModal = (e) => {
@@ -105,12 +105,12 @@ export const CloseButton = ({
   titleColor = 'text-black',
   titleFontSize = 'text-2xl',
   titleFontWeight = 'font-bold',
-  contentColor,
-  contentFontSize,
-  contentFontWeight,
-  buttonColor,
-  buttonFontSize,
-  buttonFontWeight,
+  contentColor = 'text-black',
+  contentFontSize = 'text-base',
+  contentFontWeight = 'font-normal',
+  buttonColor = 'text-black',
+  buttonFontSize = 'text-base',
+  buttonFontWeight = 'font-normal',
   buttonBgColor = 'bg-gray-300',
 }) => {
   let [isModalOpened, setIsModalOpened] = useState(false);
