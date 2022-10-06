@@ -10,13 +10,15 @@ export default {
   argTypes: {
     commentBoxWidth: {
       control: 'select',
-      options: ['w-4/12', 'w-1/2', 'w-8/12', 'w-full', 'w-auto'],
+      options: ['w-4/12', 'w-1/2', 'w-8/12', 'w-full'],
     },
     commentBoxBgColor: {
       control: 'select',
       options: backgroundColors,
     },
+
     iconBorderRadius: { control: 'select', options: borderRadiuses },
+    iconMarginRight: { control: 'select', options: ['mr-1', 'mr-3', 'mr-5', 'mr-7', 'mr-9'] },
     iconWidth: {
       control: 'select',
       options: ['w-2', 'w-4', 'w-6', 'w-8', 'w-10', 'w-12', 'w-24'],
@@ -32,7 +34,6 @@ export default {
       options: ['w-1/4', 'w-1/2', 'w-2/3', 'w-3/4', 'w-auto'],
     },
     commentContentsBgColor: { control: 'select', options: backgroundColors },
-    commentContentsBorderRadius: { control: 'select', options: borderRadiuses },
     commentContentsPadding: {
       control: 'select',
       options: ['p-px', 'p-3', 'p-7', 'p-12', 'p-20', 'p-25'],
@@ -98,14 +99,15 @@ export const imgIcon = ({
 
   iconBorderRadius = 'rounded',
   iconWidth = 'w-8',
+  iconMarginRight = 'mr-1',
 
   commentTitleBgColor = 'bg-white',
+
   nicknameFontSize = 'text-base',
   nicknameFontWeight = 'font-bold',
   nicknameFontColor = 'text-black',
 
   commentContentsWidth = 'w-2/3',
-  commentContentsBorderRadius = 'rounded',
   commentContentsBgColor = 'bg-white',
   commentContentsPadding = 'p-0',
 }) => {
@@ -132,11 +134,14 @@ export const imgIcon = ({
         },
       ].map((item, i) => (
         <CommentBox className={`${commentBoxWidth} ${commentBoxBgColor}`} key={i}>
-          <CommentIcon className={`mr-3 `}>
-            <Img className={`${iconBorderRadius} ${iconWidth} `} src={item.img}></Img>
+          <CommentIcon>
+            <Img
+              className={`${iconMarginRight} ${iconBorderRadius} ${iconWidth} `}
+              src={item.img}
+            ></Img>
           </CommentIcon>
           <CommentContents
-            className={`${commentContentsWidth} ${commentContentsBgColor} ${commentContentsBorderRadius} ${commentContentsPadding}`}
+            className={`${commentContentsWidth} ${commentContentsBgColor}  ${commentContentsPadding}`}
           >
             <CommentTitle
               className={`${nicknameFontSize} ${nicknameFontWeight} ${nicknameFontColor} ${commentTitleBgColor}`}
@@ -163,7 +168,6 @@ export const Text = ({
   commentContentsPadding = 'p-3',
   commentContentsWidth = 'w-2/3',
   commentContentsBgColor = 'bg-white',
-  commentContentsBorderRadius = 'rounded',
 }) => {
   return (
     <Comment>
@@ -186,7 +190,7 @@ export const Text = ({
       ].map((item, i) => (
         <CommentBox className={`${commentBoxWidth} ${commentBoxBgColor}`} key={i}>
           <CommentContents
-            className={`${commentContentsWidth} ${commentContentsBgColor} ${commentContentsBorderRadius} ${commentContentsPadding}`}
+            className={`${commentContentsWidth} ${commentContentsBgColor}  ${commentContentsPadding}`}
           >
             <CommentTitle
               className={`${nicknameFontSize} ${nicknameFontWeight} ${nicknameFontColor}`}
