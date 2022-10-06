@@ -16,7 +16,7 @@ function RowAdd(cell) {
         {
             cell.map(item => {
                 return (
-                    <td>{item}</td>
+                    <td >{item}</td>
                 )
             })
         }

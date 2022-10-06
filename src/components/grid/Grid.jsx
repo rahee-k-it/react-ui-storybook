@@ -1,19 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ColumnAdd,RowAdd} from './GridContext';
 
 export default function Task({ ...args }) {
-  console.log(`change :  ${args.color} ${args["border-thinkness"]} ${args["border-color"]}`);
+  
+  useEffect(() => {
+    //헤더 색상 변경
+    document.querySelectorAll("th").forEach(p => p.style.background = args.color);
 
-  //헤더 색상 변경
-  document.querySelectorAll("th").forEach(p => p.style.background = args.color);
-
-  //border 조절
-  document.querySelectorAll("th, tr, td").forEach(p =>
-     p.style["border"] = `${args["border-thinkness"]}px solid ${args["border-color"]}`);
-
+    //border 조절
+    document.querySelectorAll("th, tr, td").forEach(p =>
+      p.style["border"] = `${args["border-thinkness"]}px solid ${args["border-color"]}`);
+  });
+  
   return (
     <div>
-      <table class="tg">
+      <table className="tg">
         <thead>
           <tr>
             {ColumnAdd(["Index", "이름","희망 분야"])}
@@ -27,4 +28,6 @@ export default function Task({ ...args }) {
       </table>
     </div>
   );
+
+  
 }
