@@ -13,10 +13,7 @@ const ToggleInput = styled.input`
 `;
 
 const ToggleLabel = styled.label`
-  display: block;
-  position: relative;
-  box-sizing: border-box;
-  user-select: none;
+  display: inline-block;
   outline: 0;
   width: ${({ size }) => size * 2 + 'em'};
   height: ${({ size }) => size + 'em'};
