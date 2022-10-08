@@ -60,6 +60,38 @@ export const backgroundColors = [
   'bg-blue-900',
 ];
 
+export const accentColors = [
+  'accent-inherit',
+  'accent-current',
+  'accent-transparent',
+  'accent-black',
+  'accent-white',
+
+  'accent-gray-100',
+  'accent-gray-300',
+  'accent-gray-500',
+  'accent-gray-700',
+  'accent-gray-900',
+
+  'accent-red-100',
+  'accent-red-300',
+  'accent-red-500',
+  'accent-red-700',
+  'accent-red-900',
+
+  'accent-green-100',
+  'accent-green-300',
+  'accent-green-500',
+  'accent-green-700',
+  'accent-green-900',
+
+  'accent-blue-100',
+  'accent-blue-300',
+  'accent-blue-500',
+  'accent-blue-700',
+  'accent-blue-900',
+];
+
 export const borderRadiuses = [
   'rounded-none',
   'rounded-sm',
@@ -87,4 +119,15 @@ export const fontWeights = [
   'font-normal', //500
   'font-bold', //700
   'font-black', //900
+];
+
+export const scale = [
+  'scale-50',
+  'scale-75',
+  'scale-90',
+  'scale-100',
+  'scale-105',
+  'scale-110',
+  'scale-125',
+  'scale-150',
 ];
