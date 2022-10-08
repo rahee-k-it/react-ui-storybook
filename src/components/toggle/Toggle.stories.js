@@ -20,7 +20,7 @@ export default {
     },
     size: {
       control: { type: 'select' },
-      options: ['small', 'normal', 'large'],
+      options: fontSizes,
       description: '토글 버튼 크기 조절',
     },
     disabled: {
@@ -41,8 +41,7 @@ export const Default = Template.bind({});
 Default.args = {
   leftBgColor: 'bg-gray-300',
   rightBgColor: 'bg-green-500',
-  //size: 'text-base',
-  size: 'normal',
+  size: 'text-base',
   disabled: false,
   defaultState: false,
 };

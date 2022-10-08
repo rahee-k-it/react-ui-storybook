@@ -15,11 +15,11 @@ const ToggleInput = styled.input`
 const ToggleLabel = styled.label`
   display: inline-block;
   outline: 0;
-  width: ${({ size }) => size * 2 + 'em'};
-  height: ${({ size }) => size + 'em'};
+  width: 4em;
+  height: 2em;
   background-color: ${({ leftBgColor }) => leftBgColor};
   border-radius: 2em;
-  padding: 2px;
+  padding: 0.1em;
   transition: all 0.4s ease;
   cursor: pointer;
   &:after,
@@ -54,11 +54,6 @@ function Toggle({
   const handlechecked = (e) => {
     if (!disabled) setChecked(!checked);
   };
-  const sizeToPixel = {
-    small: 1.8,
-    normal: 2.2,
-    large: 2.6,
-  };
   return (
     <>
       <ToggleInput
@@ -73,8 +68,7 @@ function Toggle({
       <ToggleLabel
         htmlFor="toggle"
         leftBgColor={leftBgColor}
-        size={sizeToPixel[size]}
-        className={`${checked ? rightBgColor : leftBgColor}`}
+        className={`${checked ? rightBgColor : leftBgColor} ${size}`}
       ></ToggleLabel>
     </>
   );
