@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 
@@ -38,6 +37,7 @@ const ToggleLabel = styled.label`
 `;
 
 function Toggle({
+  id = '',
   rightBgColor = '',
   size = '',
   leftBgColor = '',
@@ -56,13 +56,13 @@ function Toggle({
         type="checkbox"
         checked={checked}
         onChange={handlechecked}
-        id="toggle"
+        id={`toggle-${id}`}
         rightBgColor={rightBgColor}
         className={`peer`}
         {...args}
       />
       <ToggleLabel
-        htmlFor="toggle"
+        htmlFor={`toggle-${id}`}
         leftBgColor={leftBgColor}
         className={`${checked ? rightBgColor : leftBgColor} ${size}`}
       ></ToggleLabel>

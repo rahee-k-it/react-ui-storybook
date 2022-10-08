@@ -7,6 +7,7 @@ export default {
   component: Toggle,
   title: 'Toggle',
   argTypes: {
+    id: { control: 'text' },
     onClick: { action: 'clicked' },
     leftBgColor: {
       control: { type: 'select' },
@@ -40,6 +41,7 @@ const Template = (args) => <Toggle {...args}></Toggle>;
 
 export const Default = Template.bind({});
 Default.args = {
+  id: '',
   leftBgColor: 'bg-gray-300',
   rightBgColor: 'bg-green-500',
   size: 'text-base',
