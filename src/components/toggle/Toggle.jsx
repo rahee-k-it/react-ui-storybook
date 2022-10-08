@@ -14,7 +14,6 @@ const ToggleInput = styled.input`
 
 const ToggleLabel = styled.label`
   display: inline-block;
-  outline: 0;
   width: 4em;
   height: 2em;
   background-color: ${({ leftBgColor }) => leftBgColor};
@@ -22,19 +21,16 @@ const ToggleLabel = styled.label`
   padding: 0.1em;
   transition: all 0.4s ease;
   cursor: pointer;
-  &:after,
-  &:before {
-    position: relative;
+  &:after {
     display: block;
+    position: relative;
     content: '';
     width: 50%;
     height: 100%;
-  }
-  &:after {
+    left: 0%;
     border-radius: 50%;
     background-color: #fff;
     transition: all 0.2s ease;
-    left: 0%;
   }
   &:before {
     display: none;
