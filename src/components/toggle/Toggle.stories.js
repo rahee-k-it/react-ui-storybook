@@ -7,6 +7,7 @@ export default {
   component: Toggle,
   title: 'Toggle',
   argTypes: {
+    onClick: { action: 'clicked' },
     leftBgColor: {
       control: { type: 'select' },
       options: backgroundColors,
