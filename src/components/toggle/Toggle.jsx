@@ -42,15 +42,17 @@ const ToggleLabel = styled.label`
 `;
 
 function Toggle({
-  rightBgColor = '#9fd6ae',
-  size = 'normal',
-  leftBgColor = '#f0f0f0',
-  disabled = false,
-  defaultState = false,
+  rightBgColor = '',
+  size = '',
+  leftBgColor = '',
+  disabled,
+  defaultState,
+  onChange,
+  ...args
 }) {
-  const [alignment, setAlignment] = useState(defaultState);
-  const handleAlignment = (e) => {
-    if (!disabled) setAlignment(!alignment);
+  const [checked, setChecked] = useState(defaultState);
+  const handlechecked = (e) => {
+    if (!disabled) setChecked(!checked);
   };
   const sizeToPixel = {
     small: 1.8,
@@ -61,15 +63,18 @@ function Toggle({
     <>
       <ToggleInput
         type="checkbox"
-        checked={alignment}
-        onChange={handleAlignment}
+        checked={checked}
+        onChange={handlechecked}
         id="toggle"
         rightBgColor={rightBgColor}
+        className={`peer`}
+        {...args}
       />
       <ToggleLabel
         htmlFor="toggle"
         leftBgColor={leftBgColor}
         size={sizeToPixel[size]}
+        className={`${checked ? rightBgColor : leftBgColor}`}
       ></ToggleLabel>
     </>
   );

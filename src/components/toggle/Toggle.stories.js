@@ -1,5 +1,6 @@
 import React from 'react';
 import Toggle from './Toggle';
+import { fontSizes, backgroundColors } from '../common';
 //import { backgroundColors, borderRadiuses, fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
@@ -7,11 +8,14 @@ export default {
   title: 'Toggle',
   argTypes: {
     leftBgColor: {
-      control: { type: 'color' },
+      control: { type: 'select' },
+      options: backgroundColors,
       description: '왼쪽 배경 색상 조절',
     },
+
     rightBgColor: {
-      control: { type: 'color' },
+      control: { type: 'select' },
+      options: backgroundColors,
       description: '오른쪽 배경 색상 조절',
     },
     size: {
@@ -35,5 +39,10 @@ const Template = (args) => <Toggle {...args}></Toggle>;
 
 export const Default = Template.bind({});
 Default.args = {
+  leftBgColor: 'bg-gray-300',
+  rightBgColor: 'bg-green-500',
+  //size: 'text-base',
+  size: 'normal',
+  disabled: false,
   defaultState: false,
 };
