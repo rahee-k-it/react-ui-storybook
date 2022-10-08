@@ -1,7 +1,6 @@
 import React from 'react';
 import Toggle from './Toggle';
 import { fontSizes, backgroundColors } from '../common';
-//import { backgroundColors, borderRadiuses, fontColors, fontSizes, fontWeights } from '../common';
 
 export default {
   component: Toggle,
