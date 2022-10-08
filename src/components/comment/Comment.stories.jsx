@@ -56,6 +56,7 @@ export const Default = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2022-10-02 22:23:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '다람쥐',
@@ -63,6 +64,7 @@ export const Default = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2022-03-02 22:23:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '독수리',
@@ -70,10 +72,11 @@ export const Default = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2021-10-02 22:23:37',
+          id: new Date() * Math.random(),
         },
-      ].map((item, i) => (
+      ].map((item) => (
         <Comment
-          key={i}
+          key={item.id}
           commentContainerClassName={`${commentBoxWidth} ${commentBoxBgColor} `}
           profileImg={item.img}
           profileClassName={`${profileImageBorderRadius}  ${profileImageMarginRight} ${profileImagePadding} w-8 h-6 mt-1`}
@@ -103,22 +106,25 @@ export const WithoutProfile = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2022-10-08 10:00:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '다람쥐',
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2021-10-08 22:23:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '독수리',
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2002-10-02 22:23:37',
+          id: new Date() * Math.random(),
         },
-      ].map((item, i) => (
+      ].map((item) => (
         <Comment
-          key={i}
+          key={item.id}
           commentContainerClassName={`${commentBoxWidth} ${commentBoxBgColor} `}
           commentContentsClassName={`${commentContentsWidth} ${commentContentsBgColor}`}
           commentContentsTitle={item.nickname}
@@ -150,6 +156,7 @@ export const WithoutNickname = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2022-10-02 22:23:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '다람쥐',
@@ -157,16 +164,18 @@ export const WithoutNickname = ({
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
           createdAt: '2022-03-02 22:23:37',
+          id: new Date() * Math.random(),
         },
         {
           nickname: '독수리',
           img: './images/독수리.png',
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
+          id: new Date() * Math.random(),
         },
-      ].map((item, i) => (
+      ].map((item) => (
         <Comment
-          key={i}
+          key={item.id}
           commentContainerClassName={`${commentBoxWidth} ${commentBoxBgColor} `}
           profileImg={item.img}
           profileClassName={`${profileImageBorderRadius}  ${profileImageMarginRight} ${profileImagePadding} w-8 h-6 mt-1`}
