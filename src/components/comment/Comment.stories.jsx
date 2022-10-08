@@ -163,7 +163,6 @@ export const WithoutNickname = ({
           img: './images/독수리.png',
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
-          createdAt: '2021-10-02 22:23:37',
         },
       ].map((item, i) => (
         <Comment
@@ -174,7 +173,7 @@ export const WithoutNickname = ({
           commentContentsClassName={`${commentContentsWidth} ${commentContentsBgColor} `}
           createdAt={item.createdAt}
         >
-          <CommentBox>{item.content}</CommentBox>
+          {item.createdAt ? <CommentBox>{item.content}</CommentBox> : <div>{item.content}</div>}
         </Comment>
       ))}
     </>

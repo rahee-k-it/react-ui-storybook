@@ -76,14 +76,18 @@ function Comment({
 }) {
   return (
     <CommentContainer className={`flex p-5 ${commentContainerClassName}`}>
-      <ProfileImageBox profileImg={profileImg} className={`${profileClassName}`}></ProfileImageBox>
+      <ProfileImageBox
+        profileImg={profileImg}
+        className={`${profileClassName ?? ''}`}
+      ></ProfileImageBox>
 
-      <CommentContents className={`flex flex-col p-2 ${commentContentsClassName}`}>
+      <CommentContents className={`flex flex-col p-1 ${commentContentsClassName ?? ''}`}>
         <ContentsHeaderContainer className={`flex flex-start`}>
           <ContentsTitle className={commentContentsTitle ? 'mr-3' : ''}>
             {commentContentsTitle}
           </ContentsTitle>
-          <TimeStamp>{timeForToday(createdAt)}</TimeStamp>
+
+          {createdAt ? <TimeStamp>{timeForToday(createdAt)}</TimeStamp> : null}
         </ContentsHeaderContainer>
 
         <ContentsMainBox className={`${contentsMainClassName}`}>{children}</ContentsMainBox>
