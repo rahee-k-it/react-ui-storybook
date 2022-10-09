@@ -6,29 +6,42 @@ export default {
   title: 'Checkbox',
   argTypes: {
     label: { control: 'text' },
-    checkboxSize: { control: { sort: 'requiredFirst', type: 'select' }, options: scale },
-    checkboxColor: { control: { sort: 'requiredFirst', type: 'select' }, options: accentColors },
-    fontSize: { control: { sort: 'requiredFirst', type: 'select' }, options: fontSizes },
-    fontWeight: { control: { sort: 'requiredFirst', type: 'select' }, options: fontWeights },
-    fontColor: { control: { sort: 'requiredFirst', type: 'select' }, options: fontColors },
+    subCheckboxsControl: { control: 'boolean' },
+    active: { control: 'boolean' },    
+    checkboxSize: { control: 'select', options: scale },
+    checkboxColor: { control: 'select', options: accentColors },
+    fontSize: { control: 'select', options: fontSizes },
+    fontWeight: { control: 'select', options: fontWeights },
+    fontColor: { control: 'select', options: fontColors },
   },
 };
 
-const Template = (args) => <Checkbox {...args} />;
-
-export const Default = Template.bind({});
+export const Default = (args) => <Checkbox {...args} />;
 Default.args = {
   label: 'checkbox',
   active: true,
 };
-
-export const Disable = Template.bind({});
-Disable.args = {
-  ...Default.args,
-  active: false,
+Default.parameters = {
+  controls: { exclude: ['subCheckboxsControl'] }, 
 };
 
-export const AllSelect = Template.bind({});
+export const AllSelect = (args) => {
+  return (
+    <div>
+      <Checkbox {...args} />
+      {(() => {
+        //스토리만을 위한 임의의 체크 박스 생성
+        return [1, 2, 3].map((i) => {
+          args['value'] = false;
+          args['subCheckboxsControl'] = false;
+          args['label'] = `Example ${i}`;
+
+          return <Checkbox {...args} />;
+        });
+      })()}
+    </div>
+  );
+};
 AllSelect.args = {
   subCheckboxsControl: true,
   ...Default.args,

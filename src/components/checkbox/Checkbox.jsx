@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 
 export default function Checkbox({ ...props }) {
   const {
@@ -19,55 +19,31 @@ export default function Checkbox({ ...props }) {
   }, [subCheckboxsControl]);
 
   //Checkbox 최상위 컨트롤 이벤트
-  const headerHandleCheckboxChange = (e) => {
+  const headerHandleCheckboxChange = useCallback((e) => {
     document
       .querySelectorAll('input[type=checkbox]')
       .forEach((p) => (p.checked = e.target.checked));
-  };
+  });
 
   //Checkbox 하위 컨트롤 이벤트
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = useCallback(() => {
     checkSubControls();
-  };
+  });
 
   return (
     <div>
-      <input
-        type="checkbox"
-        id={label}
-        name={label}
-        disabled={!active}
-        value={subCheckboxsControl}
-        onChange={subCheckboxsControl ? headerHandleCheckboxChange : handleCheckboxChange}
-        className={`${checkboxColor} ${checkboxSize}`}
-      />
       <label htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
+        <input
+          type="checkbox"
+          id={label}
+          name={label}
+          disabled={!active}
+          value={subCheckboxsControl}
+          onChange={subCheckboxsControl ? headerHandleCheckboxChange : handleCheckboxChange}
+          className={`${checkboxColor} ${checkboxSize}`}
+        />
         &nbsp;{label}
       </label>
-      {(() => {
-        //스토리만을 위한 임의의 체크 박스 생성
-        if (subCheckboxsControl !== undefined) {
-          return [1, 2, 3].map((i) => (
-            <div>
-              <input
-                type="checkbox"
-                id={`checkbox ${[i]}`}
-                name={`checkbox ${[i]}`}
-                disabled={!active}
-                value={false}
-                onChange={handleCheckboxChange}
-                className={`${checkboxColor} ${checkboxSize}`}
-              />
-              <label
-                htmlFor={`checkbox ${[i]}`}
-                className={`${fontColor} ${fontWeight} ${fontSize} `}
-              >
-                &nbsp;{`checkbox ${[i]}`}
-              </label>
-            </div>
-          ));
-        }
-      })()}
     </div>
   );
 }
@@ -90,6 +66,6 @@ function checkSubControls() {
 
   //하위 체크 박스에 따라 상위 체크 박스 상태 변경
   if (check['checked'] === 0) document.getElementById(label).checked = false;
-  else if (check['unchecked'] === 0) document.getElementById(label).checked = true;  
+  else if (check['unchecked'] === 0) document.getElementById(label).checked = true;
   else document.getElementById(label).indeterminate = true;
 }
