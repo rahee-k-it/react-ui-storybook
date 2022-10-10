@@ -119,11 +119,12 @@ export const CloseButton = ({
   buttonBgColor = 'bg-gray-300',
 }) => {
   let [isModalOpened, setIsModalOpened] = useState(false);
-  const offModal = (e) => {
+  const offModal = useCallback((e) => {
     if (e.currentTarget === e.target) {
       setIsModalOpened(false);
     }
-  };
+  }, []);
+
   return (
     <>
       <Button
