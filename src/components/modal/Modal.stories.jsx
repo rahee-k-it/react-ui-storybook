@@ -100,6 +100,10 @@ export const Default = ({
   );
 };
 
+Default.parameters = {
+  controls: { exclude: ['buttonColor', 'buttonFontSize', 'buttonFontWeight', 'buttonBgColor'] }, // controls에 모든 props를 제거합니다.
+};
+
 export const CloseButton = ({
   border = true,
   borderRadiusSize,
