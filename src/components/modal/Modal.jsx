@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -18,8 +17,8 @@ const Modal = ({ children, offModal, isModalOpened }) => {
 };
 
 Modal.defaultProps = {
-  offModal: '',
-  isModalOpened: '',
+  offModal: () => {},
+  isModalOpened: false,
 };
 
 export default Modal;

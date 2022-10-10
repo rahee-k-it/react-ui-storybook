@@ -1,7 +1,7 @@
 import Modal from './Modal';
 import { fontColors, backgroundColors, fontSizes, fontWeights, borderRadiuses } from '../common';
 import styled from 'styled-components';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 export default {
   title: 'Modal',
@@ -71,11 +71,12 @@ export const Default = ({
   contentFontWeight = 'font-normal',
 }) => {
   let [isModalOpened, setIsModalOpened] = useState(false);
-  const offModal = (e) => {
+  const offModal = useCallback((e) => {
     if (e.currentTarget === e.target) {
       setIsModalOpened(false);
     }
-  };
+  }, []);
+
   return (
     <>
       <Button
