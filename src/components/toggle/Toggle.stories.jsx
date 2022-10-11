@@ -12,7 +12,6 @@ export default {
       options: backgroundColors,
       description: '왼쪽 배경 색상 조절',
     },
-
     rightBgColor: {
       control: { type: 'select' },
       options: backgroundColors,
@@ -46,4 +45,7 @@ Default.args = {
   size: 'text-base',
   disabled: false,
   defaultState: false,
+  onChange: (checked) => {
+    console.log(checked ? 'Right' : 'Left');
+  },
 };
