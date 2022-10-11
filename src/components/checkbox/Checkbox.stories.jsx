@@ -7,7 +7,7 @@ export default {
   argTypes: {
     label: { control: 'text' },
     subCheckboxsControl: { control: 'boolean' },
-    active: { control: 'boolean' },    
+    active: { control: 'boolean' },
     checkboxSize: { control: 'select', options: scale },
     checkboxColor: { control: 'select', options: accentColors },
     fontSize: { control: 'select', options: fontSizes },
@@ -18,11 +18,16 @@ export default {
 
 export const Default = (args) => <Checkbox {...args} />;
 Default.args = {
-  label: 'checkbox',
-  active: true,
+  label : "checkbox",
+  active : true,
+  checkboxSize : 'scale-100',
+  checkboxColor : 'accent-blue-500',
+  fontSize : 'text-base',
+  fontWeight : 'font-normal',
+  fontColor : 'text-black',
 };
 Default.parameters = {
-  controls: { exclude: ['subCheckboxsControl'] }, 
+  controls: { exclude: ['subCheckboxsControl'] },
 };
 
 export const AllSelect = (args) => {
@@ -31,12 +36,12 @@ export const AllSelect = (args) => {
       <Checkbox {...args} />
       {(() => {
         //스토리만을 위한 임의의 체크 박스 생성
-        return [1, 2, 3].map((i) => {
+        return [1, 2, 3].map((i, key) => {
           args['value'] = false;
           args['subCheckboxsControl'] = false;
           args['label'] = `Example ${i}`;
 
-          return <Checkbox {...args} />;
+          return <Checkbox key={key} {...args} />;
         });
       })()}
     </div>

@@ -61,9 +61,6 @@ export const backgroundColors = [
 ];
 
 export const accentColors = [
-  'accent-inherit',
-  'accent-current',
-  'accent-transparent',
   'accent-black',
   'accent-white',
 
