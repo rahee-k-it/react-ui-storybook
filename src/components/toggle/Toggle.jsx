@@ -43,12 +43,15 @@ function Toggle({
   leftBgColor = '',
   disabled,
   defaultState,
-  onChange,
+  onChange = () => {},
   ...args
 }) {
   const [checked, setChecked] = useState(defaultState);
   const handlechecked = (e) => {
-    if (!disabled) setChecked(!checked);
+    if (!disabled) {
+      setChecked(!checked);
+      onChange(!checked);
+    }
   };
   return (
     <>

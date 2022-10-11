@@ -7,7 +7,6 @@ export default {
   title: 'Toggle',
   argTypes: {
     id: { control: 'text' },
-    onClick: { action: 'clicked' },
     leftBgColor: {
       control: { type: 'select' },
       options: backgroundColors,
@@ -32,6 +31,7 @@ export default {
       control: 'boolean',
       description: '토글 버튼 초기 상태',
     },
+    onChange: { action: 'changed' },
   },
   decorators: [(Story) => <div style={{ margin: '3em' }}>{Story()}</div>],
 };
