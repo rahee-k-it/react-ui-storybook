@@ -137,6 +137,12 @@ export const WithoutProfile = ({
   );
 };
 
+WithoutProfile.parameters = {
+  controls: {
+    exclude: ['profileImageBorderRadius	', 'profileImageMarginRight', 'profileImagePadding'],
+  },
+};
+
 export const WithoutNickname = ({
   commentBoxWidth = 'w-8/12',
   commentBoxBgColor = 'bg-white',
