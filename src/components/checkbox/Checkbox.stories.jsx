@@ -32,7 +32,7 @@ Default.parameters = {
 
 export const AllSelect = (args) => {
   return (
-    <div>
+    <>
       <Checkbox {...args} />
       {(() => {
         //스토리만을 위한 임의의 체크 박스 생성
@@ -44,7 +44,7 @@ export const AllSelect = (args) => {
           return <Checkbox key={key} {...args} />;
         });
       })()}
-    </div>
+    </>
   );
 };
 AllSelect.args = {

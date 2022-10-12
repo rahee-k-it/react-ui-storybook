@@ -1,20 +1,16 @@
 import { useCallback, useEffect } from 'react';
 
-export default function Checkbox({ props, ...args}) {
-  const {
-    label,
-    subCheckboxsControl,
-    checkboxSize,
-    checkboxColor,
-    fontSize,
-    fontWeight,
-    fontColor,
-    active,
-  } = args;
-
-  console.log(props);
-  console.log(`${fontColor} ${fontWeight} ${fontSize} ${checkboxColor} ${checkboxSize}`);
-  
+export default function Checkbox({
+  label,
+  subCheckboxsControl,
+  checkboxSize,
+  checkboxColor,
+  fontSize,
+  fontWeight,
+  fontColor,
+  active,
+  ...args
+}) {
   //subCheckboxsControl 상태가 바뀌면 상위 체크 박스의 상태도 변경되야함.
   useEffect(() => {
     if (!subCheckboxsControl) document.getElementById(label).indeterminate = false;
@@ -34,19 +30,17 @@ export default function Checkbox({ props, ...args}) {
   });
 
   return (
-    <div>
-      <label htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
-        <input
-          type="checkbox"
-          id={label}
-          name={label}
-          disabled={!active}
-          value={subCheckboxsControl}
-          onChange={subCheckboxsControl ? headerHandleCheckboxChange : handleCheckboxChange}
-          className={`${checkboxColor} ${checkboxSize}`}
-        />
-        &nbsp;{label}
-      </label>
+    <div htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
+      <input
+        type="checkbox"
+        id={label}
+        name={label}
+        disabled={!active}
+        value={subCheckboxsControl}
+        onChange={subCheckboxsControl ? headerHandleCheckboxChange : handleCheckboxChange}
+        className={`${checkboxColor} ${checkboxSize}`}
+      />
+      &nbsp;{label}
     </div>
   );
 }
