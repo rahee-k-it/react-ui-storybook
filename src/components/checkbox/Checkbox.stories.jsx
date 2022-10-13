@@ -1,3 +1,4 @@
+import { useCallback, useEffect, useState } from 'react';
 import { accentColors, fontColors, fontSizes, fontWeights, scale } from '../common';
 import Checkbox from './Checkbox';
 
@@ -6,6 +7,7 @@ export default {
   title: 'Checkbox',
   argTypes: {
     label: { control: 'text' },
+    check: { control: 'boolean' },
     active: { control: 'boolean' },
     checkboxSize: { control: 'select', options: scale },
     checkboxColor: { control: 'select', options: accentColors },
@@ -24,22 +26,22 @@ Default.args = {
   fontSize: 'text-base',
   fontWeight: 'font-normal',
   fontColor: 'text-black',
-  check:false,
+  check: false,
 };
 
 export const AllSelect = (args) => {
+  const [checked, setIsChecked] = useState(args.check);
   return (
-      <Checkbox        
-        {...args}
-      >
-      {(() => {
-        //스토리만을 위한 임의의 체크 박스 생성
-        return [0, 1, 2].map((i, key) => {
-          args['label'] = `Example ${i + 1}`;
-          return <Checkbox key={key} {...args} />;
-        });
-      })()}
-    </Checkbox>
+    <div>
+      <Checkbox label={'전체'} onChange={()=>setIsChecked(!checked)}/>
+      <ul className="p-2">
+        {[0, 1, 2].map((v, key) => (
+          <li key={key}>
+            <Checkbox label={`Example ${v}`} check={checked} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 AllSelect.args = {
