@@ -14,7 +14,7 @@ export default function Checkbox({
   const [checked, setIsChecked] = useState(check);
 
   useEffect(() => {
-    setIsChecked(!check);
+    setIsChecked(check);
   }, [check]);
 
   return (
