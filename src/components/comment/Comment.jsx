@@ -41,6 +41,7 @@ function getElapsedTimeFromCommentCreated(createdAt) {
   if (elapsedTimeInDay < 30) return `${elapsedTimeInDay}일 전`;
   const elapsedTimeInInMonth = Math.floor(elapsedTimeInSecond / (60 * 60 * 24 * 30));
   if (elapsedTimeInInMonth < 12) return `${elapsedTimeInInMonth}달 전`;
+
   if (Math.floor(elapsedTimeInDay / 365) === 0) {
     return '12달전';
   }
@@ -54,7 +55,7 @@ function Comment({
   profileClassName,
 
   commentContentsClassName,
-  commentContentsTitle,
+  title,
 
   createdAt,
   contentsMainClassName,
@@ -69,9 +70,7 @@ function Comment({
 
       <CommentContents className={`flex flex-col p-1 ${commentContentsClassName ?? ''}`}>
         <ContentsHeaderContainer className={`flex flex-start`}>
-          <ContentsTitle className={commentContentsTitle ? 'mr-3' : ''}>
-            {commentContentsTitle}
-          </ContentsTitle>
+          <ContentsTitle className={title ? 'mr-3' : ''}>{title}</ContentsTitle>
 
           {createdAt ? <TimeStamp>{getElapsedTimeFromCommentCreated(createdAt)}</TimeStamp> : null}
         </ContentsHeaderContainer>
