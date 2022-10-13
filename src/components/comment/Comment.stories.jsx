@@ -55,7 +55,7 @@ export const Default = ({
           nickname: '기본',
           content:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo iure velit cupiditate unde a, laudantium voluptas sit eos animi et sint esse quaerat corporis fugiat veritatis tenetur eveniet veniam enim?',
-          createdAt: '2022-10-02 22:23:37',
+          createdAt: '2021-10-13 22:23:37',
           id: new Date() * Math.random(),
         },
         {
