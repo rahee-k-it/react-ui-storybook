@@ -1,68 +1,49 @@
-import { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 export default function Checkbox({
   label,
-  subCheckboxsControl,
-  checkboxSize,
-  checkboxColor,
-  fontSize,
-  fontWeight,
-  fontColor,
-  active,
-  ...args
+  active = true,
+  checkboxSize = 'scale-100',
+  checkboxColor = 'accent-blue-500',
+  fontSize = 'text-base',
+  fontWeight = 'font-normal',
+  fontColor = 'text-black',
+  children,
+  check = false,
+  props,
 }) {
-  //subCheckboxsControl 상태가 바뀌면 상위 체크 박스의 상태도 변경되야함.
+  const [checked, setIsChecked] = useState(check);
+
+  //부모의 check 상태가 바뀌면 실행
   useEffect(() => {
-    if (!subCheckboxsControl) document.getElementById(label).indeterminate = false;
-    else checkSubControls();
-  }, [subCheckboxsControl]);
+    setIsChecked(!check);
+  }, [check]);
 
-  //Checkbox 최상위 컨트롤 이벤트
-  const headerHandleCheckboxChange = useCallback((e) => {
-    document
-      .querySelectorAll('input[type=checkbox]')
-      .forEach((p) => (p.checked = e.target.checked));
-  });
-
-  //Checkbox 하위 컨트롤 이벤트
-  const handleCheckboxChange = useCallback(() => {
-    checkSubControls();
-  });
+  const childrenWithProps = useCallback(
+    React.Children.map(children, (child) => {
+      // 자식 컴포넌트의 상태를 변경
+      if (React.isValidElement(child)) {
+        return React.cloneElement(child, { check: !checked });
+      }
+      return child;
+    }),
+  );
 
   return (
-    <div htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
-      <input
-        type="checkbox"
-        id={label}
-        name={label}
-        disabled={!active}
-        value={subCheckboxsControl}
-        onChange={subCheckboxsControl ? headerHandleCheckboxChange : handleCheckboxChange}
-        className={`${checkboxColor} ${checkboxSize}`}
-      />
-      &nbsp;{label}
-    </div>
+    <>
+      <div htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
+        <input
+          type="checkbox"
+          id={label}
+          name={label}
+          disabled={!active}
+          checked={!checked}
+          onChange={() => setIsChecked(!checked)}
+          className={`${checkboxColor} ${checkboxSize}`}
+        />
+        &nbsp;{label}
+      </div>
+      {childrenWithProps}
+    </>
   );
-}
-
-function checkSubControls() {
-  let check = { checked: 0, unchecked: 0 };
-  let label = '';
-  document.querySelectorAll('input[type=checkbox]').forEach((p) => {
-    //상위 체크 박스로 지정된 체크 박스를 제외하고 checked 여부 저장
-    if (p.getAttribute('value') === 'true') label = p.getAttribute('name');
-    else {
-      if (p.checked) check['checked'] += 1;
-      else check['unchecked'] += 1;
-    }
-  });
-
-  if (label.length <= 0) return;
-
-  document.getElementById(label).indeterminate = false;
-
-  //하위 체크 박스에 따라 상위 체크 박스 상태 변경
-  if (check['checked'] === 0) document.getElementById(label).checked = false;
-  else if (check['unchecked'] === 0) document.getElementById(label).checked = true;
-  else document.getElementById(label).indeterminate = true;
 }
