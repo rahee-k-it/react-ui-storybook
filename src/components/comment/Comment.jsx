@@ -62,7 +62,7 @@ function Comment({
   children,
 }) {
   return (
-    <CommentContainer className={`flex p-5 ${commentContainerClassName}`}>
+    <CommentContainer className={`flex p-5 ${commentContainerClassName ?? ''}`}>
       <ProfileImageBox
         profileImg={profileImg}
         className={`${profileClassName ?? ''}`}
