@@ -35,7 +35,6 @@ Default.args = {
   fontWeight: 'font-normal',
   fontColor: 'text-black',
 };
-
 Default.parameters = {
   controls: { exclude: ['horizon', 'label', 'onChange'] },
 };
