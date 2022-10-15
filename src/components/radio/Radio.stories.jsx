@@ -1,6 +1,8 @@
 import { accentColors, fontColors, fontSizes, fontWeights, scale } from '../common';
 import Radio from './Radio';
+import RadioGroup from './RadioGroup';
 import Button from '../button/Button';
+import { useCallback, useState, useEffect } from 'react';
 
 export default {
   component: Radio,
@@ -13,7 +15,6 @@ export default {
     fontSize: { control: 'select', options: fontSizes },
     fontWeight: { control: 'select', options: fontWeights },
     fontColor: { control: 'select', options: fontColors },
-    onChange: { control: '' },
   },
 };
 
@@ -36,7 +37,7 @@ Default.args = {
   fontColor: 'text-black',
 };
 Default.parameters = {
-  controls: { exclude: ['horizon', 'label', 'onChange'] },
+  controls: { exclude: ['horizon', 'label', 'name', 'onChange'] },
 };
 
 export const Horizon = Template.bind({});
@@ -46,20 +47,21 @@ Horizon.args = {
 };
 
 Horizon.parameters = {
-  controls: { exclude: ['label', 'groupName', 'onChange'] },
+  controls: { exclude: ['label', 'name', 'onChange'] },
 };
 
 export const MultiGroup = (args) => {
   return (
     <div className={`inline-grid grid-cols-4`}>
-      <div>
-        <Radio groupName={'Gender'} label={'Female'} {...args} />
-        <Radio groupName={'Gender'} label={'Male'} {...args} />
-      </div>
-      <div>
-        <Radio groupName={'Other'} label={'Other Group 1'} {...args} />
-        <Radio groupName={'Other'} label={'Other Group 2'} {...args} />
-      </div>
+      <RadioGroup name="gender">
+        <Radio label={'Female'} {...args} />
+        <Radio label={'Male'} {...args} />
+      </RadioGroup>
+      <RadioGroup name="develop">
+        <Radio label={'Frontend'} {...args} />
+        <Radio label={'Backend'} {...args} />
+        <Radio label={'FullStack'} {...args} />
+      </RadioGroup>
     </div>
   );
 };
@@ -69,57 +71,80 @@ MultiGroup.args = {
 };
 
 MultiGroup.parameters = {
-  controls: { exclude: ['horizon', 'label', 'groupName', 'onChange'] },
+  controls: { exclude: ['horizon', 'label', 'name', 'onChange'] },
 };
 
 export const ChangeRadio = (args) => {
+  const [selectArg, setSelectArg] = useState({ raw: '', group: '' });
+
+  const onChange = useCallback((e) => {
+    if (e.target.checked)
+      setSelectArg((existingValues) => ({
+        // Retain the existing values
+        ...existingValues,
+        // update
+        raw: e.target.id,
+      }));
+  });
+
+  const onChangeRadio = useCallback((id) => {
+    setSelectArg((existingValues) => ({
+      // Retain the existing values
+      ...existingValues,
+      // update
+      group: id,
+    }));
+  });
+
+  //Radio group에 event를 주는 방법과 Radio 자체에 event를 주는 방법 모두 사용
   return (
-    <div>
-      <Radio label={'Female'} {...args} />
-      <Radio label={'Male'} {...args} />
-      <br /> result :<div id="result" className="inline ml-2.5"></div>
+    <div className={`inline-grid grid-cols-1`}>
+      <RadioGroup name={'gender'} onChangeRadio={onChangeRadio}>
+        <Radio label={'Female'} {...args} />
+        <Radio label={'Male'} {...args} />
+        result :{selectArg.group}
+      </RadioGroup>
+      <br />
+      <Radio label={'Frontend'} onChange={onChange} {...args} />
+      <Radio label={'Backend'} onChange={onChange} {...args} />
+      <Radio label={'FullStack'} onChange={onChange} {...args} />
+      result :{selectArg.raw}
     </div>
   );
 };
 
 ChangeRadio.args = {
   horizon: false,
-  onChange: (e) => {
-    document.getElementById('result').innerText = e.target.id;
-  },
   ...Default.args,
 };
 
 ChangeRadio.parameters = {
-  controls: { exclude: ['label', 'groupName', 'horizon', 'onChange'] },
+  controls: { exclude: ['label', 'horizon', 'name', 'onChange'] },
 };
 
 export const ButtonClick = (args) => {
+  const [selectArg, setSelectArg] = useState();
+  const [buttonClickChange, setButtonClickChange] = useState();
+
+  const onChange = useCallback((id) => {
+    setSelectArg(id);
+  });
+
+  const onClick = useCallback(() => {
+    setButtonClickChange(selectArg);
+  });
+
   return (
-    <div>
+    <RadioGroup name={'gender'} onChangeValue={onChange}>
       <Radio label={'Female'} {...args} />
       <Radio label={'Male'} {...args} />
       <div className="my-2">
-        <Button
-          bgColor="bg-blue-500"
-          color="text-white"
-          padding="p-2"
-          onClick={() => {
-            //groupname을 입력하면 체크 되어 있는 값을 버튼 아래에 띄움
-            const genderNodeList = document.getElementsByName(args['groupName'] ?? 'default');
-
-            genderNodeList.forEach((node) => {
-              if (node.checked) {
-                document.getElementById('result').innerText = node.id;
-              }
-            });
-          }}
-        >
+        <Button bgColor="bg-blue-500" color="text-white" padding="p-2" onClick={() => onClick()}>
           확인
         </Button>
       </div>
-      result :<div id="result" className="inline ml-2.5"></div>
-    </div>
+      result : {buttonClickChange}
+    </RadioGroup>
   );
 };
 
@@ -129,5 +154,5 @@ ButtonClick.args = {
 };
 
 ButtonClick.parameters = {
-  controls: { exclude: ['label', 'groupName', 'horizon', 'onChange'] },
+  controls: { exclude: ['label', 'horizon', 'name', 'onChange'] },
 };
