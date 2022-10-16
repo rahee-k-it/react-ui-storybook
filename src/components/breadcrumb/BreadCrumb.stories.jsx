@@ -51,8 +51,8 @@ export const Default = ({ linkBoxPadding = 'p-3', partitionIcon, linkBoxXMargin 
           partitionIconBoxClassName={''}
           linkBoxClassName={`${linkBoxPadding} ${linkBoxXMargin} ${
             item.url === `${window.location.href}`
-              ? 'text-gray-500'
-              : `hover:underline cursor-pointer`
+              ? ''
+              : `hover:underline cursor-pointer text-gray-500`
           }`}
         ></BreadCrumb>
       ))}
