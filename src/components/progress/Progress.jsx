@@ -15,6 +15,8 @@ const ProgressWrapper = styled.div`
   }
 `;
 
+const ProgressBar = styled.div``;
+
 const ProgressLabel = styled.div`
   margin-bottom: 0.2em;
   font-size: 1.1em;
@@ -39,9 +41,9 @@ function Progress(props) {
     <>
       {isLabel ? <ProgressLabel className={`${textColor}`}>{label}</ProgressLabel> : ''}
       <ProgressWrapper id={`progress-${id}`} className={` ${size} ${borderRadius}`} {...rest}>
-        <div style={{ width: `${value}%` }} className={`${bgColorMap[bgColor]} ${borderRadius}`}>
+        <ProgressBar style={{ width: `${value}%` }} className={`${bgColor} ${borderRadius}`}>
           {isValue && value >= 5 && value <= 100 ? `${value}%` : ''}
-        </div>
+        </ProgressBar>
       </ProgressWrapper>
     </>
   );
