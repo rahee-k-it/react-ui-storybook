@@ -38,7 +38,13 @@ export const LabelOutside = Template.bind({});
 export const ColorProgress = (args) => (
   <>
     {progressColorList.map((item, index) => (
-      <Progress id={index} label={item} bgColor={item} {...args}></Progress>
+      <Progress
+        key={`progress-${index}`}
+        id={index}
+        label={item}
+        bgColor={item}
+        {...args}
+      ></Progress>
     ))}
   </>
 );
