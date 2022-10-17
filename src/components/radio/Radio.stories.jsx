@@ -2,7 +2,7 @@ import { accentColors, fontColors, fontSizes, fontWeights, scale } from '../comm
 import Radio from './Radio';
 import RadioGroup from './RadioGroup';
 import Button from '../button/Button';
-import { useCallback, useState, useEffect } from 'react';
+import { useCallback, useState } from 'react';
 
 export default {
   component: Radio,
@@ -85,7 +85,7 @@ export const ChangeRadio = (args) => {
         // update
         raw: e.target.id,
       }));
-  });
+  },[]);
 
   const onChangeRadio = useCallback((id) => {
     setSelectArg((existingValues) => ({
@@ -94,7 +94,7 @@ export const ChangeRadio = (args) => {
       // update
       group: id,
     }));
-  });
+  }, []);
 
   //Radio group에 event를 주는 방법과 Radio 자체에 event를 주는 방법 모두 사용
   return (
@@ -128,11 +128,11 @@ export const ButtonClick = (args) => {
 
   const onChange = useCallback((id) => {
     setSelectArg(id);
-  });
+  },[]);
 
   const onClick = useCallback(() => {
     setButtonClickChange(selectArg);
-  });
+  },[]);
 
   return (
     <RadioGroup name={'gender'} onChangeValue={onChange}>

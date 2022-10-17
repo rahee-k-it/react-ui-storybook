@@ -10,11 +10,8 @@ export default function Radio({
   onChange= (e)=>{},
   horizon = false,
 }) {
-  //horizon 활성화 여부에 따라 ClassName 변경
-  const direction = horizon ? 'inline mr-2.5' : 'block';
-
   return (
-    <label htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} ${direction}`}>
+    <label htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} ${horizon ? 'inline mr-2.5' : 'block'}`}>
       <input
         type="radio"
         id={label}

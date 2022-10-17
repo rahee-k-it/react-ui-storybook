@@ -8,7 +8,7 @@ export default function RadioGroup({ name = 'default', children, onChangeRadio =
 
   const onChange = useCallback((e) => {
     if (e.target.checked) setSelectArg( e.target.id );
-  });
+  },[]);
 
   const childrenWithProps = useCallback(
     React.Children.map(children, (child) => {
