@@ -9,7 +9,7 @@ export default function Checkbox({
   fontWeight = 'font-normal',
   fontColor = 'text-black',
   check = false,
-  onChange = () => {},
+  // onChange = () => {},
 }) {
   const [checked, setIsChecked] = useState(check);
 
@@ -26,7 +26,7 @@ export default function Checkbox({
           name={label}
           disabled={!active}
           checked={checked}
-          onChange={onChange}
+          // onChange={onChange}
           onClick={() => setIsChecked(!checked)}
           className={`${checkboxColor} ${checkboxSize}`}
         />
