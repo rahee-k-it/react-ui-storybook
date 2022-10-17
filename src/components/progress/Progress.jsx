@@ -25,7 +25,8 @@ function Progress(props) {
   const {
     borderRadius = 'rounded-2xl',
     size = 'text-base',
-    bgColor = 'blue',
+    bgColor = 'bg-gray-600',
+    textColor,
     value = 50,
     id,
     isValue,
@@ -34,29 +35,9 @@ function Progress(props) {
     ...rest
   } = props;
 
-  const bgColorMap = {
-    gray: 'bg-gray-600',
-    blue: 'bg-blue-600',
-    red: 'bg-red-600',
-    green: 'bg-green-600',
-    yellow: 'bg-yellow-400',
-    indigo: 'bg-indigo-600',
-    purple: 'bg-purple-600',
-  };
-
-  const textColorMap = {
-    gray: 'text-gray-700',
-    blue: 'text-blue-700',
-    red: 'text-red-700',
-    green: 'text-green-700',
-    yellow: 'text-yellow-500',
-    indigo: 'text-indigo-700',
-    purple: 'text-purple-700',
-  };
-
   return (
     <>
-      {isLabel ? <ProgressLabel className={`${textColorMap[bgColor]}`}>{label}</ProgressLabel> : ''}
+      {isLabel ? <ProgressLabel className={`${textColor}`}>{label}</ProgressLabel> : ''}
       <ProgressWrapper id={`progress-${id}`} className={` ${size} ${borderRadius}`} {...rest}>
         <div style={{ width: `${value}%` }} className={`${bgColorMap[bgColor]} ${borderRadius}`}>
           {isValue && value >= 5 && value <= 100 ? `${value}%` : ''}

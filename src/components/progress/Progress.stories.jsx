@@ -2,7 +2,25 @@ import Progress from './Progress';
 import { borderRadiuses, fontSizes } from '../common';
 import ProgressDesription from './Progress.md';
 
-const progressColorList = ['gray', 'blue', 'red', 'green', 'yellow', 'indigo', 'purple'];
+const progressTextColorList = [
+  'text-gray-700',
+  'text-blue-700',
+  'text-red-700',
+  'text-green-700',
+  'text-yellow-500',
+  'text-indigo-700',
+  'text-purple-700',
+];
+
+const progressBgColorList = [
+  'bg-gray-600',
+  'bg-blue-600',
+  'bg-red-600',
+  'bg-green-600',
+  'bg-yellow-400',
+  'bg-indigo-600',
+  'bg-purple-600',
+];
 
 export default {
   title: 'Progress',
@@ -12,7 +30,11 @@ export default {
     isValue: { control: 'boolean' },
     bgColor: {
       control: 'select',
-      options: progressColorList,
+      options: progressBgColorList,
+    },
+    textColor: {
+      control: 'select',
+      options: progressTextColorList,
     },
     size: { control: 'select', options: fontSizes },
     borderRadius: { control: 'select', options: borderRadiuses },
@@ -37,12 +59,13 @@ export const LabelInside = Template.bind({});
 export const LabelOutside = Template.bind({});
 export const ColorProgress = (args) => (
   <>
-    {progressColorList.map((item, index) => (
+    {['gray', 'blue', 'red', 'green', 'yellow', 'indigo', 'purple'].map((item, index) => (
       <Progress
         key={`progress-${index}`}
         id={index}
         label={item}
-        bgColor={item}
+        bgColor={progressBgColorList[index]}
+        textColor={progressTextColorList[index]}
         {...args}
       ></Progress>
     ))}
