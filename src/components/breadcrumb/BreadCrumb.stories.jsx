@@ -45,9 +45,9 @@ export const Default = ({
 }) => {
   const info = [
     { url: '/', title: 'Home', id: new Date() * Math.random() },
-    { url: '/facebook', title: 'Facebook', id: new Date() * Math.random() },
-    { url: '/github', title: 'Github', id: new Date() * Math.random() },
-    { url: `${window.location.href}`, title: '현재 Page', id: new Date() * Math.random() },
+    { url: '/pet', title: 'Pet', id: new Date() * Math.random() },
+    { url: '/dogs', title: 'Dogs', id: new Date() * Math.random() },
+    { url: `${window.location.href}`, title: 'Poodle', id: new Date() * Math.random() },
   ];
 
   return (
