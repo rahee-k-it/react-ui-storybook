@@ -20,7 +20,7 @@ export default function Radio({
         onChange={onChange}
         className={`${checkboxColor} ${checkboxSize}`}
       />
-      &nbsp;{label}
+      {label}
     </label>
   );
 }

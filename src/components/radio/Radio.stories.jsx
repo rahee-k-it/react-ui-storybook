@@ -85,7 +85,7 @@ export const ChangeRadio = (args) => {
         // update
         raw: e.target.id,
       }));
-  },[]);
+  }, []);
 
   const onChangeRadio = useCallback((id) => {
     setSelectArg((existingValues) => ({
@@ -128,18 +128,18 @@ export const ButtonClick = (args) => {
 
   const onChange = useCallback((id) => {
     setSelectArg(id);
-  },[]);
+  }, []);
 
   const onClick = useCallback(() => {
     setButtonClickChange(selectArg);
-  },[]);
+  }, [selectArg]);
 
   return (
-    <RadioGroup name={'gender'} onChangeValue={onChange}>
+    <RadioGroup name={'gender'} onChangeRadio={onChange}>
       <Radio label={'Female'} {...args} />
       <Radio label={'Male'} {...args} />
       <div className="my-2">
-        <Button bgColor="bg-blue-500" color="text-white" padding="p-2" onClick={() => onClick()}>
+        <Button bgColor="bg-blue-500" color="text-white" padding="g" onClick={() => onClick()}>
           확인
         </Button>
       </div>
