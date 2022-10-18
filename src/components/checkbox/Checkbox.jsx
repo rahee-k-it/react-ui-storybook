@@ -18,20 +18,21 @@ export default function Checkbox({
   }, [check]);
 
   return (
-    <>
-      <div htmlFor={label} className={`${fontColor} ${fontWeight} ${fontSize} `}>
-        <input
-          type="checkbox"
-          id={label}
-          name={label}
-          disabled={!active}
-          checked={checked}
-          // onChange={onChange}
-          onClick={() => setIsChecked(!checked)}
-          className={`${checkboxColor} ${checkboxSize}`}
-        />
-        &nbsp;{label}
-      </div>
-    </>
+    <div
+      htmlFor={label}
+      className={`${fontColor} ${fontWeight} ${fontSize} inline-grid grid-flow-col auto-cols-max gap-x-1`}
+    >
+      <input
+        type="checkbox"
+        id={label}
+        name={label}
+        disabled={!active}
+        checked={checked}
+        // onChange={onChange}
+        onClick={() => setIsChecked(!checked)}
+        className={`${checkboxColor} ${checkboxSize}`}
+      />
+      {label}
+    </div>
   );
 }
