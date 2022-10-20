@@ -1,4 +1,3 @@
-import {useEffect, useState } from 'react';
 import { accentColors, fontColors, fontSizes, fontWeights, scale } from '../common';
 import Checkbox from './Checkbox';
 
@@ -28,32 +27,3 @@ Default.args = {
   fontWeight: 'font-normal',
   fontColor: 'text-black',  
 };
-// Default.parameters = {
-//   controls: { exclude: ['onChange'] },
-// };
-
-// export const AllSelect = (args) => {
-//   const [checked, setIsChecked] = useState();
-//   useEffect(() => {
-//     setIsChecked(args.check);
-//   }, [args.check]);
-
-//   return (
-//     <div>
-//       <Checkbox label={'전체'} onChange={()=>setIsChecked(!checked)} {...args}/>
-//       <ul className="p-2">
-//         {[0, 1, 2].map((v, key) => (
-//           <li key={key}>
-//             <Checkbox label={`Example ${v}`} check={checked} />
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-// AllSelect.args = {
-//   ...Default.args,
-// };
-// AllSelect.parameters = {
-//   controls: { exclude: ['onChange'] },
-// };

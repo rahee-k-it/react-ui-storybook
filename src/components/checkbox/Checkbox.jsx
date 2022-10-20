@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 
 export default function Checkbox({
   label,
@@ -9,7 +9,6 @@ export default function Checkbox({
   fontWeight = 'font-normal',
   fontColor = 'text-black',
   check = false,
-  // onChange = () => {},
 }) {
   const [checked, setIsChecked] = useState(check);
 
@@ -18,7 +17,7 @@ export default function Checkbox({
   }, [check]);
 
   return (
-    <div
+    <label
       htmlFor={label}
       className={`${fontColor} ${fontWeight} ${fontSize} inline-grid grid-flow-col auto-cols-max gap-x-1`}
     >
@@ -28,11 +27,10 @@ export default function Checkbox({
         name={label}
         disabled={!active}
         checked={checked}
-        // onChange={onChange}
-        onClick={() => setIsChecked(!checked)}
+        onChange={() => setIsChecked(!checked)}
         className={`${checkboxColor} ${checkboxSize}`}
       />
       {label}
-    </div>
+    </label>
   );
 }
