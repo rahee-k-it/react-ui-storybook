@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { backgroundColors, borderRadiuses, fontColors } from '../common';
 import Toggle from '../toggle/Toggle';
 import Badge from './Badge';
+import BadgeDesription from './Badge.md';
 
 export default {
   component: Badge,
@@ -18,6 +19,13 @@ export default {
     badgePosition: {
       control: 'select',
       options: ['leftTop', 'leftBottom', 'rightTop', 'rightBottom'],
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: BadgeDesription,
+      },
     },
   },
 };
