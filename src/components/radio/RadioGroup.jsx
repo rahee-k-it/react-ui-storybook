@@ -1,23 +1,19 @@
-import React, { useEffect, useCallback, useState } from 'react';
-export default function RadioGroup({ name = 'default', children, onChangeRadio = (id) => {} }) {
-  const [selectArg, setSelectArg] = useState();
+import { Children, isValidElement, cloneElement } from 'react';
+import Radio from './Radio';
 
-  useEffect(() => {
-    onChangeRadio(selectArg);
-  }, [selectArg]);
-
-  const onChange = useCallback((e) => {
-    if (e.target.checked) setSelectArg( e.target.id );
-  },[]);
-
-  const childrenWithProps = useCallback(
-    React.Children.map(children, (child) => {
-      // 자식 컴포넌트의 상태를 변경
-      if (React.isValidElement(child)) {
-        return React.cloneElement(child, { name, onChange });
-      }
-      return child;
-    }));
-
-  return <div>{childrenWithProps}</div>;
+export default function RadioGroup({ label, name = 'default', disabled, onChange, children }) {
+  return (
+    <fieldset>
+      <legend>{label}</legend>
+      {Children.map(children, (child) =>
+        isValidElement(child) && child.type === Radio
+          ? cloneElement(child, {
+              name,
+              onChange: (value) => onChange && onChange(value),
+              groupDisabled: disabled,
+            })
+          : child,
+      )}
+    </fieldset>
+  );
 }
