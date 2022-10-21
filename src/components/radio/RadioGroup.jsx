@@ -17,7 +17,7 @@ export default function RadioGroup({ name = 'default', children, onChangeRadio =
         return React.cloneElement(child, { name, onChange });
       }
       return child;
-    }));
+    }),[children]);
 
   return <div>{childrenWithProps}</div>;
 }
