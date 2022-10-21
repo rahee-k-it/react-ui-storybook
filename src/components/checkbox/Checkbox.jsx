@@ -2,18 +2,20 @@ import {  useEffect, useState } from 'react';
 
 export default function Checkbox({
   label,
-  active = true,
+  disabled = false,
   checkboxSize = 'scale-100',
   checkboxColor = 'accent-blue-500',
   fontSize = 'text-base',
   fontWeight = 'font-normal',
   fontColor = 'text-black',
   check = false,
+  onChange =()=>{},
+  ...args
 }) {
-  const [checked, setIsChecked] = useState(check);
+  const [checked, setChecked] = useState(check);
 
   useEffect(() => {
-    setIsChecked(check);
+    setChecked(check);
   }, [check]);
 
   return (
@@ -25,10 +27,11 @@ export default function Checkbox({
         type="checkbox"
         id={label}
         name={label}
-        disabled={!active}
         checked={checked}
-        onChange={() => setIsChecked(!checked)}
+        onClick={() => setChecked(!checked)}
+        onChange={() =>onChange}
         className={`${checkboxColor} ${checkboxSize}`}
+        {...args}
       />
       {label}
     </label>
