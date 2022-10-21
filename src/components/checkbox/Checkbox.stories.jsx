@@ -25,7 +25,7 @@ Default.args = {
   checkboxColor: 'accent-blue-500',
   fontSize: 'text-base',
   fontWeight: 'font-normal',
-  fontColor: 'text-black',  
+  fontColor: 'text-black',
 };
 
 Default.parameters = {
