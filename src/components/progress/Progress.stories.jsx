@@ -94,3 +94,4 @@ ColorProgress.args = {
   isValue: false,
   isLabel: true,
 };
+ColorProgress.parameters = { controls: { exclude: ['label', 'textColor', 'bgColor'] } };
