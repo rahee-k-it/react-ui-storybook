@@ -41,7 +41,7 @@ export default {
     label: {
       control: 'text',
     },
-    isLabel: { control: 'boolean' },
+    showLabel: { control: 'boolean' },
   },
   parameters: {
     docs: {
@@ -55,8 +55,8 @@ export default {
 const Template = (args) => <Progress {...args}></Progress>;
 
 export const Default = Template.bind({});
-export const LabelInside = Template.bind({});
-export const LabelOutside = Template.bind({});
+export const WitoutPercentage = Template.bind({});
+export const WithoutLabel = Template.bind({});
 export const ColorProgress = (args) => (
   <>
     {['gray', 'blue', 'red', 'green', 'yellow', 'indigo', 'purple'].map((item, index) => (
@@ -73,29 +73,29 @@ export const ColorProgress = (args) => (
 );
 
 Default.args = {
-  showPercentage: false,
-  isLabel: false,
-  label: '',
-  value: 50,
-};
-
-LabelInside.args = {
   showPercentage: true,
-  isLabel: false,
-  label: '',
+  showLabel: true,
+  label: 'Label',
   value: 50,
 };
 
-LabelOutside.args = {
+WitoutPercentage.args = {
   showPercentage: false,
-  isLabel: true,
-  label: 'Outside label',
+  showLabel: true,
+  label: 'Label',
+  value: 50,
+};
+
+WithoutLabel.args = {
+  showPercentage: true,
+  showLabel: false,
+  label: '',
   value: 50,
 };
 
 ColorProgress.args = {
   showPercentage: false,
-  isLabel: true,
+  showLabel: true,
   value: 50,
 };
 ColorProgress.parameters = { controls: { exclude: ['label', 'textColor', 'bgColor'] } };

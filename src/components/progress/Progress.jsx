@@ -32,14 +32,14 @@ function Progress(props) {
     value,
     id,
     showPercentage,
-    isLabel,
+    showLabel,
     label,
     ...rest
   } = props;
 
   return (
     <>
-      {isLabel ? <ProgressLabel className={textColor}>{label}</ProgressLabel> : ''}
+      {showLabel ? <ProgressLabel className={textColor}>{label}</ProgressLabel> : ''}
       <ProgressWrapper className={`${size} ${borderRadius}`} {...rest}>
         <ProgressBar style={{ width: `${value}%` }} className={`${bgColor} ${borderRadius}`}>
           {showPercentage && value >= 5 && value <= 100 ? `${value}%` : ''}
