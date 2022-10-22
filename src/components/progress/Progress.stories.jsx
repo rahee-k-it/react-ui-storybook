@@ -27,7 +27,7 @@ export default {
   component: Progress,
   argTypes: {
     value: { control: { type: 'range', max: 100, min: 0, step: 1 } },
-    isValue: { control: 'boolean' },
+    showPercentage: { control: 'boolean' },
     bgColor: {
       control: 'select',
       options: progressBgColorList,
@@ -73,25 +73,29 @@ export const ColorProgress = (args) => (
 );
 
 Default.args = {
-  isValue: false,
+  showPercentage: false,
   isLabel: false,
   label: '',
+  value: 50,
 };
 
 LabelInside.args = {
-  isValue: true,
+  showPercentage: true,
   isLabel: false,
   label: '',
+  value: 50,
 };
 
 LabelOutside.args = {
-  isValue: false,
+  showPercentage: false,
   isLabel: true,
   label: 'Outside label',
+  value: 50,
 };
 
 ColorProgress.args = {
-  isValue: false,
+  showPercentage: false,
   isLabel: true,
+  value: 50,
 };
 ColorProgress.parameters = { controls: { exclude: ['label', 'textColor', 'bgColor'] } };
