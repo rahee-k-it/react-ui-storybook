@@ -92,6 +92,11 @@ CustomBadge.argTypes = {
   badgeXPosition: { control: 'number' },
   badgeYPosition: { control: 'number' },
 };
+CustomBadge.parameters = {
+  controls: {
+    exclude: ['badgePosition'],
+  },
+};
 
 export const OnAndOffBadge = ({
   badgeBgColor = 'bg-blue-500',
