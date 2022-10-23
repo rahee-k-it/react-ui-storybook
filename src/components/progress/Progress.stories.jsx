@@ -2,7 +2,7 @@ import Progress from './Progress';
 import { borderRadiuses, fontSizes } from '../common';
 import ProgressDesription from './Progress.md';
 
-const progressTextColorList = [
+const progressLabelColorList = [
   'text-gray-700',
   'text-blue-700',
   'text-red-700',
@@ -32,9 +32,9 @@ export default {
       control: 'select',
       options: progressBgColorList,
     },
-    textColor: {
+    labelColor: {
       control: 'select',
-      options: progressTextColorList,
+      options: progressLabelColorList,
     },
     size: { control: 'select', options: fontSizes },
     borderRadius: { control: 'select', options: borderRadiuses },
@@ -65,7 +65,7 @@ export const ColorProgress = (args) => (
         id={index}
         label={item}
         bgColor={progressBgColorList[index]}
-        textColor={progressTextColorList[index]}
+        labelColor={progressLabelColorList[index]}
         {...args}
       ></Progress>
     ))}
@@ -73,29 +73,23 @@ export const ColorProgress = (args) => (
 );
 
 Default.args = {
-  showPercentage: true,
-  showLabel: true,
   label: 'Label',
   value: 50,
 };
 
 WitoutPercentage.args = {
   showPercentage: false,
-  showLabel: true,
   label: 'Label',
   value: 50,
 };
 
 WithoutLabel.args = {
-  showPercentage: true,
   showLabel: false,
   label: '',
   value: 50,
 };
 
 ColorProgress.args = {
-  showPercentage: false,
-  showLabel: true,
   value: 50,
 };
-ColorProgress.parameters = { controls: { exclude: ['label', 'textColor', 'bgColor'] } };
+ColorProgress.parameters = { controls: { exclude: ['label', 'labelColor', 'bgColor'] } };
