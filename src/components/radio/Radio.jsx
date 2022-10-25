@@ -1,13 +1,13 @@
 export default function Radio({
   label = '',
   active = true,
-  name='defalut',
+  name = 'defalut',
   checkboxSize = 'scale-100',
   checkboxColor = 'accent-blue-500',
   fontSize = 'text-base',
   fontWeight = 'font-normal',
   fontColor = 'text-black',
-  onChange= (e)=>{},
+  onChange = (e) => { },
   horizon = false,
 }) {
   return (

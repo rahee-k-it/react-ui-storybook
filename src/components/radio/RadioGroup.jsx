@@ -1,14 +1,14 @@
 import React, { useEffect, useCallback, useState } from 'react';
-export default function RadioGroup({ name = 'default', children, onChangeRadio = (id) => {} }) {
-  const [selectArg, setSelectArg] = useState();
+export default function RadioGroup({ name = 'default', children, onChangeRadio = (id) => { } }) {
+  const [selectedRadioID, setselectedRadioID] = useState();
 
   useEffect(() => {
-    onChangeRadio(selectArg);
-  }, [selectArg]);
+    onChangeRadio(selectedRadioID);
+  }, [selectedRadioID]);
 
   const onChange = useCallback((e) => {
-    if (e.target.checked) setSelectArg( e.target.id );
-  },[]);
+    if (e.target.checked) setselectedRadioID(e.target.id);
+  }, []);
 
   const childrenWithProps = useCallback(
     React.Children.map(children, (child) => {
@@ -17,7 +17,7 @@ export default function RadioGroup({ name = 'default', children, onChangeRadio =
         return React.cloneElement(child, { name, onChange });
       }
       return child;
-    }),[children]);
+    }), [children]);
 
   return <div>{childrenWithProps}</div>;
 }

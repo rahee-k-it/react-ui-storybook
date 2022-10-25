@@ -15,15 +15,16 @@ export default {
     fontSize: { control: 'select', options: fontSizes },
     fontWeight: { control: 'select', options: fontWeights },
     fontColor: { control: 'select', options: fontColors },
+    onChange: { table: { disable: true } },
   },
 };
 
 const Template = (args) => {
   return (
-    <div>
+    <RadioGroup name="gender" >
       <Radio label={'Female'} {...args} />
       <Radio label={'Male'} {...args} />
-    </div>
+    </RadioGroup>
   );
 };
 
@@ -37,7 +38,7 @@ Default.args = {
   fontColor: 'text-black',
 };
 Default.parameters = {
-  controls: { exclude: ['horizon', 'label', 'name', 'onChange'] },
+  controls: { exclude: ['horizon', 'label', 'name'] },
 };
 
 export const Horizon = Template.bind({});
@@ -47,20 +48,20 @@ Horizon.args = {
 };
 
 Horizon.parameters = {
-  controls: { exclude: ['label', 'name', 'onChange'] },
+  controls: { exclude: ['label', 'name'] },
 };
 
 export const MultiGroup = (args) => {
   return (
     <div className={`inline-grid grid-cols-4`}>
       <RadioGroup name="gender">
-        <Radio label={'Female'} {...args} />
-        <Radio label={'Male'} {...args} />
+        <Radio label="Female" {...args} />
+        <Radio label="Male" {...args} />
       </RadioGroup>
       <RadioGroup name="develop">
-        <Radio label={'Frontend'} {...args} />
-        <Radio label={'Backend'} {...args} />
-        <Radio label={'FullStack'} {...args} />
+        <Radio label="Frontend" {...args} />
+        <Radio label="Backend" {...args} />
+        <Radio label="FullStack" {...args} />
       </RadioGroup>
     </div>
   );
@@ -71,7 +72,7 @@ MultiGroup.args = {
 };
 
 MultiGroup.parameters = {
-  controls: { exclude: ['horizon', 'label', 'name', 'onChange'] },
+  controls: { exclude: ['horizon', 'label', 'name'] },
 };
 
 export const ChangeRadio = (args) => {
@@ -99,15 +100,15 @@ export const ChangeRadio = (args) => {
   //Radio group에 event를 주는 방법과 Radio 자체에 event를 주는 방법 모두 사용
   return (
     <div className={`inline-grid grid-cols-1`}>
-      <RadioGroup name={'gender'} onChangeRadio={onChangeRadio}>
-        <Radio label={'Female'} {...args} />
-        <Radio label={'Male'} {...args} />
+      <RadioGroup name="gender" onChangeRadio={onChangeRadio}>
+        <Radio label="Female" {...args} />
+        <Radio label="Male" {...args} />
         result :{selectArg.group}
       </RadioGroup>
       <br />
-      <Radio label={'Frontend'} onChange={onChange} {...args} />
-      <Radio label={'Backend'} onChange={onChange} {...args} />
-      <Radio label={'FullStack'} onChange={onChange} {...args} />
+      <Radio label="Frontend" onChange={onChange} {...args} />
+      <Radio label="Backend" onChange={onChange} {...args} />
+      <Radio label="FullStack" onChange={onChange} {...args} />
       result :{selectArg.raw}
     </div>
   );
@@ -119,7 +120,7 @@ ChangeRadio.args = {
 };
 
 ChangeRadio.parameters = {
-  controls: { exclude: ['label', 'horizon', 'name', 'onChange'] },
+  controls: { exclude: ['label', 'horizon', 'name'] },
 };
 
 export const ButtonClick = (args) => {
@@ -135,9 +136,9 @@ export const ButtonClick = (args) => {
   }, [selectArg]);
 
   return (
-    <RadioGroup name={'gender'} onChangeRadio={onChange}>
-      <Radio label={'Female'} {...args} />
-      <Radio label={'Male'} {...args} />
+    <RadioGroup name="gender" onChangeRadio={onChange}>
+      <Radio label="Female" {...args} />
+      <Radio label="Male" {...args} />
       <div className="my-2">
         <Button bgColor="bg-blue-500" color="text-white" padding="g" onClick={() => onClick()}>
           확인
@@ -154,5 +155,5 @@ ButtonClick.args = {
 };
 
 ButtonClick.parameters = {
-  controls: { exclude: ['label', 'horizon', 'name', 'onChange'] },
+  controls: { exclude: ['label', 'horizon', 'name'] },
 };
