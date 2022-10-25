@@ -76,11 +76,11 @@ MultiGroup.parameters = {
 };
 
 export const ChangeRadio = (args) => {
-  const [selectArg, setSelectArg] = useState({ raw: '', group: '' });
+  const [selectedRadioID, setselectedRadioID] = useState({ raw: '', group: '' });
 
   const onChange = useCallback((e) => {
     if (e.target.checked)
-      setSelectArg((existingValues) => ({
+      setselectedRadioID((existingValues) => ({
         // Retain the existing values
         ...existingValues,
         // update
@@ -89,7 +89,7 @@ export const ChangeRadio = (args) => {
   }, []);
 
   const onChangeRadio = useCallback((id) => {
-    setSelectArg((existingValues) => ({
+    setselectedRadioID((existingValues) => ({
       // Retain the existing values
       ...existingValues,
       // update
@@ -103,13 +103,13 @@ export const ChangeRadio = (args) => {
       <RadioGroup name="gender" onChangeRadio={onChangeRadio}>
         <Radio label="Female" {...args} />
         <Radio label="Male" {...args} />
-        result :{selectArg.group}
+        result :{selectedRadioID.group}
       </RadioGroup>
       <br />
       <Radio label="Frontend" onChange={onChange} {...args} />
       <Radio label="Backend" onChange={onChange} {...args} />
       <Radio label="FullStack" onChange={onChange} {...args} />
-      result :{selectArg.raw}
+      result :{selectedRadioID.raw}
     </div>
   );
 };
@@ -120,20 +120,26 @@ ChangeRadio.args = {
 };
 
 ChangeRadio.parameters = {
-  controls: { exclude: ['label', 'horizon', 'name'] },
+  controls: {
+    exclude: ['label', 'horizon', 'name', 'onChange'],
+  },
+};
+
+ChangeRadio.argTypes = {
+  onChange: { table: { disable: false } },
 };
 
 export const ButtonClick = (args) => {
-  const [selectArg, setSelectArg] = useState();
+  const [selectRadioID, setSelectRadioID] = useState();
   const [buttonClickChange, setButtonClickChange] = useState();
 
   const onChange = useCallback((id) => {
-    setSelectArg(id);
+    setSelectRadioID(id);
   }, []);
 
   const onClick = useCallback(() => {
-    setButtonClickChange(selectArg);
-  }, [selectArg]);
+    setButtonClickChange(selectRadioID);
+  }, [selectRadioID]);
 
   return (
     <RadioGroup name="gender" onChangeRadio={onChange}>
