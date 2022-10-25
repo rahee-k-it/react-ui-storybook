@@ -1,4 +1,4 @@
-import {  useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 
 export default function Checkbox({
   label,
@@ -9,7 +9,7 @@ export default function Checkbox({
   fontWeight = 'font-normal',
   fontColor = 'text-black',
   check = false,
-  onChange =()=>{},
+  onChange = () => { },
   ...args
 }) {
   const [checked, setChecked] = useState(check);
@@ -17,6 +17,10 @@ export default function Checkbox({
   useEffect(() => {
     setChecked(check);
   }, [check]);
+
+  const handleChange = useCallback(() => {
+    setChecked(!checked); onChange(!checked);
+  }, [checked])
 
   return (
     <label
@@ -28,8 +32,7 @@ export default function Checkbox({
         id={label}
         name={label}
         checked={checked}
-        onClick={() => setChecked(!checked)}
-        onChange={() =>onChange}
+        onChange={handleChange}
         className={`${checkboxColor} ${checkboxSize}`}
         {...args}
       />
