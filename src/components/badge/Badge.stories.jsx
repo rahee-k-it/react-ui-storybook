@@ -78,9 +78,9 @@ export const CustomBadge = ({
       <BadgeBox badgeXPosition={badgeXPosition} badgeYPosition={badgeYPosition}>
         <Badge
           badgePosition={badgePosition}
-          className={`text-white flex w-15 ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
+          className={`text-white flex w-fit ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
         >
-          <span>{badgeContents}</span>
+          <div className="">{badgeContents}</div>
         </Badge>
       </BadgeBox>
     </Wrapper>
@@ -148,11 +148,19 @@ export const ChangeBadge = ({
   const [plusNumber, setPlusNumber] = useState(0);
 
   const onClickPlus = useCallback(() => {
-    setPlusNumber((prev) => prev + 1);
+    setPlusNumber((prev) => (prev < 999 ? prev + 1 : `999+`));
   }, []);
 
   const onClickMinus = useCallback(() => {
-    setPlusNumber((prev) => (prev === 0 ? 0 : prev - 1));
+    setPlusNumber((prev) => {
+      if (prev === 0) {
+        return 0;
+      } else if (prev === '999+') {
+        return 998;
+      } else {
+        return (prev = prev - 1);
+      }
+    });
   }, []);
 
   return (
@@ -163,7 +171,7 @@ export const ChangeBadge = ({
         <Badge
           showBadge={plusNumber === 0 ? false : true}
           badgePosition={badgePosition}
-          className={`text-xs text-white p-0.5 w-5 ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
+          className={`text-xs text-white w-max px-2 ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
         >
           <span>{plusNumber}</span>
         </Badge>
