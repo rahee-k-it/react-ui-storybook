@@ -78,7 +78,7 @@ export const CustomBadge = ({
       <BadgeBox badgeXPosition={badgeXPosition} badgeYPosition={badgeYPosition}>
         <Badge
           badgePosition={badgePosition}
-          className={`text-white flex w-fit ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
+          className={`text-white flex w-max ${badgeBorderRadius} ${badgeBgColor} ${badgeFontColor}`}
         >
           <div className="">{badgeContents}</div>
         </Badge>
