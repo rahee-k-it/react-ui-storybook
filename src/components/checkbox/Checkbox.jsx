@@ -2,7 +2,6 @@ import { useEffect, useState, useCallback } from 'react';
 
 export default function Checkbox({
   label,
-  disabled = false,
   checkboxSize = 'scale-100',
   checkboxColor = 'accent-blue-500',
   fontSize = 'text-base',
