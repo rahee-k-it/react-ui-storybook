@@ -67,7 +67,7 @@ export const ColorProgress = (args) => (
         bgColor={progressBgColorList[index]}
         labelColor={progressLabelColorList[index]}
         {...args}
-      ></Progress>
+      />
     ))}
   </>
 );
