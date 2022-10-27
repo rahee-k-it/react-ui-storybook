@@ -128,3 +128,32 @@ export const scale = [
   'scale-125',
   'scale-150',
 ];
+
+export const borderColors= [
+  'border-black',
+  'border-white',
+
+  'border-gray-100',
+  'border-gray-300',
+  'border-gray-500',
+  'border-gray-700',
+  'border-gray-900',
+
+  'border-red-100',
+  'border-red-300',
+  'border-red-500',
+  'border-red-700',
+  'border-red-900',
+
+  'border-green-100',
+  'border-green-300',
+  'border-green-500',
+  'border-green-700',
+  'border-green-900',
+
+  'border-blue-100',
+  'border-blue-300',
+  'border-blue-500',
+  'border-blue-700',
+  'border-blue-900',
+]
