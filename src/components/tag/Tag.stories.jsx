@@ -1,6 +1,7 @@
 import { useCallback } from 'react';
 import { useState } from 'react';
 import { backgroundColors, borderRadiuses, fontColors } from '../common';
+import Li from './Li';
 import Tag from './Tag';
 
 export default {
@@ -105,14 +106,14 @@ export const CheckTag = ({
     <>
       <Tag className={`${tagGridCol}`}>
         {infoArr.map((item) => (
-          <li
+          <Li
             liClickedBgColor={liClickedBgColor}
             liBgColor={liBgColor}
             className={`border-solid border p-2 truncate text-center cursor-pointer ${liBgColor} ${liBoarderRadius} ${liFontColor} ${liWidth} ${liBorderColor}`}
             key={item.id}
           >
             {item.contents}
-          </li>
+          </Li>
         ))}
       </Tag>
       <form onSubmit={onSubmit} className="absolute bottom-10">
