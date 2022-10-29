@@ -77,7 +77,7 @@ export const Default = ({ title, inputs, titleColor, titleFontSize, titleFontWei
       >
         <FormBoxs>
           {inputs.map((input) => (
-            <FormBox>
+            <FormBox key={input.name}>
               <InputName>{input.name}</InputName>
               <Input type={input.type} />
             </FormBox>

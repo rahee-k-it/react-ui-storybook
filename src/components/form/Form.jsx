@@ -23,9 +23,9 @@ const Form = ({ title, onSubmit, titleColor, titleFontSize, titleFontWeight, chi
   }, []);
   return (
     <FormContainer onSubmit={handleSubmit}>
-      {title ? (
+      {title && (
         <Title className={`${titleColor} ${titleFontSize} ${titleFontWeight}`}>{title}</Title>
-      ) : null}
+      )}
       {children}
     </FormContainer>
   );
