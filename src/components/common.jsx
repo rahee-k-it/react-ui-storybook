@@ -129,7 +129,7 @@ export const scale = [
   'scale-150',
 ];
 
-export const borderColors= [
+export const borderColors = [
   'border-black',
   'border-white',
 

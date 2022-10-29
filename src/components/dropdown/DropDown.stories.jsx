@@ -13,7 +13,7 @@ export default {
     title: 'DropDown',
     argTypes: {
         disabled: { control: 'boolean' },
-        input: { control: 'object', table: { disable: true }  },
+        input: { control: 'object', table: { disable: true } },
         borderColor: { control: 'select', options: borderColors },
         borderFocusColor: { control: 'select', options: ringColors },
         backgroundColors: { control: 'select', options: backgroundColors },
