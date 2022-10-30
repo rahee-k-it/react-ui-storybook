@@ -1,4 +1,4 @@
-import SearchField from './searchField';
+import SearchField from './SearchField';
 import {
   fontColors,
   fontSizes,
