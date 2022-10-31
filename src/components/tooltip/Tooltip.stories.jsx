@@ -1,4 +1,4 @@
-import { accentColors, fontColors, fontSizes, fontWeights, scale } from '../common';
+import { backgroundColors, fontColors, fontSizes, fontWeights } from '../common';
 import Tooltip from './Tooltip';
 import Button from '../button/Button';
 
@@ -15,6 +15,7 @@ export default {
     argTypes: {
         message: { control: 'text' },
         active: { table: { disable: true } },
+        tooltipColor: { control: 'select', options: backgroundColors },
         position: { control: 'select', options: position },
         fontSize: { control: 'select', options: fontSizes },
         fontWeight: { control: 'select', options: fontWeights },
@@ -33,6 +34,7 @@ export const Default = (args) => {
 }
 Default.args = {
     message: 'button tooltip test',
+    tooltipColor:'bg-white',
     fontWeight: 'font-thin',
     fontSize: 'text-xs',
     fontColor: 'text-black',

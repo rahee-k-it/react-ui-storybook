@@ -30,6 +30,7 @@ export default function Tooltip({
   fontColor = 'text-black',
   active = true,
   position = 'object-bottom',
+  tooltipColor = 'bg-white',
 }) {
 
   const [transform, setTransform] = useState();
@@ -68,7 +69,7 @@ export default function Tooltip({
       {children}
       {active &&
         <Content
-          className={`tooltip p-1 ${fontWeight} ${fontSize} ${fontColor}`}
+          className={`tooltip p-1 ${fontWeight} ${fontSize} ${fontColor} ${tooltipColor}`}
           width={`${width}ch`}
           transform={transform}
         >
