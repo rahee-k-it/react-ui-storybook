@@ -8,6 +8,8 @@ export default {
   title: 'Tag',
   component: Tag,
   argTypes: {
+    isTruncate: { control: 'boolean' },
+    tagWidth: { control: 'select', options: ['w-60', 'w-96', 'w-2/3', 'w-auto'] },
     tagGridCol: {
       control: 'select',
       options: ['grid-cols-2', 'grid-cols-4', 'grid-cols-6', 'grid-cols-8', 'grid-cols-10'],
@@ -36,11 +38,12 @@ const infoArr = [
 ];
 
 export const Default = ({
+  isTruncate = true,
+  tagWidth = 'w-auto',
   tagGridCol = 'grid-cols-6',
   liBgColor = 'bg-gray-300',
   liFontColor = 'text-black',
   liBoarderRadius = 'rounded',
-  liWidth = 'w-16',
   liBorderColor = 'border-transparent',
 }) => {
   const [value, setValue] = useState('');
@@ -57,14 +60,16 @@ export const Default = ({
 
   return (
     <>
-      <Tag className={`${tagGridCol}`}>
+      <Tag className={`${tagGridCol} ${tagWidth}`}>
         {infoArr.map((item) => (
-          <li
-            className={`p-2 border border-solid truncate text-center ${liBgColor} ${liBoarderRadius} ${liFontColor} ${liWidth} ${liBorderColor}`}
+          <Li
+            className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            {item.contents}
-          </li>
+            <span className={`${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
+              {item.contents}
+            </span>
+          </Li>
         ))}
       </Tag>
       <form onSubmit={onSubmit} className="absolute bottom-10">
@@ -81,11 +86,12 @@ export const Default = ({
 };
 
 export const CheckTag = ({
+  isTruncate = true,
+  tagWidth = 'w-auto',
   tagGridCol = 'grid-cols-6',
   liBgColor = 'bg-white',
   liFontColor = 'text-black',
   liBoarderRadius = 'rounded-full',
-  liWidth = 'w-16',
   liBorderColor = 'border-red-300',
   liClickedBgColor = 'bg-red-300',
 }) => {
@@ -104,15 +110,15 @@ export const CheckTag = ({
 
   return (
     <>
-      <Tag className={`${tagGridCol}`}>
+      <Tag className={`${tagGridCol} ${tagWidth}`}>
         {infoArr.map((item) => (
           <Li
             liClickedBgColor={liClickedBgColor}
             liBgColor={liBgColor}
-            className={`border-solid border p-2 truncate text-center cursor-pointer ${liBgColor} ${liBoarderRadius} ${liFontColor} ${liWidth} ${liBorderColor}`}
+            className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            {item.contents}
+            <span className={`${isTruncate ? 'truncate' : ''}`}>{item.contents}</span>
           </Li>
         ))}
       </Tag>
@@ -134,12 +140,14 @@ CheckTag.argTypes = {
     options: backgroundColors,
   },
 };
+
 export const DeleteTag = ({
+  isTruncate = true,
+  tagWidth = 'w-auto',
   tagGridCol = 'grid-cols-6',
   liBgColor = 'bg-white',
   liFontColor = 'text-black',
   liBoarderRadius = 'rounded-full',
-  liWidth = 'w-16',
   liBorderColor = 'border-red-300',
 }) => {
   const [value, setValue] = useState('');
@@ -164,17 +172,19 @@ export const DeleteTag = ({
 
   return (
     <>
-      <Tag className={`${tagGridCol}`}>
+      <Tag className={`${tagGridCol} ${tagWidth}`}>
         {infoArr.map((item) => (
-          <li
-            className={`flex items-center border-solid border p-2 w-20 text-center cursor-pointer ${liBgColor} ${liBoarderRadius} ${liWidth} ${liFontColor} ${liBorderColor}`}
+          <Li
+            className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            <div className="w-12 truncate">{item.contents}</div>
-            <div onClick={handleDeleteBtn} className="text-sm">
-              ❌
+            <div className={`w-5/6 ${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
+              {item.contents}
             </div>
-          </li>
+            <span onClick={handleDeleteBtn} className="text-sm mx-2">
+              X
+            </span>
+          </Li>
         ))}
       </Tag>
       <form onSubmit={onSubmit} className="absolute bottom-10">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useCallback } from 'react';
 
-function Li({ className, children, liClickedBgColor, liBgColor }) {
+function Li({ className, children, liClickedBgColor = '', liBgColor = '' }) {
   const handleClick = useCallback(() => {
     setIsClicked((prev) => !prev);
   }, []);
@@ -11,7 +11,9 @@ function Li({ className, children, liClickedBgColor, liBgColor }) {
   return (
     <li
       onClick={handleClick}
-      className={`${className} ${isClicked ? liClickedBgColor : liBgColor}`}
+      className={`flex items-center justify-between border-solid border p-1 text-center cursor-pointer ${
+        className ?? ''
+      } ${isClicked ? liClickedBgColor : liBgColor}`}
     >
       {children}
     </li>
