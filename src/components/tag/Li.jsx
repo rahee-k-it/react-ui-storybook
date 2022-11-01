@@ -11,7 +11,7 @@ function Li({ className, children, liClickedBgColor = '', liBgColor = '' }) {
   return (
     <li
       onClick={handleClick}
-      className={`flex items-center justify-between border-solid border p-1 text-center cursor-pointer ${
+      className={`flex items-center justify-center border-solid border p-2 text-center cursor-pointer ${
         className ?? ''
       } ${isClicked ? liClickedBgColor : liBgColor}`}
     >

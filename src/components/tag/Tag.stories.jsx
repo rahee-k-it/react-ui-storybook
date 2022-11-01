@@ -35,6 +35,7 @@ const infoArr = [
   { contents: 'CSS', id: new Date() * Math.random() },
   { contents: 'JavaScript', id: new Date() * Math.random() },
   { contents: 'React', id: new Date() * Math.random() },
+  { contents: `test about very long sentence`, id: new Date() * Math.random() },
 ];
 
 export const Default = ({
@@ -66,7 +67,7 @@ export const Default = ({
             className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            <span className={`${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
+            <span className={`h-4 ${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
               {item.contents}
             </span>
           </Li>
@@ -118,7 +119,9 @@ export const CheckTag = ({
             className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            <span className={`${isTruncate ? 'truncate' : ''}`}>{item.contents}</span>
+            <span className={`h-4 ${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
+              {item.contents}
+            </span>
           </Li>
         ))}
       </Tag>
@@ -178,9 +181,9 @@ export const DeleteTag = ({
             className={`${liBgColor} ${liBoarderRadius} ${liFontColor} ${liBorderColor}`}
             key={item.id}
           >
-            <div className={`w-5/6 ${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
+            <span className={`h-4 w-5/6 ${isTruncate ? 'truncate' : 'overflow-hidden'}`}>
               {item.contents}
-            </div>
+            </span>
             <span onClick={handleDeleteBtn} className="text-sm mx-2">
               X
             </span>
