@@ -1,43 +1,39 @@
-import { useCallback } from 'react';
+import { Children, isValidElement, useCallback, useMemo } from 'react';
 
-function BreadCrumb({
-  clickUrl,
-  clickTitle,
-  id,
-  length,
-  partitionIcon,
-  partitionIconBoxClassName,
-  linkBoxClassName,
-  onClick = () => {},
-}) {
-  const moveUrl = useCallback(
-    (event) => {
-      event.preventDefault();
-      onClick(clickUrl, clickTitle, id);
+function BreadCrumb({ children, className = '', separator = '/', onClick, ...others }) {
+  const handleClick = useCallback(
+    (e) => {
+      e.preventDefault();
+      onClick && onClick(e.target.href, e.target.innerText);
     },
-    [onClick, clickUrl, clickTitle, id],
+    [onClick],
+  );
+  const breadCrumbList = useMemo(
+    () =>
+      Children.toArray(children).reduce(
+        (acc, child, index) =>
+          isValidElement(child) ? [...acc, <li key={`breadcrumb-${index}`}>{child}</li>] : acc,
+        [],
+      ),
+    [children],
   );
 
-  const currentUrl = window.location.href;
-
   return (
-    <>
-      {length === undefined || length === 0 ? null : (
-        <div className={`${partitionIconBoxClassName ?? ''} flex items-center `}>
-          <span>{partitionIcon ?? '<'}</span>
-        </div>
-      )}
-
-      <div className={`${linkBoxClassName ?? ''} `}>
-        {currentUrl !== clickUrl ? (
-          <a href={clickUrl} onClick={moveUrl}>
-            <span>{clickTitle}</span>
-          </a>
-        ) : (
-          <span>{clickTitle}</span>
-        )}
-      </div>
-    </>
+    <ul onClick={handleClick} className={`flex items-center flex-wrap ${className}`} {...others}>
+      {breadCrumbList.reduce((acc, current, index) => {
+        if (index < breadCrumbList.length - 1) {
+          acc = acc.concat(
+            current,
+            <li key={`separator-${index}`} className="mx-1">
+              {separator}
+            </li>,
+          );
+        } else {
+          acc.push(current);
+        }
+        return acc;
+      }, [])}
+    </ul>
   );
 }
 export default BreadCrumb;

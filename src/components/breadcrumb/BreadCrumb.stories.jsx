@@ -1,20 +1,16 @@
-import { action } from '@storybook/addon-actions';
-import styled from 'styled-components';
-import { backgroundColors, fontColors, fontSizes } from '../common';
 import BreadCrumb from './BreadCrumb';
+import styled from 'styled-components';
+import { action } from '@storybook/addon-actions';
+import { backgroundColors, fontColors, fontSizes } from '../common';
 
 export default {
   title: 'BreadCrumb',
   component: BreadCrumb,
   argTypes: {
+    className: { table: { disable: true } },
+    separator: { control: 'select', options: ['/', '|', '<', '>'] },
     onClick: { table: { disable: true } },
     wrapperBgColor: { control: 'select', options: backgroundColors },
-
-    partitionIcon: {
-      control: 'select',
-      options: ['<', '>', '|', '/'],
-    },
-    partionIconFontSize: { control: 'select', options: fontSizes },
     linkBoxPadding: {
       control: 'select',
       options: ['p-0', 'p-1', 'p-2', 'p-3', 'p-4', 'p-5', 'p-6'],
@@ -28,53 +24,44 @@ export default {
     linkBoxFontColor: { control: 'select', options: fontColors },
   },
 };
-const Wrapper = styled.div`
-  display: flex;
-  width: max-content;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+
+const Link = styled.a`
+  text-decoration: none;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 export const Default = ({
+  wrapperBgColor = 'white',
   linkBoxPadding = 'p-3',
-  partitionIcon,
-  partionIconFontSize = 'text-base',
   linkBoxXMargin = 'mx-3',
   linkBoxFontSize = 'text-base',
-  linkBoxFontColor = 'text-black',
-  wrapperBgColor = 'white',
+  linkBoxFontColor = 'text-gray-500',
+  args,
 }) => {
   const info = [
-    { url: '/', title: 'Home', id: new Date() * Math.random() },
-    { url: '/pet', title: 'Pet', id: new Date() * Math.random() },
-    { url: '/dogs', title: 'Dogs', id: new Date() * Math.random() },
-    { url: `${window.location.href}`, title: 'Poodle', id: new Date() * Math.random() },
+    { url: '/', title: 'Home' },
+    { url: '/facebook', title: 'Facebook' },
+    { url: '/github', title: 'Github' },
   ];
-
   return (
-    <Wrapper className={wrapperBgColor ?? 'bg-white'}>
+    <BreadCrumb onClick={action()} className={`w-fit p-3 ${wrapperBgColor}`} {...args}>
       {info.map((item, i) => (
-        <BreadCrumb
-          onClick={action(item.title)}
-          length={i}
-          key={item.id}
-          id={item.id}
-          clickUrl={item.url}
-          clickTitle={item.title}
-          partitionIcon={partitionIcon}
-          partitionIconBoxClassName={`${partionIconFontSize}`}
-          linkBoxClassName={`${linkBoxPadding} ${linkBoxXMargin} ${linkBoxFontSize} ${linkBoxFontColor} ${
-            item.url === `${window.location.href}`
-              ? ''
-              : `hover:underline cursor-pointer opacity-50 `
-          }`}
-        ></BreadCrumb>
+        <Link
+          className={`${linkBoxPadding} ${linkBoxXMargin} ${linkBoxFontSize} ${linkBoxFontColor}`}
+          href={item.href}
+          key={i}
+        >
+          {item.title}
+        </Link>
       ))}
-    </Wrapper>
+      <span className={`${linkBoxPadding} ${linkBoxXMargin} ${linkBoxFontSize}`}>Default</span>
+    </BreadCrumb>
   );
 };
 
-Default.argTypes = {
-  onClick: (clickedUrl, clickedTitle, id) => {
-    console.log(clickedUrl, clickedTitle, id);
-  },
+Default.args = {
+  separator: '/',
+  // console.log(e.target.href, e.target.innerText);
 };
