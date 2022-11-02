@@ -16,10 +16,13 @@ export default {
         message: { control: 'text' },
         active: { table: { disable: true } },
         tooltipColor: { control: 'select', options: backgroundColors },
-        position: { control: 'select', options: position },
         fontSize: { control: 'select', options: fontSizes },
         fontWeight: { control: 'select', options: fontWeights },
         fontColor: { control: 'select', options: fontColors },
+        position: {
+            control: 'select',
+            options: ['top', 'right', 'bottom', 'left'],
+        },
     },
 };
 
@@ -34,7 +37,7 @@ export const Default = (args) => {
 }
 Default.args = {
     message: 'button tooltip test',
-    tooltipColor:'bg-white',
+    tooltipColor: 'bg-white',
     fontWeight: 'font-thin',
     fontSize: 'text-xs',
     fontColor: 'text-black',
@@ -68,7 +71,7 @@ export const TooltipPosition = (args) => {
     );
 }
 TooltipPosition.args = {
-    position: 'object-bottom',
+    position: 'bottom',
     ...Default.args,
     message: 'tooltip',
 };
