@@ -31,6 +31,14 @@ const Wrapper = styled.div`
   padding: 50px;
 `;
 
+const Badge = styled.div`
+  position: absolute;
+  left: 47.5%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+`;
+
 export const Bar = ({
   tabBarBgColor = 'bg-white',
   tapBarPosition = 'border-t-[2.5px]',
@@ -82,4 +90,52 @@ Bar.argTypes = {
       'border-violet-500',
     ],
   },
+};
+
+export const BadgeBar = ({
+  tabBarBgColor = 'bg-white',
+  badgePosition = 'top-0',
+  clickedBadgeColor = 'bg-violet-500',
+  clickedTextColor = 'text-violet-500',
+  others,
+}) => {
+  const [tabBarId, setTabBarId] = useState(0);
+
+  const handleClick = useCallback((e) => {
+    setTabBarId(Number(e.target.closest('li').dataset.liId));
+  }, []);
+
+  const infoArr = [
+    <FontAwesomeIcon icon={faPhone} />,
+    <FontAwesomeIcon icon={faComment} />,
+    <FontAwesomeIcon icon={faHome} />,
+    <FontAwesomeIcon icon={faCamera} />,
+    <FontAwesomeIcon icon={faCalculator} />,
+  ];
+  return (
+    <Wrapper>
+      <TabBar className={`w-96 p-3 rounded-3xl ${tabBarBgColor}`} {...others}>
+        {infoArr.map((item, index) => (
+          <div
+            onClick={handleClick}
+            key={index}
+            className={`relative flex justify-center p-5 cursor-pointer ${
+              index === tabBarId && `${clickedTextColor}`
+            }`}
+          >
+            <div>
+              {index === tabBarId && (
+                <Badge className={`${clickedBadgeColor} ${badgePosition} animate-pulse`}></Badge>
+              )}
+              {item && <span>{item}</span>}
+            </div>
+          </div>
+        ))}
+      </TabBar>
+    </Wrapper>
+  );
+};
+BadgeBar.argTypes = {
+  badgePosition: { control: 'select', options: ['top-0', 'bottom-0'] },
+  clickedBadgeColor: { control: 'select', options: backgroundColors },
 };
