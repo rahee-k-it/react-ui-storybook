@@ -139,3 +139,48 @@ BadgeBar.argTypes = {
   badgePosition: { control: 'select', options: ['top-0', 'bottom-0'] },
   clickedBadgeColor: { control: 'select', options: backgroundColors },
 };
+
+export const BackgroundBar = ({
+  tabBarBgColor = 'bg-white',
+  clickedTextColor = 'text-violet-500',
+  clickedBgColor = 'bg-violet-300',
+  others,
+}) => {
+  const [tabBarId, setTabBarId] = useState(0);
+
+  const handleClick = useCallback((e) => {
+    setTabBarId(Number(e.target.closest('li').dataset.liId));
+  }, []);
+
+  const infoArr = [
+    { icon: <FontAwesomeIcon icon={faPhone} />, title: 'Phone' },
+    { icon: <FontAwesomeIcon icon={faComment} />, title: 'Comment' },
+    { icon: <FontAwesomeIcon icon={faHome} />, title: 'Home' },
+    { icon: <FontAwesomeIcon icon={faCamera} />, title: 'Camera' },
+    { icon: <FontAwesomeIcon icon={faCalculator} />, title: 'Calculator' },
+  ];
+  return (
+    <Wrapper>
+      <TabBar className={`w-96 p-3 rounded-3xl ${tabBarBgColor}`} {...others}>
+        {infoArr.map((item, index) => (
+          <div
+            onClick={handleClick}
+            key={index}
+            className={`flex flex-col justify-center items-center p-4 cursor-pointer rounded-2xl ${
+              index === tabBarId && `${clickedBgColor} ${clickedTextColor}`
+            }`}
+          >
+            {item.icon && <span className={'mb-1'}>{item.icon}</span>}
+            {item.title && <span className={'text-xs'}>{item.title}</span>}
+          </div>
+        ))}
+      </TabBar>
+    </Wrapper>
+  );
+};
+BackgroundBar.argTypes = {
+  clickedBgColor: {
+    control: 'select',
+    options: backgroundColors,
+  },
+};
