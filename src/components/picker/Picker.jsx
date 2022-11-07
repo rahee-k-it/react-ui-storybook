@@ -1,32 +1,51 @@
+import { useRef } from 'react';
 export default function Picker({
-    backgroundColors = 'bg-white',
-    borderColor = 'border-gray-300',
-    fontSize = 'text-base',
-    fontWeight = 'font-normal',
-    fontColor = 'text-black',
-    onFocus = (e) => { },
+    className = '',
+    onChange = (e) => { },
     ...arg
 }) {
-    const today = new Date().toISOString().slice(0, 16).replace('T', ' ').replace(/\..*/, '');
+
+    const parsingTime = new Date().YYYYMMDDHHMMSS();
+    const today = {
+        'date': parsingTime.split(' ')[0],
+        'time': parsingTime.split(' ')[1],
+        'datetime-local': parsingTime,
+    }
+
     return (
         <input
             id={arg.id ?? 'picker'}
-            defaultValue={arg.type === 'date' ? today.split(' ')[0] : arg.type === 'datetime-local' ? today : today.split(' ')[1]}
-            onFocus={(e) => onFocus && onFocus(e)}
+            type={arg.type ?? 'date'}
+            defaultValue={today[arg.type]}
+            ref={arg.refs ?? useRef()}
+            onChange={(e) => onChange && onChange(e)}
             className={`        
             h-9
             px-2
             text-center
             border rounded
-            ${arg.type === 'datetime-local' ? 'w-49' : 'w-36'}
-            ${fontSize}
-            ${fontWeight}
-            ${fontColor}
-            ${backgroundColors}
-            ${borderColor}`}
+            w-fit
+            ${className}`}
             {...arg}
-        >
-        </input>
+        />
 
     );
+}
+
+Date.prototype.YYYYMMDDHHMMSS = function () {
+    var yyyy = this.getFullYear().toString();
+    var MM = pad(this.getMonth() + 1, 2);
+    var dd = pad(this.getDate(), 2);
+    var hh = pad(this.getHours(), 2);
+    var mm = pad(this.getMinutes(), 2)
+
+    return `${yyyy}-${MM}-${dd} ${hh}:${mm}`;
+};
+
+function pad(number, length) {
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    return str;
 }

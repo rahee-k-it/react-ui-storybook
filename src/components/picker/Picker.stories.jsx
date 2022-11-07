@@ -9,17 +9,26 @@ export default {
         disabled: { control: 'boolean' },
         type: { control: 'text', table: { disable: true } },
         borderColor: { control: 'select', options: borderColors },
-        backgroundColors: { control: 'select', options: backgroundColors },
+        bgColors: { control: 'select', options: backgroundColors },
         fontSize: { control: 'select', options: fontSizes },
         fontWeight: { control: 'select', options: fontWeights },
         fontColor: { control: 'select', options: fontColors },
-        onFocus: { table: { disable: true } }
+        onChange: { table: { disable: true } },
+        className: { table: { disable: true } },
+        refs: { table: { disable: true } },
     },
 };
 
-const Template = (args) => {
+const Template = ({
+    bgColors = 'bg-white',
+    borderColor = 'border-gray-300',
+    fontSize = 'text-base',
+    fontWeight = 'font-normal',
+    fontColor = 'text-black',
+    ...args }) => {
+
     return (
-        <Picker {...args} />
+        <Picker className={`${fontSize} ${fontWeight} ${fontColor} ${bgColors} ${borderColor}`} {...args} />
     );
 };
 
@@ -27,7 +36,7 @@ export const Default = Template.bind({});
 Default.args = {
     disabled: false,
     type: 'date',
-    backgroundColors: 'bg-white',
+    bgColors: 'bg-white',
     borderColor: 'border-gray-300',
     fontSize: 'text-base',
     fontWeight: 'font-normal',
@@ -46,25 +55,30 @@ DateTimePicker.args = {
     type: 'datetime-local',
 };
 
-export const DateRange = (args) => {
-    const startRef = useRef();
+export const DateRange = ({
+    bgColors = 'bg-white',
+    borderColor = 'border-gray-300',
+    fontSize = 'text-base',
+    fontWeight = 'font-normal',
+    fontColor = 'text-black',
+    ...args }) => {
+
     const endRef = useRef();
 
-    const onFocus = (e) => {
-        console.log( startRef);
-        startRef.current.focus();
-        endRef.current.focus();
+    const handleSelect = (e) => {
+        endRef.current.min = e.target.value;
+        endRef.current.showPicker();
     };
 
     return (
         <div>
-            <Picker id='start' {...args} onFocus={onFocus}/>
+            <Picker id='start' className={`${fontSize} ${fontWeight} ${fontColor} ${bgColors} ${borderColor}`} {...args} onChange={handleSelect} />
             -
-            <Picker id='end' {...args} onFocus={onFocus}/>
+            <Picker refs={endRef} id='end' className={`${fontSize} ${fontWeight} ${fontColor} ${bgColors} ${borderColor}`} {...args} />
         </div>
     );
 };
+
 DateRange.args = {
-    inputRef:null,
     ...Default.args,
 };
