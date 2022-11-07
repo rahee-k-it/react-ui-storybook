@@ -157,3 +157,4 @@ export const borderColors = [
   'border-blue-700',
   'border-blue-900',
 ]
+
