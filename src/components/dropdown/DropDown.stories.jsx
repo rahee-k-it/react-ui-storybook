@@ -20,6 +20,7 @@ export default {
         fontSize: { control: 'select', options: fontSizes },
         fontWeight: { control: 'select', options: fontWeights },
         fontColor: { control: 'select', options: fontColors },
+        onChange: { table: { disable: true } },
     },
 };
 
@@ -45,7 +46,7 @@ Default.args = {
     input: ['front', 'backend', 'fullstack'],
 };
 Default.parameters = {
-    controls: { exclude: ['underline', 'onChange'] },
+    controls: { exclude: ['underline'] },
 };
 
 export const SelectValue = (args) => {
@@ -71,7 +72,7 @@ SelectValue.args = {
     ...Default.args,
 };
 SelectValue.parameters = {
-    controls: { exclude: ['underline', 'onChange'] },
+    controls: { exclude: ['underline'] },
 }
 
 
@@ -79,7 +80,4 @@ export const Underline = Template.bind({});
 Underline.args = {
     underline: true,
     ...Default.args,
-};
-Underline.parameters = {
-    controls: { exclude: ['onChange'] },
 };
