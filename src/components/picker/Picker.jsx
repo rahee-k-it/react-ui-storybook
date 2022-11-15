@@ -42,9 +42,5 @@ function DateFormat(date) {
 }
 
 function pad(number, length) {
-    var str = '' + number;    
-    for (let i=str.length; i< length;i++){
-        str = '0' + str;
-    }
-    return str;
+    return `${'0'.repeat(length-`${number}`.length)}${number}`;
 }
