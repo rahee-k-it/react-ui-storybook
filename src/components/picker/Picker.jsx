@@ -17,7 +17,7 @@ export default function Picker({
             id={arg.id ?? 'picker'}
             type={arg.type ?? 'date'}
             defaultValue={today[arg.type]}
-            ref={arg.refs ?? useRef()}
+            ref={arg.refs ?? null}
             onChange={(e) => onChange && onChange(e)}
             className={`        
             h-9
