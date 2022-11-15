@@ -1,11 +1,10 @@
-import { useRef } from 'react';
 export default function Picker({
     className = '',
     onChange = (e) => { },
     ...arg
 }) {
 
-    const parsingTime = new Date().YYYYMMDDHHMMSS();
+    const parsingTime = DateFormat(new Date());
     const today = {
         'date': parsingTime.split(' ')[0],
         'time': parsingTime.split(' ')[1],
@@ -32,19 +31,19 @@ export default function Picker({
     );
 }
 
-Date.prototype.YYYYMMDDHHMMSS = function () {
-    var yyyy = this.getFullYear().toString();
-    var MM = pad(this.getMonth() + 1, 2);
-    var dd = pad(this.getDate(), 2);
-    var hh = pad(this.getHours(), 2);
-    var mm = pad(this.getMinutes(), 2)
+function DateFormat(date) {
+    var yyyy = date.getFullYear().toString();
+    var MM = pad(date.getMonth() + 1, 2);
+    var dd = pad(date.getDate(), 2);
+    var hh = pad(date.getHours(), 2);
+    var mm = pad(date.getMinutes(), 2)
 
     return `${yyyy}-${MM}-${dd} ${hh}:${mm}`;
-};
+}
 
 function pad(number, length) {
-    var str = '' + number;
-    while (str.length < length) {
+    var str = '' + number;    
+    for (let i=str.length; i< length;i++){
         str = '0' + str;
     }
     return str;
