@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { backgroundColors, fontColors, fontSizes, fontWeights } from '../common';
 import Tooltip from './Tooltip';
 import Button from '../button/Button';
@@ -15,6 +16,8 @@ export default {
     argTypes: {
         message: { control: 'text' },
         active: { table: { disable: true } },
+        alwaysDisplay: { table: { disable: true } },
+        className: { table: { disable: true } },
         tooltipColor: { control: 'select', options: backgroundColors },
         fontSize: { control: 'select', options: fontSizes },
         fontWeight: { control: 'select', options: fontWeights },
@@ -22,13 +25,14 @@ export default {
         position: {
             control: 'select',
             options: ['top', 'right', 'bottom', 'left'],
+            table: { disable: true },
         },
     },
 };
 
 export const Default = (args) => {
     return (
-        <Tooltip {...args}>
+        <Tooltip className={`${args.fontWeight} ${args.fontSize} ${args.fontColor} ${args.tooltipColor}`} {...args}>
             <Button bgColor="bg-blue-500" color="text-white">
                 확인
             </Button>
@@ -43,9 +47,26 @@ Default.args = {
     fontColor: 'text-black',
 };
 
+export const ButtonClick = (args) => {
+    const [active, setActive] = useState(false);
+    const onClick = () => {
+        setActive(!active);
+    };
+
+    return (
+        <Tooltip alwaysDisplay={active} className={`${args.fontWeight} ${args.fontSize} ${args.fontColor} ${args.tooltipColor}`} {...args}>
+            <Button bgColor='bg-blue-500' color="text-white" onClick={onClick}>
+                확인
+            </Button>
+        </Tooltip>
+    );
+}
+ButtonClick.args = {
+    ...Default.args,
+};
 export const EventVisible = (args) => {
     return (
-        <Tooltip {...args}>
+        <Tooltip className={`${args.fontWeight} ${args.fontSize} ${args.fontColor} ${args.tooltipColor}`} {...args}>
             <Button disabled={args.active} bgColor={args.active ? 'bg-gray-300' : 'bg-blue-500'} color="text-white">
                 확인
             </Button>
@@ -63,7 +84,7 @@ EventVisible.argTypes = {
 
 export const TooltipPosition = (args) => {
     return (
-        <Tooltip {...args}>
+        <Tooltip className={`${args.fontWeight} ${args.fontSize} ${args.fontColor} ${args.tooltipColor}`} {...args}>
             <Button bgColor='bg-blue-500' color="text-white">
                 툴팁을 확인하기 위한 버튼
             </Button>
@@ -74,4 +95,7 @@ TooltipPosition.args = {
     position: 'bottom',
     ...Default.args,
     message: 'tooltip',
+};
+TooltipPosition.argTypes = {
+    position: { table: { disable: false } },
 };

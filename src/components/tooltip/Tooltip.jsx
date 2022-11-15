@@ -1,10 +1,10 @@
+import { bool } from 'prop-types';
 import styled from 'styled-components';
 
 const Container = styled.div`
   position: relative;
   width: fit-content;
-  height: fit-content;
-  
+  height: fit-content;  
   &:active,
   &:hover > .tooltip {
     display: block;
@@ -18,29 +18,27 @@ const Content = styled.div`
     word-break: keep-all;
 `;
 
+const positionObj = {
+  top: 'bottom-full',
+  right: 'left-full',
+  bottom: 'top-full',
+  left: 'right-full',
+};
+
 export default function Tooltip({
   children,
   message,
-  fontWeight = 'font-thin',
-  fontSize = 'text-xs',
-  fontColor = 'text-black',
   active = true,
   position = 'bottom',
-  tooltipColor = 'bg-white',
+  className='',
+  ...args
 }) {
-
-  const positionObj = {
-    top: 'bottom-full',
-    right: 'left-full',
-    bottom: 'top-full',
-    left: 'right-full',
-  };
-
+  const display = args.alwaysDisplay === undefined ? 'tooltip' : args.alwaysDisplay ? '!block' : '!hidden';
   return (
-    <Container className='m-10'>
+    <Container className= 'm-10'>
       {active &&
         <Content
-          className={`tooltip p-1 ${positionObj[position]} ${fontWeight} ${fontSize} ${fontColor} ${tooltipColor}`}>
+          className={`p-1 ${positionObj[position]} ${className} ${display}`}>
           {message}
         </Content>}
       {children}
